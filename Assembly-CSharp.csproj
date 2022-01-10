@@ -53,7 +53,7 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Github.cs" />
+    <Compile Include="Assets\Scripts\Github.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
