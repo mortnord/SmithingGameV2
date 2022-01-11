@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SetupScript : MonoBehaviour
 {
+    TimerScript timer_script_object;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,12 +15,13 @@ public class SetupScript : MonoBehaviour
     private void find_Timer_Object()
     {
         GameObject timer_object = GameObject.Find("TimerText");
-        TimerScript timer = timer_object.GetComponent<TimerScript>();
+        timer_script_object = timer_object.GetComponent<TimerScript>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
