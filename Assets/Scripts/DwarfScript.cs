@@ -13,6 +13,12 @@ public class DwarfScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        Vector2 position = transform.position;
+        position.x += 2 * horizontal * Time.deltaTime;
+        position.y += 2 * vertical * Time.deltaTime;
+        transform.position = position;
     }
 }
