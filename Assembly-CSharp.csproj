@@ -54,6 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Github.cs" />
+    <Compile Include="Assets\Scripts\DwarfScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
