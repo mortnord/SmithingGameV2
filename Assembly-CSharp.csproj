@@ -53,9 +53,13 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\DwarfScript.cs" />
     <Compile Include="Assets\Scripts\SetupScript.cs" />
     <Compile Include="Assets\Scripts\TimerScript.cs" />
+    <Compile Include="Assets\Scripts\DwarfScript.cs" />
+    <Compile Include="Assets\Scripts\Ore.cs" />
+    <Compile Include="Assets\Scripts\Minecart.cs" />
+    <Compile Include="Assets\Scripts\Find_Components.cs" />
+    <Compile Include="Assets\Scripts\Object_Creation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
