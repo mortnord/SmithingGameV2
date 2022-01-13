@@ -16,11 +16,6 @@ public class DwarfScript : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        /*
-        Vector2 position = transform.position;
-        position.x += 2 * horizontal * Time.deltaTime;
-        position.y += 2 * vertical * Time.deltaTime;
-        transform.position = position;*/ 
 
         
         float moveByX = horizontal * 2;
