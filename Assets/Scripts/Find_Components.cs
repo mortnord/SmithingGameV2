@@ -18,4 +18,5 @@ public class Find_Components : MonoBehaviour
         Object_Creation Object_Creation_Object = Object_Creation.GetComponent<Object_Creation>();
         return Object_Creation_Object;
     }
+    
 }

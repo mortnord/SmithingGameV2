@@ -47,7 +47,7 @@ public class Minecart : MonoBehaviour
             dumped_ore = true;
             for (int i = 0; i < amount_of_ore; i++)
             {
-                Generation_Object.create_ore();
+                Generation_Object.create_ore(Random.Range(1,4));
             }
         }
     }

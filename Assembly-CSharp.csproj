@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\DwarfScript.cs" />
     <Compile Include="Assets\Scripts\Object_Creation.cs" />
     <Compile Include="Assets\Scripts\Ore.cs" />
+    <Compile Include="Assets\Scripts\Ingot.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
