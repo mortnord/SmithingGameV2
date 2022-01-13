@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7491007219376592583}
   m_Layer: 10
   m_Name: Rock_ore
-  m_TagString: Foreground
+  m_TagString: Pickable Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
