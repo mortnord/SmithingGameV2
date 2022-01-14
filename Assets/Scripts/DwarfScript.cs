@@ -6,10 +6,8 @@ using UnityEngine;
 public class DwarfScript : MonoBehaviour
 {
     Rigidbody2D rb;
-
-
     Unsorted_Ore_container Unsorted_Tray_Object;
-    Sorted_Ore_Tray Sorted_Ore_Tray_Low_Object;
+    Sorted_Ore_Tray Sorted_Ore_Tray_Object;
 
     public bool Inventory_Full = false;
     public GameObject Item_in_inventory = null;
@@ -38,14 +36,33 @@ public class DwarfScript : MonoBehaviour
             {
                 if (Nearest_Object.name == "Sorted_Ore_Tray_Low")
                 {
-                    Sorted_Ore_Tray_Low_Object = Find_Components.find_Sorted_Tray_Low();
-                    Sorted_Ore_Tray_Low_Object.Ores_in_tray.Add(Item_in_inventory);
+                    Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_Low();
+                    Sorted_Ore_Tray_Object.Ores_in_tray.Add(Item_in_inventory);
 
-                    Item_in_inventory.transform.position = new Vector3(-1.4f, -1.2f, 0);
+                    Item_in_inventory.transform.position = Sorted_Ore_Tray_Object.transform.position;
                     
                     Item_in_inventory = null;
                     Inventory_Full = false;
+                }
+                if (Nearest_Object.name == "Sorted_Ore_Tray_Medium")
+                {
+                    Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_Medium();
+                    Sorted_Ore_Tray_Object.Ores_in_tray.Add(Item_in_inventory);
 
+                    Item_in_inventory.transform.position = Sorted_Ore_Tray_Object.transform.position;
+
+                    Item_in_inventory = null;
+                    Inventory_Full = false;
+                }
+                if (Nearest_Object.name == "Sorted_Ore_Tray_High")
+                {
+                    Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_High();
+                    Sorted_Ore_Tray_Object.Ores_in_tray.Add(Item_in_inventory);
+
+                    Item_in_inventory.transform.position = Sorted_Ore_Tray_Object.transform.position;
+
+                    Item_in_inventory = null;
+                    Inventory_Full = false;
                 }
 
             }
