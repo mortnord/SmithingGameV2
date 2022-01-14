@@ -8,6 +8,7 @@ public class DwarfScript : MonoBehaviour
     Rigidbody2D rb;
     Unsorted_Ore_container Unsorted_Tray_Object;
     Sorted_Ore_Tray Sorted_Ore_Tray_Object;
+    Furnace Furnace_Object;
 
     public bool Inventory_Full = false;
     public GameObject Item_in_inventory = null;
@@ -31,7 +32,7 @@ public class DwarfScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Nearest_Object = find_nearest_interactable_object_within_range(2);
+            Nearest_Object = find_nearest_interactable_object_within_range(5);
             if (Inventory_Full)
             {
                 if (Nearest_Object.name == "Sorted_Ore_Tray_Low")
@@ -64,6 +65,16 @@ public class DwarfScript : MonoBehaviour
                     Item_in_inventory = null;
                     Inventory_Full = false;
                 }
+                if (Nearest_Object.name == "Furnace")
+                {
+                    Furnace_Object = Find_Components.find_furnace();
+                    Furnace_Object.Ores_in_furnace.Add(Item_in_inventory);
+
+                    Item_in_inventory.transform.position = Furnace_Object.transform.position;
+
+                    Item_in_inventory = null;
+                    Inventory_Full = false;
+                }
 
             }
             else if (Inventory_Full == false && Nearest_Object != null)
@@ -81,7 +92,16 @@ public class DwarfScript : MonoBehaviour
             
             
         }
-        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Nearest_Object = find_nearest_interactable_object_within_range(5);
+            if (Nearest_Object.name == "Furnace")
+            {
+                Furnace_Object = Find_Components.find_furnace();
+                Furnace_Object.smelting_ready = true;
+
+            }
+        }
         
         float moveByX = horizontal * 2;
         float moveByY = vertical * 2;
@@ -100,7 +120,7 @@ public class DwarfScript : MonoBehaviour
             Vector3 diff = go.transform.position - position;
             
             float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance && curDistance < 2)
+            if (curDistance < distance && curDistance < Range)
             {
                 closest = go;
                 distance = curDistance;

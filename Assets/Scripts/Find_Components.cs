@@ -42,4 +42,16 @@ public class Find_Components : MonoBehaviour
         Sorted_Ore_Tray Sorted_Ore_Tray_Object = Sorted_Ore_Tray.GetComponent<Sorted_Ore_Tray>();
         return Sorted_Ore_Tray_Object;
     }
+    public static Furnace find_furnace()
+    {
+        GameObject Furnace = GameObject.Find("Furnace");
+        Furnace Furnace_Object = Furnace.GetComponent<Furnace>();
+        return Furnace_Object;
+    }
+    public static Ingot_Form find_ingot_form()
+    {
+        GameObject ingot_form = GameObject.Find("Ingot_form");
+        Ingot_Form ingot_form_object = ingot_form.GetComponent<Ingot_Form>();
+        return ingot_form_object;
+    }
 }

@@ -13,7 +13,6 @@ public class Sorted_Ore_Tray : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
