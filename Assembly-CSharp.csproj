@@ -57,9 +57,10 @@
     <Compile Include="Assets\Scripts\Find_Components.cs" />
     <Compile Include="Assets\Scripts\TimerScript.cs" />
     <Compile Include="Assets\Scripts\DwarfScript.cs" />
+    <Compile Include="Assets\Scripts\Ingot.cs" />
     <Compile Include="Assets\Scripts\Object_Creation.cs" />
     <Compile Include="Assets\Scripts\Ore.cs" />
-    <Compile Include="Assets\Scripts\Ingot.cs" />
+    <Compile Include="Assets\Scripts\Unsorted_Ore_container.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

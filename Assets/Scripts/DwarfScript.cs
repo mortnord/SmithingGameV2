@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DwarfScript : MonoBehaviour
 {
     Rigidbody2D rb;
+
+
+    Unsorted_Ore_container Unsorted_Tray_Object;
+
     public bool Inventory_Full = false;
-    GameObject Item_in_inventory = null;
+    public GameObject Item_in_inventory = null;
+    public GameObject Nearest_Object = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,14 +27,20 @@ public class DwarfScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject Nearest_Object = find_nearest_interactable_object_within_range(2);
+            Nearest_Object = find_nearest_interactable_object_within_range(2);
             if (Inventory_Full)
             {
                 //Kode for å slippe ting
+
             }
             else if (Inventory_Full == false)
             {
                 //Kode for å plukke opp ting
+                if (Nearest_Object.name == "Unsorted_Ore_Tray")
+                {
+                    Unsorted_Tray_Object = Find_Components.find_Unsorted_Tray();
+                    Item_in_inventory = Unsorted_Tray_Object.Ores_in_tray.ElementAt(0);
+                }
             }
             
             

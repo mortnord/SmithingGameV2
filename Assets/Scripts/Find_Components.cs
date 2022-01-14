@@ -18,5 +18,10 @@ public class Find_Components : MonoBehaviour
         Object_Creation Object_Creation_Object = Object_Creation.GetComponent<Object_Creation>();
         return Object_Creation_Object;
     }
-    
+    public static Unsorted_Ore_container find_Unsorted_Tray()
+    {
+        GameObject Unsorted_Tray = GameObject.Find("Unsorted_Ore_Tray");
+        Unsorted_Ore_container Unsorted_Tray_Object = Unsorted_Tray.GetComponent<Unsorted_Ore_container>();
+        return Unsorted_Tray_Object;
+    }
 }

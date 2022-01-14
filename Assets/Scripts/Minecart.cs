@@ -6,12 +6,14 @@ public class Minecart : MonoBehaviour
 {
     TimerScript Timer_Object;
     Object_Creation Generation_Object;
+    Unsorted_Ore_container Unsorted_Tray_Object;
     bool not_moved = true;
     bool dumped_ore = false;
     public int movement_speed = 0;
     Vector2 position; 
     public Sprite[] spriteArray;
     public SpriteRenderer spriteRenderer;
+    
     public int amount_of_ore = 0;
    
     // Start is called before the first frame update
@@ -19,6 +21,7 @@ public class Minecart : MonoBehaviour
     {
         Timer_Object = Find_Components.find_Timer_Object();
         Generation_Object = Find_Components.find_Object_Creation();
+        Unsorted_Tray_Object = Find_Components.find_Unsorted_Tray();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         amount_of_ore = 5;
         
@@ -47,7 +50,7 @@ public class Minecart : MonoBehaviour
             dumped_ore = true;
             for (int i = 0; i < amount_of_ore; i++)
             {
-                Generation_Object.create_ore(Random.Range(1,4));
+                Unsorted_Tray_Object.Ores_in_tray.Add(Generation_Object.create_ore(Random.Range(1, 4)));
             }
         }
     }
