@@ -25,6 +25,11 @@ public class DwarfScript : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
+        if(Inventory_Full)
+        {
+            Item_in_inventory.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Nearest_Object = find_nearest_interactable_object_within_range(2);
@@ -40,11 +45,14 @@ public class DwarfScript : MonoBehaviour
                 {
                     Unsorted_Tray_Object = Find_Components.find_Unsorted_Tray();
                     Item_in_inventory = Unsorted_Tray_Object.Ores_in_tray.ElementAt(0);
+                    Item_in_inventory.transform.position = transform.position + new Vector3(0,0.5f,0);
+                    Inventory_Full = true;
                 }
             }
             
             
         }
+        
         
         float moveByX = horizontal * 2;
         float moveByY = vertical * 2;
