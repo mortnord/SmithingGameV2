@@ -54,4 +54,23 @@ public class Find_Components : MonoBehaviour
         Ingot_Form ingot_form_object = ingot_form.GetComponent<Ingot_Form>();
         return ingot_form_object;
     }
+    public static Sorted_Ingots_Tray find_ingot_tray_low()
+    {
+        GameObject ingot_tray = GameObject.Find("Ingot_Tray_Low");
+        Sorted_Ingots_Tray ingot_tray_object = ingot_tray.GetComponent<Sorted_Ingots_Tray>();
+        return ingot_tray_object;
+
+    }
+    public static Sorted_Ingots_Tray find_ingot_tray_medium()
+    {
+        GameObject ingot_tray = GameObject.Find("Ingot_Tray_Medium");
+        Sorted_Ingots_Tray ingot_tray_object = ingot_tray.GetComponent<Sorted_Ingots_Tray>();
+        return ingot_tray_object;
+    }
+    public static Sorted_Ingots_Tray find_ingot_tray_high()
+    {
+        GameObject ingot_tray = GameObject.Find("Ingot_Tray_High");
+        Sorted_Ingots_Tray ingot_tray_object = ingot_tray.GetComponent<Sorted_Ingots_Tray>();
+        return ingot_tray_object;
+    }
 }

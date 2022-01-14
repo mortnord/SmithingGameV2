@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1524390941952993617}
   m_Layer: 0
   m_Name: Ingot_Tray_Low
-  m_TagString: Untagged
+  m_TagString: Pickable Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,3 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7185d5ce976647448b1e001f49c4ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  quality: 0
+  Ingots_in_tray: []
+  spriteArray:
+  - {fileID: 21300000, guid: a4111d084f8e0fa4abd4ae026c261bde, type: 3}
+  - {fileID: 21300000, guid: 23aafb781c4e45e428ae254dcee2f418, type: 3}
+  spriteRenderer: {fileID: 0}

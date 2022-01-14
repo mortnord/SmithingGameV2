@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,9 @@ public class DwarfScript : MonoBehaviour
 {
     Rigidbody2D rb;
     Unsorted_Ore_container Unsorted_Tray_Object;
+    Ingot_Form ingot_form_object;
     Sorted_Ore_Tray Sorted_Ore_Tray_Object;
+    Sorted_Ingots_Tray Sorted_Ingots_Tray_Object;
     Furnace Furnace_Object;
 
     public bool Inventory_Full = false;
@@ -38,32 +41,50 @@ public class DwarfScript : MonoBehaviour
                 if (Nearest_Object.name == "Sorted_Ore_Tray_Low")
                 {
                     Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_Low();
-                    Sorted_Ore_Tray_Object.Ores_in_tray.Add(Item_in_inventory);
+                    if(Item_in_inventory.GetComponent<Ore>().quality == 1)
+                    {
+                        Sorted_Ore_Tray_Object.Ores_in_tray.Add(Item_in_inventory);
 
-                    Item_in_inventory.transform.position = Sorted_Ore_Tray_Object.transform.position;
+                        Item_in_inventory.transform.position = Sorted_Ore_Tray_Object.transform.position;
+                        Cleanup();
+                    }
+                    else
+                    {
+                        print("Feil plass");
+                    }
                     
-                    Item_in_inventory = null;
-                    Inventory_Full = false;
                 }
                 if (Nearest_Object.name == "Sorted_Ore_Tray_Medium")
                 {
                     Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_Medium();
-                    Sorted_Ore_Tray_Object.Ores_in_tray.Add(Item_in_inventory);
+                    if (Item_in_inventory.GetComponent<Ore>().quality == 2)
+                    {
+                        Sorted_Ore_Tray_Object.Ores_in_tray.Add(Item_in_inventory);
 
-                    Item_in_inventory.transform.position = Sorted_Ore_Tray_Object.transform.position;
+                        Item_in_inventory.transform.position = Sorted_Ore_Tray_Object.transform.position;
+                        Cleanup();
+                    }
+                    else
+                    {
+                        print("Feil plass");
+                    }
 
-                    Item_in_inventory = null;
-                    Inventory_Full = false;
                 }
                 if (Nearest_Object.name == "Sorted_Ore_Tray_High")
                 {
                     Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_High();
-                    Sorted_Ore_Tray_Object.Ores_in_tray.Add(Item_in_inventory);
+                    if (Item_in_inventory.GetComponent<Ore>().quality == 3)
+                    {
+                        Sorted_Ore_Tray_Object.Ores_in_tray.Add(Item_in_inventory);
 
-                    Item_in_inventory.transform.position = Sorted_Ore_Tray_Object.transform.position;
+                        Item_in_inventory.transform.position = Sorted_Ore_Tray_Object.transform.position;
+                        Cleanup();
+                    }
+                    else
+                    {
+                        print("Feil plass");
+                    }
 
-                    Item_in_inventory = null;
-                    Inventory_Full = false;
                 }
                 if (Nearest_Object.name == "Furnace")
                 {
@@ -71,9 +92,52 @@ public class DwarfScript : MonoBehaviour
                     Furnace_Object.Ores_in_furnace.Add(Item_in_inventory);
 
                     Item_in_inventory.transform.position = Furnace_Object.transform.position;
+                    Cleanup();
+                }
+                if (Nearest_Object.name == "Ingot_Tray_Low")
+                {
+                    Sorted_Ingots_Tray_Object = Find_Components.find_ingot_tray_low();
+                    if (Item_in_inventory.GetComponent<Ingot>().quality == 1)
+                    {
+                        Sorted_Ingots_Tray_Object.Ingots_in_tray.Add(Item_in_inventory);
 
-                    Item_in_inventory = null;
-                    Inventory_Full = false;
+                        Item_in_inventory.transform.position = Sorted_Ingots_Tray_Object.transform.position;
+                        Cleanup();
+                    }
+                    else
+                    {
+                        print("Feil plass");
+                    }
+                }
+                if (Nearest_Object.name == "Ingot_Tray_Medium")
+                {
+                    Sorted_Ingots_Tray_Object = Find_Components.find_ingot_tray_medium();
+                    if (Item_in_inventory.GetComponent<Ingot>().quality == 2)
+                    {
+                        Sorted_Ingots_Tray_Object.Ingots_in_tray.Add(Item_in_inventory);
+
+                        Item_in_inventory.transform.position = Sorted_Ingots_Tray_Object.transform.position;
+                        Cleanup();
+                    }
+                    else
+                    {
+                        print("Feil plass");
+                    }
+                }
+                if (Nearest_Object.name == "Ingot_Tray_High")
+                {
+                    Sorted_Ingots_Tray_Object = Find_Components.find_ingot_tray_high();
+                    if (Item_in_inventory.GetComponent<Ingot>().quality == 3)
+                    {
+                        Sorted_Ingots_Tray_Object.Ingots_in_tray.Add(Item_in_inventory);
+
+                        Item_in_inventory.transform.position = Sorted_Ingots_Tray_Object.transform.position;
+                        Cleanup();
+                    }
+                    else
+                    {
+                        print("Feil plass");
+                    }
                 }
 
             }
@@ -85,7 +149,56 @@ public class DwarfScript : MonoBehaviour
                     Unsorted_Tray_Object = Find_Components.find_Unsorted_Tray();
                     Item_in_inventory = Unsorted_Tray_Object.Ores_in_tray.ElementAt(0);
                     Unsorted_Tray_Object.Ores_in_tray.RemoveAt(0);
-                    Item_in_inventory.transform.position = transform.position + new Vector3(0,0.5f,0);
+                    Inventory_Full = true;
+                }
+                if (Nearest_Object.name == "Ingot_form")
+                {
+                    ingot_form_object = Find_Components.find_ingot_form();
+                    Item_in_inventory = ingot_form_object.Ingots_in_form.ElementAt(0);
+                    ingot_form_object.Ingots_in_form.RemoveAt(0);
+                    Inventory_Full = true;
+                }
+                if (Nearest_Object.name == "Sorted_Ore_Tray_Low")
+                {
+                    Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_Low();
+                    Item_in_inventory = Sorted_Ore_Tray_Object.Ores_in_tray.ElementAt(0);
+                    Sorted_Ore_Tray_Object.Ores_in_tray.RemoveAt(0);
+                    Inventory_Full = true;
+                }
+                if (Nearest_Object.name == "Sorted_Ore_Tray_Medium")
+                {
+                    Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_Medium();
+                    Item_in_inventory = Sorted_Ore_Tray_Object.Ores_in_tray.ElementAt(0);
+                    Sorted_Ore_Tray_Object.Ores_in_tray.RemoveAt(0);
+                    Inventory_Full = true;
+                    
+                }
+                if (Nearest_Object.name == "Sorted_Ore_Tray_High")
+                {
+                    Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_High();
+                    Item_in_inventory = Sorted_Ore_Tray_Object.Ores_in_tray.ElementAt(0);
+                    Sorted_Ore_Tray_Object.Ores_in_tray.RemoveAt(0);
+                    Inventory_Full = true;
+                }
+                if (Nearest_Object.name == "Ingot_Tray_Low")
+                { 
+                    Sorted_Ingots_Tray_Object = Find_Components.find_ingot_tray_low();
+                    Item_in_inventory = Sorted_Ingots_Tray_Object.Ingots_in_tray.ElementAt(0);
+                    Sorted_Ingots_Tray_Object.Ingots_in_tray.RemoveAt(0);
+                    Inventory_Full = true;
+                }
+                if (Nearest_Object.name == "Ingot_Tray_Medium")
+                {
+                    Sorted_Ingots_Tray_Object = Find_Components.find_ingot_tray_medium();
+                    Item_in_inventory = Sorted_Ingots_Tray_Object.Ingots_in_tray.ElementAt(0);
+                    Sorted_Ingots_Tray_Object.Ingots_in_tray.RemoveAt(0);
+                    Inventory_Full = true;
+                }
+                if (Nearest_Object.name == "Ingot_Tray_High")
+                {
+                    Sorted_Ingots_Tray_Object = Find_Components.find_ingot_tray_high();
+                    Item_in_inventory = Sorted_Ingots_Tray_Object.Ingots_in_tray.ElementAt(0);
+                    Sorted_Ingots_Tray_Object.Ingots_in_tray.RemoveAt(0);
                     Inventory_Full = true;
                 }
             }
@@ -107,6 +220,13 @@ public class DwarfScript : MonoBehaviour
         float moveByY = vertical * 2;
         rb.velocity = new Vector2(moveByX, moveByY);
     }
+
+    private void Cleanup()
+    {
+        Item_in_inventory = null;
+        Inventory_Full = false;
+    }
+
     GameObject find_nearest_interactable_object_within_range(int Range)
     {
         GameObject[] gos;
@@ -130,4 +250,5 @@ public class DwarfScript : MonoBehaviour
         return closest;
     }
 
+    
 }
