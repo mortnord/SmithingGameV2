@@ -61,6 +61,8 @@
     <Compile Include="Assets\Scripts\Object_Creation.cs" />
     <Compile Include="Assets\Scripts\Ore.cs" />
     <Compile Include="Assets\Scripts\Unsorted_Ore_container.cs" />
+    <Compile Include="Assets\Scripts\Sorted_Ingots_Tray.cs" />
+    <Compile Include="Assets\Scripts\Sorted_Ore_Tray.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -23,7 +23,7 @@ public class Minecart : MonoBehaviour
         Generation_Object = Find_Components.find_Object_Creation();
         Unsorted_Tray_Object = Find_Components.find_Unsorted_Tray();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        amount_of_ore = 5;
+        amount_of_ore = 1;
         
     }
 

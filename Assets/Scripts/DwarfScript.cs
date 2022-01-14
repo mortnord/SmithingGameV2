@@ -9,6 +9,7 @@ public class DwarfScript : MonoBehaviour
 
 
     Unsorted_Ore_container Unsorted_Tray_Object;
+    Sorted_Ore_Tray Sorted_Ore_Tray_Low_Object;
 
     public bool Inventory_Full = false;
     public GameObject Item_in_inventory = null;
@@ -25,7 +26,7 @@ public class DwarfScript : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        if(Inventory_Full)
+        if(Inventory_Full && Input.GetKeyDown(KeyCode.Space) == false)
         {
             Item_in_inventory.transform.position = transform.position + new Vector3(0, 0.5f, 0);
         }
@@ -35,16 +36,27 @@ public class DwarfScript : MonoBehaviour
             Nearest_Object = find_nearest_interactable_object_within_range(2);
             if (Inventory_Full)
             {
-                //Kode for å slippe ting
+                if (Nearest_Object.name == "Sorted_Ore_Tray_Low")
+                {
+                    Sorted_Ore_Tray_Low_Object = Find_Components.find_Sorted_Tray_Low();
+                    Sorted_Ore_Tray_Low_Object.Ores_in_tray.Add(Item_in_inventory);
+
+                    Item_in_inventory.transform.position = new Vector3(-1.4f, -1.2f, 0);
+                    
+                    Item_in_inventory = null;
+                    Inventory_Full = false;
+
+                }
 
             }
-            else if (Inventory_Full == false)
+            else if (Inventory_Full == false && Nearest_Object != null)
             {
                 //Kode for å plukke opp ting
                 if (Nearest_Object.name == "Unsorted_Ore_Tray")
                 {
                     Unsorted_Tray_Object = Find_Components.find_Unsorted_Tray();
                     Item_in_inventory = Unsorted_Tray_Object.Ores_in_tray.ElementAt(0);
+                    Unsorted_Tray_Object.Ores_in_tray.RemoveAt(0);
                     Item_in_inventory.transform.position = transform.position + new Vector3(0,0.5f,0);
                     Inventory_Full = true;
                 }
@@ -77,6 +89,7 @@ public class DwarfScript : MonoBehaviour
                 distance = curDistance;
             }
         }
+        
         return closest;
     }
 
