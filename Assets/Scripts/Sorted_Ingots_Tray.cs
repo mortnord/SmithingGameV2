@@ -19,11 +19,12 @@ public class Sorted_Ingots_Tray : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Ingots_in_tray.Count > 0)
+        //En mulighet å lage en array med plasser, der vi fyller en og en plass med en sprite når vi legger noe inni?
+        if (Ingots_in_tray.Count > 0) //Sprite endring fra tomt til fult. 
         {
             spriteRenderer.sprite = spriteArray[1];
         }
-        if (Ingots_in_tray.Count == 0)
+        if (Ingots_in_tray.Count == 0) //Tilbake til tomt når det er tomt. 
         {
             spriteRenderer.sprite = spriteArray[0];
         }

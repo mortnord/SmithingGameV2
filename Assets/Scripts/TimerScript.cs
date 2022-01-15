@@ -13,8 +13,8 @@ public class TimerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        time_Remaining = 720;
-        timer_Is_Running = true;
+        time_Remaining = 720; //Tid i sekunder per lvl / minecart noe. 
+        timer_Is_Running = true; //Tiden ska begynne å gå
 
     }
 
@@ -23,14 +23,14 @@ public class TimerScript : MonoBehaviour
     {
         if (time_Remaining > 0 && timer_Is_Running)
         {
-            time_Remaining -= Time.deltaTime;
-            calculate_time_left(time_Remaining);
+            time_Remaining -= Time.deltaTime; //Trekkes fra tiden tilsvarnede tiden brukt på en frame, gir en smooth 1 sekund per sekund. 
+            calculate_time_left(time_Remaining); //Beregne minutter og sekunder. 
 
         }
         else
         {
-            time_Remaining = 0;
-            timer_Is_Running = false;
+            time_Remaining = 0; //Runde ned til null
+            timer_Is_Running = false; 
         }
 
     }

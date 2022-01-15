@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Find_Components : MonoBehaviour
 {
+    //Her er alt tilsvarnede likt, så jeg forklarer kun en. Alle gjøre egentlig det samme,
+    //bare med en forskjellig parameter i string og i navn, kanskje det kan slås sammen til en?
     public static TimerScript find_Timer_Object()
     {
-        GameObject timer_object = GameObject.Find("TimerText");
-
-        TimerScript timer_script_object = timer_object.GetComponent<TimerScript>();
-        return timer_script_object;
+        GameObject timer_object = GameObject.Find("TimerText"); //Vi finner ett gameobject basert på navnet, dette krever at hver av objektene vi søker opp
+                                                                //har unike navn, kanskje noe å endre på i framtiden
+        TimerScript timer_script_object = timer_object.GetComponent<TimerScript>(); // Her finner vi script-objektet til gameObjektet, det vi er ute etter
+        return timer_script_object; //Returner script-objektet.
     }
     public static Object_Creation find_Object_Creation()
     {
