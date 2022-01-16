@@ -9,6 +9,7 @@ public class Minecart : MonoBehaviour
     Unsorted_Ore_container Unsorted_Tray_Object;
     bool not_moved = true;
     bool dumped_ore = false;
+    public bool tilbake_tid = false;
     public int movement_speed = 0;
     Vector2 position; 
     public Sprite[] spriteArray;
@@ -16,6 +17,7 @@ public class Minecart : MonoBehaviour
     public int cooldown_time;
     
     public int amount_of_ore = 0;
+    public float time_until_move = 0;
    
     // Start is called before the first frame update
     void Start()
@@ -27,21 +29,28 @@ public class Minecart : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>(); //Dette er spirit-renderen, vi kan bruke denne til å bytte sprites.
         // Mengden ore som skal generates, må endres til mindre hardcoding. 
         amount_of_ore = Random.Range(1, 7);
+        time_until_move = 5;
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(not_moved)
+        {
+            time_until_move = time_until_move - Time.deltaTime;
+        }
         //Alt dette blir vell endret av deg når du lager en patrolpath?
         position = transform.position;
-        if (Timer_Object.time_Remaining < 715 && not_moved) //Når det har gått 5 sekund (siden vi starter på 720), så flytter minecarten seg
+        print(time_until_move);
+        if (time_until_move < 0 && not_moved) 
         {
             print("Tid for å flytte seg");
             not_moved = false;
             movement_speed = 4; //Movement speed minecart
+            time_until_move = 0;
         }
-        if(not_moved == false)
+        if (not_moved == false && tilbake_tid == false)
         {
             position.y -= movement_speed * Time.deltaTime; //Vi flytter bilde nedover
             transform.position = position;
@@ -53,8 +62,31 @@ public class Minecart : MonoBehaviour
             dumped_ore = true;
             for (int i = 0; i < amount_of_ore; i++) //Generer ore og legg det i stockpilen for usortert ore
             {
-                Unsorted_Tray_Object.Ores_in_tray.Add(Generation_Object.create_ore(Random.Range(1, 4)));
+                Unsorted_Tray_Object.Ores_in_tray.Add(Generation_Object.create_ore());
+            }
+            amount_of_ore = 0;
+            tilbake_tid = true;
+        }
+        if(Unsorted_Tray_Object.Ores_in_tray.Count == 0 && dumped_ore == true && tilbake_tid)
+        {
+            print("Tid for å dra tilbake");
+            movement_speed = 2;
+            position.y += movement_speed * Time.deltaTime; //Vi flytter bilde nedover
+            transform.position = position;
+            if(position.y > 8)
+            {
+                Reset();
             }
         }
+    }
+
+    private void Reset()
+    {
+        time_until_move = 5;
+        not_moved = true;
+        dumped_ore = false;
+        tilbake_tid = false;
+        transform.position = new Vector3(-8.7f, 8f);
+        amount_of_ore = Random.Range(1, 7);
     }
 }

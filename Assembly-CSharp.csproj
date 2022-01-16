@@ -56,16 +56,18 @@
     <Compile Include="Assets\Scripts\Unsorted_Ore_container.cs" />
     <Compile Include="Assets\Scripts\Minecart.cs" />
     <Compile Include="Assets\Scripts\Find_Components.cs" />
+    <Compile Include="Assets\Scripts\Ingot_Form.cs" />
     <Compile Include="Assets\Scripts\TimerScript.cs" />
     <Compile Include="Assets\Scripts\DwarfScript.cs" />
     <Compile Include="Assets\Scripts\Ingot.cs" />
+    <Compile Include="Assets\Scripts\Furnace.cs" />
     <Compile Include="Assets\Scripts\Sorted_Ore_Tray.cs" />
     <Compile Include="Assets\Scripts\Object_Creation.cs" />
     <Compile Include="Assets\Scripts\Ore.cs" />
-    <Compile Include="Assets\Scripts\Sorted_Ingots_Tray.cs" />
-    <Compile Include="Assets\Scripts\Furnace.cs" />
     <Compile Include="Assets\Scripts\Channel.cs" />
-    <Compile Include="Assets\Scripts\Ingot_Form.cs" />
+    <Compile Include="Assets\Scripts\Sorted_Ingots_Tray.cs" />
+    <Compile Include="Assets\Scripts\Score.cs" />
+    <Compile Include="Assets\Scripts\Enum types.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

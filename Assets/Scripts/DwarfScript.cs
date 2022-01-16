@@ -19,6 +19,7 @@ public class DwarfScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         rb = GetComponent<Rigidbody2D>(); // Denne trengs for å kunne gjøre physicsbasert movement
     }
 
@@ -41,7 +42,7 @@ public class DwarfScript : MonoBehaviour
                 if (Nearest_Object.name == "Sorted_Ore_Tray_Low") //Her er det lav kvalitet ore den prøver å legge noe i 
                 {
                     Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_Low(); // Her finner vi gameObjektet sin script-component, som vi ska legge ting i
-                    if (Item_in_inventory.GetComponent<Ore>().quality == 1) // Test for å sjekke om det jeg har i inventory er riktig kvalitet for stockpilen
+                    if (Item_in_inventory.GetComponent<Ore>().quality == 0) // Test for å sjekke om det jeg har i inventory er riktig kvalitet for stockpilen
                     {
                         Sorted_Ore_Tray_Object.Ores_in_tray.Add(Item_in_inventory); // Her legger vi objektet i Inventory i arrayen som holder objekter i stockpilen
 
@@ -58,7 +59,7 @@ public class DwarfScript : MonoBehaviour
                 if (Nearest_Object.name == "Sorted_Ore_Tray_Medium")
                 {
                     Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_Medium();
-                    if (Item_in_inventory.GetComponent<Ore>().quality == 2)
+                    if (Item_in_inventory.GetComponent<Ore>().quality == 1)
                     {
                         Sorted_Ore_Tray_Object.Ores_in_tray.Add(Item_in_inventory);
 
@@ -74,7 +75,7 @@ public class DwarfScript : MonoBehaviour
                 if (Nearest_Object.name == "Sorted_Ore_Tray_High")
                 {
                     Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_High();
-                    if (Item_in_inventory.GetComponent<Ore>().quality == 3)
+                    if (Item_in_inventory.GetComponent<Ore>().quality == 2)
                     {
                         Sorted_Ore_Tray_Object.Ores_in_tray.Add(Item_in_inventory);
 
@@ -98,7 +99,7 @@ public class DwarfScript : MonoBehaviour
                 if (Nearest_Object.name == "Ingot_Tray_Low")
                 {
                     Sorted_Ingots_Tray_Object = Find_Components.find_ingot_tray_low();
-                    if (Item_in_inventory.GetComponent<Ingot>().quality == 1)
+                    if (Item_in_inventory.GetComponent<Ingot>().quality == 0)
                     {
                         Sorted_Ingots_Tray_Object.Ingots_in_tray.Add(Item_in_inventory);
 
@@ -113,7 +114,7 @@ public class DwarfScript : MonoBehaviour
                 if (Nearest_Object.name == "Ingot_Tray_Medium")
                 {
                     Sorted_Ingots_Tray_Object = Find_Components.find_ingot_tray_medium();
-                    if (Item_in_inventory.GetComponent<Ingot>().quality == 2)
+                    if (Item_in_inventory.GetComponent<Ingot>().quality == 1)
                     {
                         Sorted_Ingots_Tray_Object.Ingots_in_tray.Add(Item_in_inventory);
 
@@ -128,7 +129,7 @@ public class DwarfScript : MonoBehaviour
                 if (Nearest_Object.name == "Ingot_Tray_High")
                 {
                     Sorted_Ingots_Tray_Object = Find_Components.find_ingot_tray_high();
-                    if (Item_in_inventory.GetComponent<Ingot>().quality == 3)
+                    if (Item_in_inventory.GetComponent<Ingot>().quality == 2)
                     {
                         Sorted_Ingots_Tray_Object.Ingots_in_tray.Add(Item_in_inventory);
 
