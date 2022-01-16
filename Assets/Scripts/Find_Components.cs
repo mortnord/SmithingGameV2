@@ -75,4 +75,10 @@ public class Find_Components : MonoBehaviour
         Sorted_Ingots_Tray ingot_tray_object = ingot_tray.GetComponent<Sorted_Ingots_Tray>();
         return ingot_tray_object;
     }
+    public static Anvil find_anvil()
+    {
+        GameObject anvil_gameObjct = GameObject.Find("Anvil");
+        Anvil anvil_object = anvil_gameObjct.GetComponent<Anvil>();
+        return anvil_object;
+    }
 }

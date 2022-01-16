@@ -12,6 +12,7 @@ public class DwarfScript : MonoBehaviour
     Sorted_Ore_Tray Sorted_Ore_Tray_Object;
     Sorted_Ingots_Tray Sorted_Ingots_Tray_Object;
     Furnace Furnace_Object;
+    Anvil Anvil_Object;
 
     public bool Inventory_Full = false;
     public GameObject Item_in_inventory = null;
@@ -90,11 +91,14 @@ public class DwarfScript : MonoBehaviour
                 }
                 if (Nearest_Object.name == "Furnace")
                 {
-                    Furnace_Object = Find_Components.find_furnace();
-                    Furnace_Object.Ores_in_furnace.Add(Item_in_inventory);
+                    if(Item_in_inventory.GetComponent<Ore>() != null)
+                    {
+                        Furnace_Object = Find_Components.find_furnace();
+                        Furnace_Object.Ores_in_furnace.Add(Item_in_inventory);
 
-                    Item_in_inventory.transform.position = Furnace_Object.transform.position;
-                    Cleanup();
+                        Item_in_inventory.transform.position = Furnace_Object.transform.position;
+                        Cleanup();
+                    }
                 }
                 if (Nearest_Object.name == "Ingot_Tray_Low")
                 {
@@ -139,6 +143,16 @@ public class DwarfScript : MonoBehaviour
                     else
                     {
                         print("Feil plass");
+                    }
+                }
+                if (Nearest_Object.name == "Anvil")
+                {
+                    if (Item_in_inventory.GetComponent<Ingot>() != null)
+                    {
+                        Anvil_Object = Find_Components.find_anvil();
+                        Anvil_Object.Converted_Object = Item_in_inventory;
+                        Item_in_inventory.transform.position = Anvil_Object.transform.position;
+                        Cleanup();
                     }
                 }
 
@@ -207,6 +221,13 @@ public class DwarfScript : MonoBehaviour
                     Sorted_Ingots_Tray_Object.Ingots_in_tray.RemoveAt(0);
                     Inventory_Full = true;
                 }
+                if (Nearest_Object.name == "Anvil")
+                {
+                    Anvil_Object = Find_Components.find_anvil();
+                    Item_in_inventory = Anvil_Object.Converted_Object;
+                    Anvil_Object.Converted_Object = null;
+                    Inventory_Full = true;
+                }
             }
             
             
@@ -219,6 +240,11 @@ public class DwarfScript : MonoBehaviour
                 Furnace_Object = Find_Components.find_furnace(); //Vi finner skript-koden til furnacen
                 Furnace_Object.smelting_ready = true; // Her setter vi furnacen sin smelting test til true, da vil furnacen endre ore til ingots med tilsvarende kvalitet
 
+            }
+            if(Nearest_Object.name == "Anvil")
+            {
+                Anvil_Object = Find_Components.find_anvil();
+                Anvil_Object.convert = true;
             }
         }
         

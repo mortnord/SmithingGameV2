@@ -68,6 +68,8 @@
     <Compile Include="Assets\Scripts\Sorted_Ingots_Tray.cs" />
     <Compile Include="Assets\Scripts\Score.cs" />
     <Compile Include="Assets\Scripts\Enum types.cs" />
+    <Compile Include="Assets\Scripts\Sword.cs" />
+    <Compile Include="Assets\Scripts\Anvil.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
