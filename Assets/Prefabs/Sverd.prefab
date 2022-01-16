@@ -95,4 +95,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd5891c1730e1d47b5b61ceee8ae8d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value: 0
+  spriteArray:
+  - {fileID: 21300000, guid: a463d43afc539ab48af442834a95dd98, type: 3}
+  - {fileID: 21300000, guid: 0b099a28befb56940a4aa1662fdddbaa, type: 3}
+  - {fileID: 21300000, guid: 94eb981a078274740b5cfdac7285d835, type: 3}
+  spriteRenderer: {fileID: 0}
   quality: 0
