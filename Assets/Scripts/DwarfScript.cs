@@ -35,7 +35,7 @@ public class DwarfScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) //Gjør kun ting vis space er trykket ned
         {
-            Nearest_Object = find_nearest_interactable_object_within_range(5); // Finner nærmeste objekt (ofte stockpiles eller furnace) med taggen "Pickable Object" innen 5 units distanse. 
+            Nearest_Object = find_nearest_interactable_object_within_range(3); // Finner nærmeste objekt (ofte stockpiles eller furnace) med taggen "Pickable Object" innen 5 units distanse. 
             if (Inventory_Full) //Kun vis inventory er full, da prøver den å legge noe på plass
             {
                 if (Nearest_Object.name == "Sorted_Ore_Tray_Low") //Her er det lav kvalitet ore den prøver å legge noe i 
@@ -153,12 +153,15 @@ public class DwarfScript : MonoBehaviour
                     Inventory_Full = true; //Her har vi inventory fult.
                 }
                 //Alle disse nedover er gjentagende kode, bare med 1 forskjellig metodekall, ønsker tips for å slå dette sammen.
-                if (Nearest_Object.name == "Ingot_form")  // Alle disse nedover er
+                if (Nearest_Object.name == "Ingot_form")  // Alle disse nedover er like
                 {
                     ingot_form_object = Find_Components.find_ingot_form();
-                    Item_in_inventory = ingot_form_object.Ingots_in_form.ElementAt(0);
-                    ingot_form_object.Ingots_in_form.RemoveAt(0);
-                    Inventory_Full = true;
+                    if (ingot_form_object.Ingots_in_form.Count > 0)
+                    {
+                        Item_in_inventory = ingot_form_object.Ingots_in_form.ElementAt(0);
+                        ingot_form_object.Ingots_in_form.RemoveAt(0);
+                        Inventory_Full = true;
+                    }
                 }
                 if (Nearest_Object.name == "Sorted_Ore_Tray_Low")
                 {

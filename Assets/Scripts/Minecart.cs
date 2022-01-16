@@ -13,6 +13,7 @@ public class Minecart : MonoBehaviour
     Vector2 position; 
     public Sprite[] spriteArray;
     public SpriteRenderer spriteRenderer;
+    public int cooldown_time;
     
     public int amount_of_ore = 0;
    
@@ -24,7 +25,8 @@ public class Minecart : MonoBehaviour
         Generation_Object = Find_Components.find_Object_Creation();
         Unsorted_Tray_Object = Find_Components.find_Unsorted_Tray();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>(); //Dette er spirit-renderen, vi kan bruke denne til å bytte sprites.
-        amount_of_ore = 4; // Mengden ore som skal generates, må endres til mindre hardcoding. 
+        // Mengden ore som skal generates, må endres til mindre hardcoding. 
+        amount_of_ore = Random.Range(1, 7);
         
     }
 
