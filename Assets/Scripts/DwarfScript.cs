@@ -13,6 +13,7 @@ public class DwarfScript : MonoBehaviour
     Sorted_Ingots_Tray Sorted_Ingots_Tray_Object;
     Furnace Furnace_Object;
     Anvil Anvil_Object;
+    Export_Chute export_chute_Object;
 
     public bool Inventory_Full = false;
     public GameObject Item_in_inventory = null;
@@ -155,6 +156,13 @@ public class DwarfScript : MonoBehaviour
                         Cleanup();
                     }
                 }
+                if (Nearest_Object.name == "Export_Chute")
+                {
+                    export_chute_Object = Find_Components.find_export_chute();
+                    export_chute_Object.Stuff_to_transport.Add(Item_in_inventory);
+                    Item_in_inventory.transform.position = export_chute_Object.transform.position;
+                    Cleanup();
+                }
 
             }
             else if (Inventory_Full == false && Nearest_Object != null) // Her plukker vi opp ting, vis vi har ting nærme nok fra å plukke opp fra
@@ -248,8 +256,8 @@ public class DwarfScript : MonoBehaviour
             }
         }
         
-        float moveByX = horizontal * 2; //Movement speed 
-        float moveByY = vertical * 2; // Movement speed 
+        float moveByX = horizontal * 4; //Movement speed 
+        float moveByY = vertical * 4; // Movement speed 
         rb.velocity = new Vector2(moveByX, moveByY); //Legge til krefer på fysikken, slik at figuren beveger seg
     }
 

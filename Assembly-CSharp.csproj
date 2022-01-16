@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Enum types.cs" />
     <Compile Include="Assets\Scripts\Sword.cs" />
     <Compile Include="Assets\Scripts\Anvil.cs" />
+    <Compile Include="Assets\Scripts\Export_Chute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

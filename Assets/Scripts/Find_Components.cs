@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -77,8 +78,22 @@ public class Find_Components : MonoBehaviour
     }
     public static Anvil find_anvil()
     {
-        GameObject anvil_gameObjct = GameObject.Find("Anvil");
-        Anvil anvil_object = anvil_gameObjct.GetComponent<Anvil>();
+        GameObject anvil_GameObject = GameObject.Find("Anvil");
+        Anvil anvil_object = anvil_GameObject.GetComponent<Anvil>();
         return anvil_object;
     }
+
+    public static Export_Chute find_export_chute()
+    {
+        GameObject export_chute_GameObject = GameObject.Find("Export_Chute");
+        Export_Chute export_chute_object = export_chute_GameObject.GetComponent<Export_Chute>();
+        return export_chute_object;
+    }
+    public static Score find_score()
+    {
+        GameObject score_GameObject = GameObject.Find("Score");
+        Score score_object = score_GameObject.GetComponent<Score>();
+        return score_object;
+    }
+
 }
