@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Sorted_Ingots_Tray.cs" />
     <Compile Include="Assets\Scripts\Mission.cs" />
     <Compile Include="Assets\Scripts\Mission_System.cs" />
+    <Compile Include="Assets\Scripts\Group_of_Missions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
