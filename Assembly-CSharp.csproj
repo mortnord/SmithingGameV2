@@ -60,17 +60,19 @@
     <Compile Include="Assets\Scripts\TimerScript.cs" />
     <Compile Include="Assets\Scripts\DwarfScript.cs" />
     <Compile Include="Assets\Scripts\Ingot.cs" />
+    <Compile Include="Assets\Scripts\Score.cs" />
+    <Compile Include="Assets\Scripts\Export_Chute.cs" />
     <Compile Include="Assets\Scripts\Furnace.cs" />
+    <Compile Include="Assets\Scripts\Anvil.cs" />
     <Compile Include="Assets\Scripts\Sorted_Ore_Tray.cs" />
+    <Compile Include="Assets\Scripts\Enum types.cs" />
     <Compile Include="Assets\Scripts\Object_Creation.cs" />
+    <Compile Include="Assets\Scripts\Sword.cs" />
     <Compile Include="Assets\Scripts\Ore.cs" />
     <Compile Include="Assets\Scripts\Channel.cs" />
     <Compile Include="Assets\Scripts\Sorted_Ingots_Tray.cs" />
-    <Compile Include="Assets\Scripts\Score.cs" />
-    <Compile Include="Assets\Scripts\Enum types.cs" />
-    <Compile Include="Assets\Scripts\Sword.cs" />
-    <Compile Include="Assets\Scripts\Anvil.cs" />
-    <Compile Include="Assets\Scripts\Export_Chute.cs" />
+    <Compile Include="Assets\Scripts\Mission.cs" />
+    <Compile Include="Assets\Scripts\Mission_System.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
