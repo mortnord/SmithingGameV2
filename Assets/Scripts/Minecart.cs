@@ -42,7 +42,6 @@ public class Minecart : MonoBehaviour
         }
         //Alt dette blir vell endret av deg når du lager en patrolpath?
         position = transform.position;
-        print(time_until_move);
         if (time_until_move < 0 && not_moved) 
         {
             print("Tid for å flytte seg");

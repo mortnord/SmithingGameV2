@@ -11,4 +11,10 @@ public class Enumtypes : MonoBehaviour
         Iron,
         Mithril
     }
+    public enum Object_Types
+    {
+        Ore,
+        Ingot,
+        Sword
+    }
 }

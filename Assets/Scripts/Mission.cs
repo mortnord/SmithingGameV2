@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Mission : MonoBehaviour
 {
-    public int Time_remaining = 0;
-    public List<GameObject> Objects_to_complete_mission = new List<GameObject>();
+    public float Time_remaining = 0;
+    public int type_of_object_for_mission = 0;
+    public int quality_of_object_for_mission = 0;
     // Start is called before the first frame update
     
-    public Mission()
+    public void setTime(float time_remaining)
     {
-
+        Time_remaining = time_remaining;
+        print("i am alive");
     }
+    
     // Update is called once per frame
     
 }

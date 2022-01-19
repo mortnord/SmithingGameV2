@@ -40,5 +40,6 @@ public class TimerScript : MonoBehaviour
         seconds = Mathf.FloorToInt(time_Remaining % 60);
         time_Text.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
+    
 
 }

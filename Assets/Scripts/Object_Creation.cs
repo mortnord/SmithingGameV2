@@ -10,6 +10,9 @@ public class Object_Creation : MonoBehaviour
     public GameObject Ore_prefab; //Åpner for å sette prefaben i inspektoren, noe jeg vil endre i framtiden til script istedenfor inspector jobb. 
     public GameObject ingot_prefab;
     public GameObject sword_prefab;
+    public GameObject Orders_card;
+
+    System.Random rand = new System.Random();
     public GameObject create_ore()//Her er koden vi bruker for å generate ore og ingots, posisjonsdataen for vectoren må endres engang i framtiden
     {
         GameObject spawned_ore = Instantiate(Ore_prefab, new Vector3(UnityEngine.Random.Range(-9.2f, - 8.2f), UnityEngine.Random.Range(-0.3f, -2f), 0), Quaternion.identity);
@@ -29,14 +32,35 @@ public class Object_Creation : MonoBehaviour
         spawned_sword.GetComponent<Sword>().quality = quality;
         return spawned_sword;
     }
+    
+    public GameObject create_card_with_mission(float time, Vector3 position)
+    {
+        GameObject created_card_with_mission = Instantiate(Orders_card, position, Quaternion.identity);
+        Mission mission = created_card_with_mission.AddComponent<Mission>();
+        mission.setTime(time);
+        
+        return created_card_with_mission;
+    }
     public int get_random_quality()
     {
-        System.Random rand = new System.Random();
         Type type = typeof(Ore_Quality);
         Array values = type.GetEnumValues();
         int index = rand.Next(values.Length);
         return index;
-        
-
     }
+    public int get_random_type()
+    {
+        Type type = typeof(Object_Types);
+        Array values = type.GetEnumValues();
+        int index = rand.Next(values.Length);
+        return index;
+    }
+    /*
+    public int get_random_from_enum()
+    {
+        Type type = typeof();
+        Array values = type.GetEnumValues();
+        int index = rand.Next(values.Length);
+        return index;
+    }*/
 }
