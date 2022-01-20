@@ -165,9 +165,13 @@ public class DwarfScript : MonoBehaviour
                 if (Nearest_Object.name == "Export_Chute")
                 {
                     export_chute_Object = Find_Components.find_export_chute();
-                    export_chute_Object.Stuff_to_transport.Add(Item_in_inventory);
-                    Item_in_inventory.transform.position = export_chute_Object.transform.position;
-                    Cleanup();
+                    if(Item_in_inventory.GetComponent<Sword>())
+                    {
+                        export_chute_Object.Stuff_to_transport.Add(Item_in_inventory);
+                        Item_in_inventory.transform.position = export_chute_Object.transform.position;
+                        Cleanup();
+                    }
+                        
                 }
 
             }

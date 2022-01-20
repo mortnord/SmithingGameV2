@@ -11,6 +11,8 @@ public class Object_Creation : MonoBehaviour
     public GameObject ingot_prefab;
     public GameObject sword_prefab;
     public GameObject Orders_card;
+    public GameObject Mission_System;
+    public Sprite test_sprite;
 
     System.Random rand = new System.Random();
     public GameObject create_ore()//Her er koden vi bruker for å generate ore og ingots, posisjonsdataen for vectoren må endres engang i framtiden
@@ -37,7 +39,13 @@ public class Object_Creation : MonoBehaviour
     {
         GameObject created_card_with_mission = Instantiate(Orders_card, position, Quaternion.identity);
         Mission mission = created_card_with_mission.AddComponent<Mission>();
+        created_card_with_mission.transform.parent = Mission_System.transform;
         mission.setTime(time);
+        GameObject temp_sword = create_sword(get_random_quality(), new Vector3(0,0,-1));
+        temp_sword.transform.parent = created_card_with_mission.transform;
+        temp_sword.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        temp_sword.GetComponent<SpriteRenderer>().sortingLayerName = "UI";
+        
         
         return created_card_with_mission;
     }
@@ -50,7 +58,7 @@ public class Object_Creation : MonoBehaviour
     }
     public int get_random_type()
     {
-        Type type = typeof(Object_Types);
+        Type type = typeof(Mission_Objects);
         Array values = type.GetEnumValues();
         int index = rand.Next(values.Length);
         return index;

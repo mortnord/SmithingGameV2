@@ -95,5 +95,11 @@ public class Find_Components : MonoBehaviour
         Score score_object = score_GameObject.GetComponent<Score>();
         return score_object;
     }
+    public static Mission_System find_mission_system()
+    {
+        GameObject mission_system = GameObject.Find("Mission_System");
+        Mission_System mission_system_object = mission_system.GetComponent<Mission_System>();
+        return mission_system_object;
+    }
 
 }

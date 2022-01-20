@@ -17,4 +17,8 @@ public class Enumtypes : MonoBehaviour
         Ingot,
         Sword
     }
+    public enum Mission_Objects
+    {
+        Sword
+    }
 }
