@@ -58,6 +58,7 @@ public class Mission_System : MonoBehaviour
                             print("Time to kill");
                             Destroy(Missions_in_UI[i]);
                             Missions_in_UI.Remove(Missions_in_UI[i]);
+                            created_mission = true;
                         }
                     }
                 }
