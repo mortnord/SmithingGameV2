@@ -22,7 +22,18 @@ public class Sorted_Ore_Tray : MonoBehaviour
         //En mulighet å lage en array med plasser, der vi fyller en og en plass med en sprite når vi legger noe inni?
         if (Ores_in_tray.Count > 0)//Sprite endring fra tomt til fult. 
         {
-            spriteRenderer.sprite = spriteArray[1];
+            if(Ores_in_tray[0].GetComponent<Ore>().quality == 0)
+            {
+                spriteRenderer.sprite = spriteArray[1];
+            }
+            if (Ores_in_tray[0].GetComponent<Ore>().quality == 1)
+            {
+                spriteRenderer.sprite = spriteArray[2];
+            }
+            if (Ores_in_tray[0].GetComponent<Ore>().quality == 2)
+            {
+                spriteRenderer.sprite = spriteArray[3];
+            }
         }
         if (Ores_in_tray.Count == 0) //Tilbake til tomt når det er tomt. 
         {

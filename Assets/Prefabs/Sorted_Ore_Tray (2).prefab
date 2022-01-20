@@ -126,5 +126,7 @@ MonoBehaviour:
   Ores_in_tray: []
   spriteArray:
   - {fileID: 21300000, guid: c99cc054d9df04c4e949a22f6af5ba83, type: 3}
+  - {fileID: 21300000, guid: 867feb7b55895034fb45af099ae71b3c, type: 3}
   - {fileID: 21300000, guid: 0350d0c5d2811b34686a1b316b1f5dfe, type: 3}
+  - {fileID: 21300000, guid: 39746ce90243ef74dab6d70bc8e841c9, type: 3}
   spriteRenderer: {fileID: 0}
