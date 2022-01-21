@@ -159,6 +159,7 @@ public class DwarfScript : MonoBehaviour
                     {
                         Anvil_Object = Find_Components.find_anvil();
                         Anvil_Object.Converted_Object = Item_in_inventory;
+                        print(Anvil_Object.transform.position);
                         Item_in_inventory.transform.position = Anvil_Object.transform.position;
                         Cleanup();
                     }
