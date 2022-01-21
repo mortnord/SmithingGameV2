@@ -101,5 +101,11 @@ public class Find_Components : MonoBehaviour
         Mission_System mission_system_object = mission_system.GetComponent<Mission_System>();
         return mission_system_object;
     }
+    public static Trashcan find_trashcan()
+    {
+        GameObject trashcan = GameObject.Find("Trashcan");
+        Trashcan trashcan_object = trashcan.GetComponent<Trashcan>();
+        return trashcan_object;
+    }
 
 }

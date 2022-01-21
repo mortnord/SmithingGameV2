@@ -14,6 +14,7 @@ public class DwarfScript : MonoBehaviour
     Furnace Furnace_Object;
     Anvil Anvil_Object;
     Export_Chute export_chute_Object;
+    Trashcan trashcan_object;
 
 
     public bool Inventory_Full = false;
@@ -173,6 +174,12 @@ public class DwarfScript : MonoBehaviour
                     }
                         
                 }
+                if (Nearest_Object.name == "Trashcan")
+                {
+                    trashcan_object = Find_Components.find_trashcan();
+                    trashcan_object.Destroyable_Object = Item_in_inventory;
+                    Cleanup();
+                }
 
             }
             else if (Inventory_Full == false && Nearest_Object != null) // Her plukker vi opp ting, vis vi har ting nærme nok fra å plukke opp fra
@@ -246,9 +253,9 @@ public class DwarfScript : MonoBehaviour
                     Anvil_Object.Converted_Object = null;
                     Inventory_Full = true;
                 }
+                
             }
-            
-            
+
         }
         if (Input.GetKeyDown(KeyCode.E)) //Her aktiverer vi furnacen, evnt så kan vi ha en spak vi interacter med for å gjøre det samme, vis alt ska være på space-knappen
         {
