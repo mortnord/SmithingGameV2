@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\Active Objects\Channel.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Sorted_Ingots_Tray.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Trashcan.cs" />
+    <Compile Include="Assets\Scripts\UI\Orders_Field.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -275,6 +275,7 @@ public class DwarfScript : MonoBehaviour
         }
         
         
+        
         float moveByX = horizontal * 4; //Movement speed 
         float moveByY = vertical * 4; // Movement speed 
         rb.velocity = new Vector2(moveByX, moveByY); //Legge til krefer på fysikken, slik at figuren beveger seg

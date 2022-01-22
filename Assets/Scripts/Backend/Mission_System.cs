@@ -8,7 +8,9 @@ public class Mission_System : MonoBehaviour
     TimerScript Timer_Object;
     Object_Creation Generation_Object;
     public float time_remaining;
-    public bool created_mission = true;
+    public bool completed_mission = true;
+    public int amount_of_completed_missions = 0;
+    public int difficulty = 0;
 
     public List<GameObject> Missions_in_UI = new List<GameObject>();
     // Start is called before the first frame update
@@ -21,10 +23,24 @@ public class Mission_System : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(created_mission)
+        if(Timer_Object.reset == true && completed_mission == true)
         {
-            created_mission = false;
             create_mission();
+            Timer_Object.reset = false;
+            completed_mission = false;
+        }
+        else if(Timer_Object.ekstra_mission_reset == true)
+        {
+            create_mission();
+            Timer_Object.reset_timer = 10;
+            Timer_Object.ekstra_mission_spawn = 30 - amount_of_completed_missions;
+            if(Timer_Object.ekstra_mission_spawn < 10)
+            {
+                Timer_Object.ekstra_mission_spawn = 10;
+            }
+            Timer_Object.reset = false;
+            Timer_Object.ekstra_mission_reset = false;
+            completed_mission = false;
         }
         
     }
@@ -32,13 +48,13 @@ public class Mission_System : MonoBehaviour
     {
         print("create mission");
         time_remaining = Timer_Object.time_Remaining;
-        GameObject mission = Generation_Object.create_card_with_mission(time_remaining, new Vector3(0,0,0));
+        GameObject mission = Generation_Object.create_card_with_mission(time_remaining, new Vector3(0, 0, 0));
         Missions_in_UI.Add(mission);
         mission.GetComponent<Mission>().quality_of_object_for_mission = mission.GetComponentInChildren<Sword>().quality;
         mission.GetComponent<Mission>().type_of_object_for_mission = (int)Generation_Object.get_random_type();
         print("added");
     }
-    public void check_mission_success(GameObject Object_to_check)
+    public bool check_mission_success(GameObject Object_to_check)
     {
         print("1");
         if (Missions_in_UI.Count > 0)
@@ -58,11 +74,15 @@ public class Mission_System : MonoBehaviour
                             print("Time to kill");
                             Destroy(Missions_in_UI[i]);
                             Missions_in_UI.Remove(Missions_in_UI[i]);
-                            created_mission = true;
+                            completed_mission = true;
+                            amount_of_completed_missions++;
+
+                            return true;
                         }
+                        
                     }
                 }
             }
-        }
+        }return false;
     }
 }

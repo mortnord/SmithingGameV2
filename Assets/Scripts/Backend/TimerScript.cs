@@ -10,6 +10,11 @@ public class TimerScript : MonoBehaviour
     public float minutes = 0;
     public float seconds = 0;
     public Text time_Text;
+    public bool reset = false;
+    public bool ekstra_mission_reset = false;
+    public float reset_timer = 10;
+    public float ekstra_mission_spawn = 30;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +36,24 @@ public class TimerScript : MonoBehaviour
         {
             time_Remaining = 0; //Runde ned til null
             timer_Is_Running = false; 
+        }
+        if(reset == false)
+        {
+            reset_timer -= Time.deltaTime;
+            if(reset_timer < 0)
+            {
+                reset = true;
+                reset_timer = 10;
+            }
+        }
+        if(ekstra_mission_reset == false)
+        {
+            ekstra_mission_spawn -= Time.deltaTime;
+            if(ekstra_mission_spawn < 0)
+            {
+                reset = true;
+                ekstra_mission_reset = true;
+            }
         }
 
     }

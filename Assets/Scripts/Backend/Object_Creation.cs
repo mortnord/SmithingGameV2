@@ -39,10 +39,12 @@ public class Object_Creation : MonoBehaviour
     {
         GameObject created_card_with_mission = Instantiate(Orders_card, position, Quaternion.identity);
         Mission mission = created_card_with_mission.AddComponent<Mission>();
+        created_card_with_mission.transform.position = Mission_System.transform.position;
         created_card_with_mission.transform.parent = Mission_System.transform;
         mission.setTime(time);
         GameObject temp_sword = create_sword(get_random_quality(), new Vector3(0,0,-1));
         temp_sword.transform.parent = created_card_with_mission.transform;
+        temp_sword.transform.position = created_card_with_mission.transform.position;
         temp_sword.GetComponent<SpriteRenderer>().sortingOrder = 2;
         temp_sword.GetComponent<SpriteRenderer>().sortingLayerName = "UI";
         

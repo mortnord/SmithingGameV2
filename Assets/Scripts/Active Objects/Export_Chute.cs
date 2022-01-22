@@ -26,10 +26,13 @@ public class Export_Chute : MonoBehaviour
                 Stuff_to_transport[i].transform.position = new Vector3(Stuff_to_transport[i].transform.position.x + 0.05f * transport_speed * Time.deltaTime, Stuff_to_transport[i].transform.position.y);
                 if (Stuff_to_transport[i].transform.position.x > 7.2f)
                 {
-                    mission_system_object.check_mission_success(Stuff_to_transport[i]);
-                    Score_object.score += Stuff_to_transport[i].GetComponent<Sword>().value;
-                    Destroy(Stuff_to_transport[i]);
-                    Stuff_to_transport.Remove(Stuff_to_transport[i]);
+                    bool result = mission_system_object.check_mission_success(Stuff_to_transport[i]);
+                    if (result == true)
+                    {
+                        Score_object.score += Stuff_to_transport[i].GetComponent<Sword>().value;
+                        Destroy(Stuff_to_transport[i]);
+                        Stuff_to_transport.Remove(Stuff_to_transport[i]);
+                    }
                 }
             }
         }
