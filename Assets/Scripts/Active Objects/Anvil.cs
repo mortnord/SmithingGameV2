@@ -24,11 +24,7 @@ public class Anvil : MonoBehaviour
         {
             if(blueprint_copy.GetComponent<Blueprint_Sword>())
             {
-                ingot_quality = Converted_Object.GetComponent<Ingot>().quality;
-                object_to_be_destroyed = Converted_Object;
-                Converted_Object = Generation_Object.create_sword(ingot_quality, transform.position);
-                Destroy(object_to_be_destroyed);
-                convert = false;
+                destroying();
             }
            
         }
@@ -37,5 +33,13 @@ public class Anvil : MonoBehaviour
             convert = false;
         }
         
+    }
+    void destroying()
+    {
+        ingot_quality = Converted_Object.GetComponent<Ingot>().quality;
+        object_to_be_destroyed = Converted_Object;
+        Converted_Object = Generation_Object.create_sword(ingot_quality, transform.position);
+        Destroy(object_to_be_destroyed);
+        convert = false;
     }
 }

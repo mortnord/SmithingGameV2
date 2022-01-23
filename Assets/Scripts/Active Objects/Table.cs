@@ -21,10 +21,11 @@ public class Table : MonoBehaviour
     {
         if(copied == true)
         {
-            copied = false;
-            fake_copy = Generation_Object.create_blueprint_sword(new Vector3(0,0,0));
-            fake_copy.transform.position = this.transform.position;
-            fake_copy.transform.parent = this.transform;
+            if(blueprint_original_on_table.GetComponent<Blueprint_Sword>())
+            {
+                copied = false;
+                fake_copy = Generation_Object.create_blueprint_sword(transform.position);
+            }
         }
     }
 }

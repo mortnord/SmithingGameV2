@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,33 +58,32 @@ public class Mission_System : MonoBehaviour
     }
     public bool check_mission_success(GameObject Object_to_check)
     {
-        print("1");
         if (Missions_in_UI.Count > 0)
         {
-            print("2");
             for (int i = 0; i < Missions_in_UI.Count; i++)
             {
-                print("3");
                 if (Object_to_check.GetComponent<Sword>())
                 {
-                    print("4");
                     if (Missions_in_UI[i].GetComponent<Mission>().quality_of_object_for_mission == Object_to_check.GetComponent<Sword>().quality)
                     {
-                        print("5");
                         if (Missions_in_UI[i].GetComponent<Mission>().type_of_object_for_mission == (int)Object_to_check.GetComponent<Sword>().mission_tag)
                         {
-                            print("Time to kill");
-                            Destroy(Missions_in_UI[i]);
-                            Missions_in_UI.Remove(Missions_in_UI[i]);
-                            completed_mission = true;
-                            amount_of_completed_missions++;
+                            Destroy_Object(i);
 
                             return true;
                         }
-                        
+
                     }
                 }
             }
         }return false;
+    }
+
+    private void Destroy_Object(int i)
+    {
+        Destroy(Missions_in_UI[i]);
+        Missions_in_UI.Remove(Missions_in_UI[i]);
+        completed_mission = true;
+        amount_of_completed_missions++;
     }
 }
