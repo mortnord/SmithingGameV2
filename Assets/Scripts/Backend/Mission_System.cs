@@ -32,7 +32,6 @@ public class Mission_System : MonoBehaviour
         else if(Timer_Object.ekstra_mission_reset == true)
         {
             create_mission();
-            Timer_Object.reset_timer = 10;
             Timer_Object.ekstra_mission_spawn = 30 - amount_of_completed_missions;
             if(Timer_Object.ekstra_mission_spawn < 10)
             {
@@ -52,6 +51,8 @@ public class Mission_System : MonoBehaviour
         Missions_in_UI.Add(mission);
         mission.GetComponent<Mission>().quality_of_object_for_mission = mission.GetComponentInChildren<Sword>().quality;
         mission.GetComponent<Mission>().type_of_object_for_mission = (int)Generation_Object.get_random_type();
+
+        Timer_Object.reset_timer = 10;
         print("added");
     }
     public bool check_mission_success(GameObject Object_to_check)

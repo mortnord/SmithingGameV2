@@ -107,5 +107,12 @@ public class Find_Components : MonoBehaviour
         Trashcan trashcan_object = trashcan.GetComponent<Trashcan>();
         return trashcan_object;
     }
+    
+    public static Table find_table()
+    {
+        GameObject table = GameObject.Find("Table_Blueprints");
+        Table table_object = table.GetComponent<Table>();
+        return table_object;
+    }
 
 }

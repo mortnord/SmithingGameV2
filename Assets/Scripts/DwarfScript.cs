@@ -15,6 +15,7 @@ public class DwarfScript : MonoBehaviour
     Anvil Anvil_Object;
     Export_Chute export_chute_Object;
     Trashcan trashcan_object;
+    Table table_object;
 
 
     public bool Inventory_Full = false;
@@ -155,11 +156,16 @@ public class DwarfScript : MonoBehaviour
                 }
                 if (Nearest_Object.name == "Anvil")
                 {
+                    Anvil_Object = Find_Components.find_anvil();
                     if (Item_in_inventory.GetComponent<Ingot>() != null)
                     {
-                        Anvil_Object = Find_Components.find_anvil();
                         Anvil_Object.Converted_Object = Item_in_inventory;
-                        print(Anvil_Object.transform.position);
+                        Item_in_inventory.transform.position = Anvil_Object.transform.position;
+                        Cleanup();
+                    }
+                    if (Item_in_inventory.GetComponent<Blueprint_Sword>() != null)
+                    {
+                        Anvil_Object.blueprint_copy = Item_in_inventory;
                         Item_in_inventory.transform.position = Anvil_Object.transform.position;
                         Cleanup();
                     }
@@ -181,6 +187,7 @@ public class DwarfScript : MonoBehaviour
                     trashcan_object.Destroyable_Object = Item_in_inventory;
                     Cleanup();
                 }
+                
 
             }
             else if (Inventory_Full == false && Nearest_Object != null) // Her plukker vi opp ting, vis vi har ting nærme nok fra å plukke opp fra
@@ -250,11 +257,31 @@ public class DwarfScript : MonoBehaviour
                 if (Nearest_Object.name == "Anvil")
                 {
                     Anvil_Object = Find_Components.find_anvil();
-                    Item_in_inventory = Anvil_Object.Converted_Object;
-                    Anvil_Object.Converted_Object = null;
+                    if(Anvil_Object.Converted_Object != null)
+                    {
+                        Item_in_inventory = Anvil_Object.Converted_Object;
+                        Anvil_Object.Converted_Object = null;
+                        Inventory_Full = true;
+                    }
+                    else if(Anvil_Object.blueprint_copy != null)
+                    {
+                        Item_in_inventory = Anvil_Object.blueprint_copy;
+                        Anvil_Object.blueprint_copy = null;
+                        Inventory_Full = true;
+                    }
+                    
+                }
+                if (Nearest_Object.name == "Table_Blueprints")
+                {
+                    print("Finner table");
+                    table_object = Find_Components.find_table();
+                    table_object.copied = true;
+                    Item_in_inventory = table_object.fake_copy;
+                    table_object.fake_copy = null;
+                    Item_in_inventory.transform.parent = null;
                     Inventory_Full = true;
                 }
-                
+
             }
 
         }

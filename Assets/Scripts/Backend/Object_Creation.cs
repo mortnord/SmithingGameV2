@@ -12,6 +12,7 @@ public class Object_Creation : MonoBehaviour
     public GameObject sword_prefab;
     public GameObject Orders_card;
     public GameObject Mission_System;
+    public GameObject blueprint_sword;
     public Sprite test_sprite;
 
     System.Random rand = new System.Random();
@@ -33,6 +34,14 @@ public class Object_Creation : MonoBehaviour
         GameObject spawned_sword = Instantiate(sword_prefab, position, Quaternion.identity);
         spawned_sword.GetComponent<Sword>().quality = quality;
         return spawned_sword;
+    }
+    public GameObject create_blueprint_sword(Vector3 position)
+    {
+        GameObject spawned_sword_blueprint = Instantiate(blueprint_sword, position, Quaternion.identity);
+        spawned_sword_blueprint.GetComponent<Blueprint_Sword>().sprite_nr = 1;
+        spawned_sword_blueprint.GetComponent<SpriteRenderer>().sortingLayerName = "Items";
+        spawned_sword_blueprint.GetComponent<SpriteRenderer>().sortingOrder = -1;
+        return spawned_sword_blueprint;
     }
     
     public GameObject create_card_with_mission(float time, Vector3 position)

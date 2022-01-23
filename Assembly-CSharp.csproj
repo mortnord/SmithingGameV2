@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\Active Objects\Minecart.cs" />
     <Compile Include="Assets\Scripts\Backend\Mission.cs" />
     <Compile Include="Assets\Scripts\Backend\Find_Components.cs" />
+    <Compile Include="Assets\Scripts\UI\Orders_Field.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Ingot_Form.cs" />
     <Compile Include="Assets\Scripts\Backend\TimerScript.cs" />
     <Compile Include="Assets\Scripts\DwarfScript.cs" />
@@ -78,7 +79,8 @@
     <Compile Include="Assets\Scripts\Active Objects\Channel.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Sorted_Ingots_Tray.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Trashcan.cs" />
-    <Compile Include="Assets\Scripts\UI\Orders_Field.cs" />
+    <Compile Include="Assets\Scripts\Active Objects\Table.cs" />
+    <Compile Include="Assets\Scripts\Items\Blueprint_Sword.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
