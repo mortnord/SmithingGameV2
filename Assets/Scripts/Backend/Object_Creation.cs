@@ -24,7 +24,7 @@ public class Object_Creation : MonoBehaviour
     }
     public GameObject create_ingot(int quality)
     {
-        GameObject spawned_ingot = Instantiate(ingot_prefab, new Vector3(-6, 0.6f), Quaternion.identity);
+        GameObject spawned_ingot = Instantiate(ingot_prefab, new Vector3(-4.8f, 2f), Quaternion.identity);
         spawned_ingot.GetComponent<Ingot>().quality = quality;
         return spawned_ingot;
     }
