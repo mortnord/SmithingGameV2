@@ -138,13 +138,13 @@ public class DwarfScript : MonoBehaviour
                 if (Nearest_Object.name == "Anvil")
                 {
                     Anvil_Object = Find_Components.find_anvil();
-                    if (Item_in_inventory.GetComponent<Ingot>() != null)
+                    if (Item_in_inventory.GetComponent<Ingot>() != null) //Her legger vi inn ingots i anvilen
                     {
-                        Anvil_Object.Converted_Object = Item_in_inventory;
+                        Anvil_Object.object_to_be_destroyed = Item_in_inventory;
                         Item_in_inventory.transform.position = Anvil_Object.transform.position;
                         Cleanup();
                     }
-                    if (Item_in_inventory.GetComponent<Blueprint_Sword>() != null)
+                    if (Item_in_inventory.GetComponent<Blueprint_Sword>() != null) //Her kommer blueprints inn i anvilen
                     {
                         Anvil_Object.blueprint_copy = Item_in_inventory;
                         Item_in_inventory.transform.position = Anvil_Object.transform.position;
@@ -276,7 +276,7 @@ public class DwarfScript : MonoBehaviour
         rb.velocity = new Vector2(moveByX, moveByY); //Legge til krefer på fysikken, slik at figuren beveger seg
     }
 
-    private void Insert_Into_Ingot_Tray()
+    private void Insert_Into_Ingot_Tray() //Felles metode for ingot trays
     {
         Sorted_Ingots_Tray_Object.Ingots_in_tray.Add(Item_in_inventory);
 
@@ -284,7 +284,7 @@ public class DwarfScript : MonoBehaviour
         Cleanup();
     }
 
-    private void Insert_Into_Ore_Tray()
+    private void Insert_Into_Ore_Tray() //Felles metode for ore trays
     {
         Sorted_Ore_Tray_Object.Ores_in_tray.Add(Item_in_inventory); // Her legger vi objektet i Inventory i arrayen som holder objekter i stockpilen
 
@@ -293,14 +293,14 @@ public class DwarfScript : MonoBehaviour
         Cleanup(); // Metode som rydder opp i Inventory til maincharacter, for å forhindre bugs.
     }
 
-    private void Remove_From_Ingot_Tray()
+    private void Remove_From_Ingot_Tray() //Felles metode for ingot trays
     {
         Item_in_inventory = Sorted_Ingots_Tray_Object.Ingots_in_tray.ElementAt(0);
         Sorted_Ingots_Tray_Object.Ingots_in_tray.RemoveAt(0);
         Inventory_Full = true;
     }
 
-    private void Remove_From_Ore_Tray()
+    private void Remove_From_Ore_Tray() //Felles metode for ore trays
     {
         Item_in_inventory = Sorted_Ore_Tray_Object.Ores_in_tray.ElementAt(0);
         Sorted_Ore_Tray_Object.Ores_in_tray.RemoveAt(0);

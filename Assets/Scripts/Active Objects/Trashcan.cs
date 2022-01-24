@@ -14,7 +14,7 @@ public class Trashcan : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Destroyable_Object != null)
+        if(Destroyable_Object != null) //vis objekt i inventory, slett.
         {
             Destroy(Destroyable_Object);
             Destroyable_Object = null;

@@ -37,7 +37,7 @@ public class TimerScript : MonoBehaviour
             time_Remaining = 0; //Runde ned til null
             timer_Is_Running = false; 
         }
-        if(reset == false)
+        if(reset == false) //Minimumstiden mellom hver mission
         {
             reset_timer -= Time.deltaTime;
             if(reset_timer < 0)
@@ -46,7 +46,7 @@ public class TimerScript : MonoBehaviour
                 reset_timer = 10;
             }
         }
-        if(ekstra_mission_reset == false)
+        if(ekstra_mission_reset == false) //Maksimumstiden mellom hver mission
         {
             ekstra_mission_spawn -= Time.deltaTime;
             if(ekstra_mission_spawn < 0)

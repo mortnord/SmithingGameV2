@@ -13,8 +13,8 @@ public class Mission : MonoBehaviour
 
     public void setTime(float time_remaining)
     {
-        Time_remaining = time_remaining;
-        time_for_mission = Time_remaining - 180;
+        Time_remaining = time_remaining; //Tiden vi har igjen
+        time_for_mission = Time_remaining - 180; //Rewrite all this shit. 
         print("i am alive");
     }
     

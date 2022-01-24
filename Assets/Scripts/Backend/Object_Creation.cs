@@ -35,7 +35,7 @@ public class Object_Creation : MonoBehaviour
         spawned_sword.GetComponent<Sword>().quality = quality;
         return spawned_sword;
     }
-    public GameObject create_blueprint_sword(Vector3 position)
+    public GameObject create_blueprint_sword(Vector3 position) //Denne creater ett sverd Blueprint kopi, og setter sorting orderen slik at den havner under andre objekter
     {
         GameObject spawned_sword_blueprint = Instantiate(blueprint_sword, position, Quaternion.identity);
         spawned_sword_blueprint.GetComponent<Blueprint_Sword>().sprite_nr = 1;
@@ -44,17 +44,17 @@ public class Object_Creation : MonoBehaviour
         return spawned_sword_blueprint;
     }
     
-    public GameObject create_card_with_mission(float time, Vector3 position)
+    public GameObject create_card_with_mission(float time, Vector3 position) //Oh boy, en bestilling om mission kommer inn fra Mission_systemet
     {
-        GameObject created_card_with_mission = Instantiate(Orders_card, position, Quaternion.identity);
-        Mission mission = created_card_with_mission.AddComponent<Mission>();
-        created_card_with_mission.transform.position = Mission_System.transform.position;
+        GameObject created_card_with_mission = Instantiate(Orders_card, position, Quaternion.identity); //Lager ordre card her 
+        Mission mission = created_card_with_mission.AddComponent<Mission>(); //Legger til missionet vi lager i Mission_System, med blank verdier
+        created_card_with_mission.transform.position = Mission_System.transform.position; //Posisjon og parents til mission-cardet
         created_card_with_mission.transform.parent = Mission_System.transform;
-        mission.setTime(time);
-        GameObject temp_sword = create_sword(get_random_quality(), new Vector3(0,0,-1));
-        temp_sword.transform.parent = created_card_with_mission.transform;
+        mission.setTime(time); //Rewrite
+        GameObject temp_sword = create_sword(get_random_quality(), new Vector3(0,0,-1)); //Dette er figuren som er på selve mission cardet, 
+        temp_sword.transform.parent = created_card_with_mission.transform; //Vi setter posisjon og parent, slik at figuren på mission cardet følger etter
         temp_sword.transform.position = created_card_with_mission.transform.position;
-        temp_sword.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        temp_sword.GetComponent<SpriteRenderer>().sortingOrder = 2; //Posisjoner i drawing
         temp_sword.GetComponent<SpriteRenderer>().sortingLayerName = "UI";
         
         

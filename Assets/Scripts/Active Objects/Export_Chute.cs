@@ -11,27 +11,26 @@ public class Export_Chute : MonoBehaviour
     public List<GameObject> Stuff_to_transport = new List<GameObject>();
     void Start()
     {
-        Score_object = Find_Components.find_score();
-        mission_system_object = Find_Components.find_mission_system();
+        Score_object = Find_Components.find_score(); //Score objektet
+        mission_system_object = Find_Components.find_mission_system(); //Mission system objektet
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Stuff_to_transport.Count > 0)
+        if (Stuff_to_transport.Count > 0) //Ikke vits å sjekke vis export chuten er tom
         {
-            
             for (int i = 0; i < Stuff_to_transport.Count; i++) 
             {
                 Stuff_to_transport[i].transform.position = new Vector3(Stuff_to_transport[i].transform.position.x + 0.05f * transport_speed * Time.deltaTime, Stuff_to_transport[i].transform.position.y);
-                if (Stuff_to_transport[i].transform.position.x > 7.2f)
+                //Denne flytter alle objekter til høyre med en fast hastighet i sekundet. sett transport speed til noe annet for å øke farten
+                if (Stuff_to_transport[i].transform.position.x > 7.2f) //Vis objektet er utenfor hardcoda posisjon, sjekk om det oppfyller krav fra missions vi har
                 {
-                    bool result = mission_system_object.check_mission_success(Stuff_to_transport[i]);
-                    if (result == true)
+                    if(mission_system_object.check_mission_success(Stuff_to_transport[i])) //Returnerer True vis objektet oppfyller ett krav til ett mission
                     {
-                        Score_object.score += Stuff_to_transport[i].GetComponent<Sword>().value;
-                        Destroy(Stuff_to_transport[i]);
-                        Stuff_to_transport.Remove(Stuff_to_transport[i]);
+                        Score_object.score += Stuff_to_transport[i].GetComponent<Sword>().value; //Gi score
+                        Destroy(Stuff_to_transport[i]); //Slett objekt fra spillet 
+                        Stuff_to_transport.Remove(Stuff_to_transport[i]); //Slett objekt fra listen
                     }
                 }
             }
