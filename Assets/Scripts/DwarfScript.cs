@@ -17,18 +17,15 @@ public class DwarfScript : MonoBehaviour
     Trashcan trashcan_object;
     Table table_object;
 
-
     public bool Inventory_Full = false;
     public GameObject Item_in_inventory = null;
     public GameObject Nearest_Object = null;
+
     // Start is called before the first frame update
     void Start()
     {
-        
         rb = GetComponent<Rigidbody2D>(); // Denne trengs for å kunne gjøre physicsbasert movement
-
     }
-
     // Update is called once per frame
     void Update() 
     {
@@ -52,7 +49,7 @@ public class DwarfScript : MonoBehaviour
                 if (Nearest_Object.name == "Sorted_Ore_Tray_Low") //Her er det lav kvalitet ore den prøver å legge noe i 
                 {
                     Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_Low(); // Her finner vi gameObjektet sin script-component, som vi ska legge ting i
-                    if (Item_in_inventory.GetComponent<Ore>().quality == 0) // Test for å sjekke om det jeg har i inventory er riktig kvalitet for stockpilen
+                    if ((int)Item_in_inventory.GetComponent<Ore>().ore_quality == 0) // Test for å sjekke om det jeg har i inventory er riktig kvalitet for stockpilen
                     {
                         Insert_Into_Ore_Tray();
                     }
@@ -65,7 +62,7 @@ public class DwarfScript : MonoBehaviour
                 else if (Nearest_Object.name == "Sorted_Ore_Tray_Medium")
                 {
                     Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_Medium();
-                    if (Item_in_inventory.GetComponent<Ore>().quality == 1)
+                    if ((int)Item_in_inventory.GetComponent<Ore>().ore_quality == 1)
                     {
                         Insert_Into_Ore_Tray();
                     }
@@ -78,7 +75,7 @@ public class DwarfScript : MonoBehaviour
                 else if (Nearest_Object.name == "Sorted_Ore_Tray_High")
                 {
                     Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_High();
-                    if (Item_in_inventory.GetComponent<Ore>().quality == 2)
+                    if ((int)Item_in_inventory.GetComponent<Ore>().ore_quality == 2)
                     {
                         Insert_Into_Ore_Tray();
                     }
@@ -102,7 +99,7 @@ public class DwarfScript : MonoBehaviour
                 if (Nearest_Object.name == "Ingot_Tray_Low")
                 {
                     Sorted_Ingots_Tray_Object = Find_Components.find_ingot_tray_low();
-                    if (Item_in_inventory.GetComponent<Ingot>().quality == 0)
+                    if ((int)Item_in_inventory.GetComponent<Ingot>().ore_quality == 0)
                     {
                         Insert_Into_Ingot_Tray();
                     }
@@ -114,7 +111,7 @@ public class DwarfScript : MonoBehaviour
                 else if (Nearest_Object.name == "Ingot_Tray_Medium")
                 {
                     Sorted_Ingots_Tray_Object = Find_Components.find_ingot_tray_medium();
-                    if (Item_in_inventory.GetComponent<Ingot>().quality == 1)
+                    if ((int)Item_in_inventory.GetComponent<Ingot>().ore_quality == 1)
                     {
                         Insert_Into_Ingot_Tray();
                     }
@@ -126,7 +123,7 @@ public class DwarfScript : MonoBehaviour
                 else if (Nearest_Object.name == "Ingot_Tray_High")
                 {
                     Sorted_Ingots_Tray_Object = Find_Components.find_ingot_tray_high();
-                    if (Item_in_inventory.GetComponent<Ingot>().quality == 2)
+                    if ((int)Item_in_inventory.GetComponent<Ingot>().ore_quality == 2)
                     {
                         Insert_Into_Ingot_Tray();
                     }
@@ -253,7 +250,7 @@ public class DwarfScript : MonoBehaviour
             }
 
         }
-        if (Input.GetKeyDown(KeyCode.E)) //Her aktiverer vi furnacen, evnt så kan vi ha en spak vi interacter med for å gjøre det samme, vis alt ska være på space-knappen
+        if (Input.GetKeyDown(KeyCode.E)) //Her aktiverer vi objekter, evnt så kan vi ha en spak vi interacter med for å gjøre det samme, vis alt ska være på space-knappen
         {
             Nearest_Object = find_nearest_interactable_object_within_range(5); // 
             if (Nearest_Object.name == "Furnace")
