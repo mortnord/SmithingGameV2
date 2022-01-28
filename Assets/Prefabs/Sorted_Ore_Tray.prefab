@@ -99,7 +99,7 @@ MonoBehaviour:
   quality: 0
   Ores_in_tray: []
   spriteArray:
-  - {fileID: 21300000, guid: 86e39fed83aba0a4991d4eb813126cc2, type: 3}
+  - {fileID: 21300000, guid: e4443e6b1426ab444b47b74240f9064c, type: 3}
   - {fileID: 21300000, guid: 867feb7b55895034fb45af099ae71b3c, type: 3}
   - {fileID: 21300000, guid: 0350d0c5d2811b34686a1b316b1f5dfe, type: 3}
   - {fileID: 21300000, guid: 39746ce90243ef74dab6d70bc8e841c9, type: 3}
