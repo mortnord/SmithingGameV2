@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1486293703545816299}
   - component: {fileID: 4415084245527757972}
-  - component: {fileID: 5515511376927447729}
   - component: {fileID: -376677234943323332}
+  - component: {fileID: -5677728532298855695}
   m_Layer: 0
-  m_Name: Sorted_Ore_Tray (2)
+  m_Name: Sorted_Ore_Tray
   m_TagString: Pickable Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7899032069984035789}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.4354988, y: -2.170866, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,43 +73,17 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c99cc054d9df04c4e949a22f6af5ba83, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e4443e6b1426ab444b47b74240f9064c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.07, y: 1.79}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &5515511376927447729
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7899032069984035789}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.07, y: 1.79}
-    newSize: {x: 1.07, y: 1.79}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.07, y: 1.79}
-  m_EdgeRadius: 0
 --- !u!114 &-376677234943323332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,8 +99,34 @@ MonoBehaviour:
   quality: 0
   Ores_in_tray: []
   spriteArray:
-  - {fileID: 21300000, guid: c99cc054d9df04c4e949a22f6af5ba83, type: 3}
+  - {fileID: 21300000, guid: 86e39fed83aba0a4991d4eb813126cc2, type: 3}
   - {fileID: 21300000, guid: 867feb7b55895034fb45af099ae71b3c, type: 3}
   - {fileID: 21300000, guid: 0350d0c5d2811b34686a1b316b1f5dfe, type: 3}
   - {fileID: 21300000, guid: 39746ce90243ef74dab6d70bc8e841c9, type: 3}
   spriteRenderer: {fileID: 0}
+--- !u!61 &-5677728532298855695
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7899032069984035789}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0017728806, y: -0.08704567}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7553587, y: 0.5989952}
+  m_EdgeRadius: 0
