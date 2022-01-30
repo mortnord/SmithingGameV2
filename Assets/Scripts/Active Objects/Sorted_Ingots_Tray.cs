@@ -22,18 +22,8 @@ public class Sorted_Ingots_Tray : MonoBehaviour
         //En mulighet å lage en array med plasser, der vi fyller en og en plass med en sprite når vi legger noe inni?
         if (Ingots_in_tray.Count > 0)//Sprite endring fra tomt til fult. 
         {
-            if (Ingots_in_tray[0].GetComponent<Ingot>().quality == 0)
-            {
-                spriteRenderer.sprite = spriteArray[1];
-            }
-            if (Ingots_in_tray[0].GetComponent<Ingot>().quality == 1)
-            {
-                spriteRenderer.sprite = spriteArray[2];
-            }
-            if (Ingots_in_tray[0].GetComponent<Ingot>().quality == 2)
-            {
-                spriteRenderer.sprite = spriteArray[3];
-            }
+            quality = ((int)Ingots_in_tray[0].GetComponent<Ingot>().ore_quality) + 1;
+            spriteRenderer.sprite = spriteArray[quality];
         }
         if (Ingots_in_tray.Count == 0) //Tilbake til tomt når det er tomt. 
         {
