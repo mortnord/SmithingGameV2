@@ -314,6 +314,7 @@ public class DwarfScript : MonoBehaviour
     {
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("Pickable Object");
+        
         GameObject closest = null;
 
         float distance = Mathf.Infinity;

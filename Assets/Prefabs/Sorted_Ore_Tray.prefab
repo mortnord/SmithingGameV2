@@ -104,8 +104,18 @@ MonoBehaviour:
   - {fileID: -6090044399333536772, guid: 5ace371012ab3574ba2ecb5f045a6a45, type: 3}
   - {fileID: -6659095146923667219, guid: 5ace371012ab3574ba2ecb5f045a6a45, type: 3}
   - {fileID: -5230895860157834461, guid: 5ace371012ab3574ba2ecb5f045a6a45, type: 3}
-  spriteArray_copper: []
-  spriteArray_Mithril: []
+  spriteArray_copper:
+  - {fileID: -4496994301053245674, guid: 8c0a77c4f7d43d042b38fa5819b3e854, type: 3}
+  - {fileID: 3600798478569233863, guid: 8c0a77c4f7d43d042b38fa5819b3e854, type: 3}
+  - {fileID: 4326552142941771581, guid: 8c0a77c4f7d43d042b38fa5819b3e854, type: 3}
+  - {fileID: -6403813350698953565, guid: 8c0a77c4f7d43d042b38fa5819b3e854, type: 3}
+  - {fileID: 2611057297465238495, guid: 8c0a77c4f7d43d042b38fa5819b3e854, type: 3}
+  spriteArray_mithril:
+  - {fileID: -5467613561594319628, guid: 42ab09aa9c5a36448be901226475d936, type: 3}
+  - {fileID: 8712198451625611434, guid: 42ab09aa9c5a36448be901226475d936, type: 3}
+  - {fileID: 882971091338077186, guid: 42ab09aa9c5a36448be901226475d936, type: 3}
+  - {fileID: 1644599419854223654, guid: 42ab09aa9c5a36448be901226475d936, type: 3}
+  - {fileID: 3221398882189648326, guid: 42ab09aa9c5a36448be901226475d936, type: 3}
   spriteRenderer: {fileID: 0}
 --- !u!61 &-5677728532298855695
 BoxCollider2D:
