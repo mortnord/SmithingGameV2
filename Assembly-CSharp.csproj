@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\Backend\Find_Components.cs" />
     <Compile Include="Assets\Scripts\UI\Orders_Field.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Ingot_Form.cs" />
+    <Compile Include="Assets\Scripts\Active Objects\Table.cs" />
     <Compile Include="Assets\Scripts\Backend\TimerScript.cs" />
     <Compile Include="Assets\Scripts\DwarfScript.cs" />
     <Compile Include="Assets\Scripts\Items\Ingot.cs" />
@@ -77,10 +78,11 @@
     <Compile Include="Assets\Scripts\Items\Sword.cs" />
     <Compile Include="Assets\Scripts\Items\Ore.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Channel.cs" />
+    <Compile Include="Assets\Scripts\Items\Blueprint_Sword.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Sorted_Ingots_Tray.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Trashcan.cs" />
-    <Compile Include="Assets\Scripts\Active Objects\Table.cs" />
-    <Compile Include="Assets\Scripts\Items\Blueprint_Sword.cs" />
+    <Compile Include="Assets\Scripts\Backend\IInteractor_Script.cs" />
+    <Compile Include="Assets\Scripts\Backend\Interacter_script.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

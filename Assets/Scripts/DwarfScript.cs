@@ -20,6 +20,9 @@ public class DwarfScript : MonoBehaviour
     public bool Inventory_Full = false;
     public GameObject Item_in_inventory = null;
     public GameObject Nearest_Object = null;
+    public Interacter_script Nearest_Interacter_Script = null;
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,10 +38,7 @@ public class DwarfScript : MonoBehaviour
         if(Inventory_Full && Input.GetKeyDown(KeyCode.Space) == false) //Vis inventory er tomt (alså false på testen), og vi ikke trykker space, så ska vi flytte med oss inventoriet
         {
             Item_in_inventory.transform.position = transform.position + new Vector3(0, 0.5f, 0);
-            if(Item_in_inventory.GetComponent<Ore>())
-            {
-                print(Item_in_inventory.GetComponent<Ore>().object_tag);
-            }
+        
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) //Gjør kun ting vis space er trykket ned
@@ -265,9 +265,13 @@ public class DwarfScript : MonoBehaviour
                 Anvil_Object.convert = true;
             }
         }
-        
-        
-        
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Nearest_Interacter_Script = GameObject.FindGameObjectWithTag("Interact_Object").GetComponentInChildren<Interacter_script>();
+            Nearest_Interacter_Script.Pickup(gameObject);
+            Inventory_Full = true;
+            
+        }      
         float moveByX = horizontal * 4; //Movement speed 
         float moveByY = vertical * 4; // Movement speed 
         rb.velocity = new Vector2(moveByX, moveByY); //Legge til krefer på fysikken, slik at figuren beveger seg
@@ -314,7 +318,7 @@ public class DwarfScript : MonoBehaviour
     {
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("Pickable Object");
-        
+
         GameObject closest = null;
 
         float distance = Mathf.Infinity;
@@ -322,7 +326,7 @@ public class DwarfScript : MonoBehaviour
         foreach (GameObject go in gos)
         {
             Vector3 diff = go.transform.position - position;
-            
+
             float curDistance = diff.sqrMagnitude;
             if (curDistance < distance && curDistance < Range)
             {
