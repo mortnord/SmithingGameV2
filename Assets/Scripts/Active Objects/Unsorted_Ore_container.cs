@@ -2,11 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unsorted_Ore_container : MonoBehaviour
+public class Unsorted_Ore_container : MonoBehaviour, IInteractor_Connector
 {
     public List<GameObject> Ores_in_tray = new List<GameObject>();
     public Sprite[] spriteArray;
     public SpriteRenderer spriteRenderer;
+
+    public void Drop_Off(GameObject item_to_deposit)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    
+    public void Pickup(GameObject main_character)
+    {
+        main_character.GetComponent<DwarfScript>().Item_in_inventory = Ores_in_tray[0];
+    }
 
     // Start is called before the first frame update
     void Start()

@@ -20,9 +20,7 @@ public class DwarfScript : MonoBehaviour
     public bool Inventory_Full = false;
     public GameObject Item_in_inventory = null;
     public GameObject Nearest_Object = null;
-    public Interacter_script Nearest_Interacter_Script = null;
-    
-
+   
 
     // Start is called before the first frame update
     void Start()
@@ -267,10 +265,9 @@ public class DwarfScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Nearest_Interacter_Script = GameObject.FindGameObjectWithTag("Interact_Object").GetComponentInChildren<Interacter_script>();
-            Nearest_Interacter_Script.Pickup(gameObject);
+            Nearest_Object = find_nearest_interactable_object_within_range(5);
+            Nearest_Object.transform.parent.SendMessage("Pickup", gameObject);
             Inventory_Full = true;
-            
         }      
         float moveByX = horizontal * 4; //Movement speed 
         float moveByY = vertical * 4; // Movement speed 
@@ -317,7 +314,7 @@ public class DwarfScript : MonoBehaviour
     GameObject find_nearest_interactable_object_within_range(int Range) //Her finner vi nærmeste objekt innenfor objekter med riktig tag, returnerer ett GameObject
     {
         GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("Pickable Object");
+        gos = GameObject.FindGameObjectsWithTag("Interact_Object");
 
         GameObject closest = null;
 

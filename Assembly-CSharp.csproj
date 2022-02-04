@@ -82,7 +82,6 @@
     <Compile Include="Assets\Scripts\Active Objects\Sorted_Ingots_Tray.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Trashcan.cs" />
     <Compile Include="Assets\Scripts\Backend\IInteractor_Script.cs" />
-    <Compile Include="Assets\Scripts\Backend\Interacter_script.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
