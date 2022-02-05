@@ -27,24 +27,7 @@ public class Find_Components : MonoBehaviour
         Unsorted_Ore_container Unsorted_Tray_Object = Unsorted_Tray.GetComponent<Unsorted_Ore_container>();
         return Unsorted_Tray_Object;
     }
-    public static Sorted_Ore_Tray find_Sorted_Tray_Low()
-    {
-        GameObject Sorted_Ore_Tray = GameObject.Find("Sorted_Ore_Tray_Low");
-        Sorted_Ore_Tray Sorted_Ore_Tray_Object = Sorted_Ore_Tray.GetComponent<Sorted_Ore_Tray>();
-        return Sorted_Ore_Tray_Object;
-    }
-    public static Sorted_Ore_Tray find_Sorted_Tray_Medium()
-    {
-        GameObject Sorted_Ore_Tray = GameObject.Find("Sorted_Ore_Tray_Medium");
-        Sorted_Ore_Tray Sorted_Ore_Tray_Object = Sorted_Ore_Tray.GetComponent<Sorted_Ore_Tray>();
-        return Sorted_Ore_Tray_Object;
-    }
-    public static Sorted_Ore_Tray find_Sorted_Tray_High()
-    {
-        GameObject Sorted_Ore_Tray = GameObject.Find("Sorted_Ore_Tray_High");
-        Sorted_Ore_Tray Sorted_Ore_Tray_Object = Sorted_Ore_Tray.GetComponent<Sorted_Ore_Tray>();
-        return Sorted_Ore_Tray_Object;
-    }
+    
     public static Furnace find_furnace()
     {
         GameObject Furnace = GameObject.Find("Furnace");

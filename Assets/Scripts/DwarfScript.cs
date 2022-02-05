@@ -44,45 +44,7 @@ public class DwarfScript : MonoBehaviour
             Nearest_Object = find_nearest_interactable_object_within_range(3); // Finner nærmeste objekt (ofte stockpiles eller furnace) med taggen "Pickable Object" innen 5 units distanse. 
             if (Inventory_Full) //Kun vis inventory er full, da prøver den å legge noe på plass
             {
-                if (Nearest_Object.name == "Sorted_Ore_Tray_Low") //Her er det lav kvalitet ore den prøver å legge noe i 
-                {
-                    Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_Low(); // Her finner vi gameObjektet sin script-component, som vi ska legge ting i
-                    if ((int)Item_in_inventory.GetComponent<Ore>().ore_quality == 0) // Test for å sjekke om det jeg har i inventory er riktig kvalitet for stockpilen
-                    {
-                        Insert_Into_Ore_Tray();
-                    }
-                    else // Vis testen om riktig kvalitet på riktig stockpile failer, skjer dette
-                    {
-                        print("Feil plass"); // Her tenkte jeg vi kunne ha en beskjed til spiller om feil stockpile?
-                    }
-                    
-                } //Alle metodene herunder er tilsvarende, kanskje noe å endre til bedre, helst i færre if-setninger, optimalt kun i en if-setning?
-                else if (Nearest_Object.name == "Sorted_Ore_Tray_Medium")
-                {
-                    Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_Medium();
-                    if ((int)Item_in_inventory.GetComponent<Ore>().ore_quality == 1)
-                    {
-                        Insert_Into_Ore_Tray();
-                    }
-                    else
-                    {
-                        print("Feil plass");
-                    }
-
-                }
-                else if (Nearest_Object.name == "Sorted_Ore_Tray_High")
-                {
-                    Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_High();
-                    if ((int)Item_in_inventory.GetComponent<Ore>().ore_quality == 2)
-                    {
-                        Insert_Into_Ore_Tray();
-                    }
-                    else
-                    {
-                        print("Feil plass");
-                    }
-
-                }
+                
                 if (Nearest_Object.name == "Furnace")
                 {
                     if(Item_in_inventory.GetComponent<Ore>() != null)
@@ -168,14 +130,7 @@ public class DwarfScript : MonoBehaviour
             }
             else if (Inventory_Full == false && Nearest_Object != null) // Her plukker vi opp ting, vis vi har ting nærme nok fra å plukke opp fra
             {
-                //Kode for å plukke opp ting
-                if (Nearest_Object.name == "Unsorted_Ore_Tray") //Her finner vi ut av hvilken ting vi prøver å plukke opp fra. 
-                {
-                    Unsorted_Tray_Object = Find_Components.find_Unsorted_Tray();  // Her finner vi gameObjektet sin script-component, som vi prøver å loote
-                    Item_in_inventory = Unsorted_Tray_Object.Ores_in_tray.ElementAt(0); //Her setter vi inventory til character til lik element 0 (alså første i arrayen)
-                    Unsorted_Tray_Object.Ores_in_tray.RemoveAt(0); // Her fjerner vi objektet fra stockpilen //Etterpå så vil nr 1 i arrayen bli nr 0 osv, så det fikser seg selv
-                    Inventory_Full = true; //Her har vi inventory fult.
-                }
+                
                 //Alle disse nedover er gjentagende kode, bare med 1 forskjellig metodekall, ønsker tips for å slå dette sammen.
                 if (Nearest_Object.name == "Ingot_form")  // Alle disse nedover er like
                 {
@@ -187,21 +142,7 @@ public class DwarfScript : MonoBehaviour
                         Inventory_Full = true;
                     }
                 }
-                if (Nearest_Object.name == "Sorted_Ore_Tray_Low")
-                {
-                    Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_Low();
-                    Remove_From_Ore_Tray();
-                }
-                else if (Nearest_Object.name == "Sorted_Ore_Tray_Medium")
-                {
-                    Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_Medium();
-                    Remove_From_Ore_Tray();
-                }
-                else if (Nearest_Object.name == "Sorted_Ore_Tray_High")
-                {
-                    Sorted_Ore_Tray_Object = Find_Components.find_Sorted_Tray_High();
-                    Remove_From_Ore_Tray();
-                }
+                
                 if (Nearest_Object.name == "Ingot_Tray_Low")
                 {
                     Sorted_Ingots_Tray_Object = Find_Components.find_ingot_tray_low();
@@ -266,8 +207,14 @@ public class DwarfScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Nearest_Object = find_nearest_interactable_object_within_range(5);
-            Nearest_Object.transform.parent.SendMessage("Pickup", gameObject);
-            Inventory_Full = true;
+            if (Inventory_Full == false)
+            {
+                Nearest_Object.transform.parent.SendMessage("Pickup", gameObject);
+            }
+            else if(Inventory_Full == true)
+            {
+                Nearest_Object.transform.parent.SendMessage("Drop_Off", gameObject);
+            }
         }      
         float moveByX = horizontal * 4; //Movement speed 
         float moveByY = vertical * 4; // Movement speed 
@@ -281,27 +228,10 @@ public class DwarfScript : MonoBehaviour
         Item_in_inventory.transform.position = Sorted_Ingots_Tray_Object.transform.position;
         Cleanup();
     }
-
-    private void Insert_Into_Ore_Tray() //Felles metode for ore trays
-    {
-        Sorted_Ore_Tray_Object.Ores_in_tray.Add(Item_in_inventory); // Her legger vi objektet i Inventory i arrayen som holder objekter i stockpilen
-
-        Item_in_inventory.transform.position = Sorted_Ore_Tray_Object.transform.position; // Her flytter den selve item objektet oppi stockpilen,
-                                                                                          // muligens endre til distinkt plass, eller bare la spriten dekke over slik den gjør nå
-        Cleanup(); // Metode som rydder opp i Inventory til maincharacter, for å forhindre bugs.
-    }
-
     private void Remove_From_Ingot_Tray() //Felles metode for ingot trays
     {
         Item_in_inventory = Sorted_Ingots_Tray_Object.Ingots_in_tray.ElementAt(0);
         Sorted_Ingots_Tray_Object.Ingots_in_tray.RemoveAt(0);
-        Inventory_Full = true;
-    }
-
-    private void Remove_From_Ore_Tray() //Felles metode for ore trays
-    {
-        Item_in_inventory = Sorted_Ore_Tray_Object.Ores_in_tray.ElementAt(0);
-        Sorted_Ore_Tray_Object.Ores_in_tray.RemoveAt(0);
         Inventory_Full = true;
     }
 
@@ -333,4 +263,17 @@ public class DwarfScript : MonoBehaviour
         }
         return closest;
     }
+    private void Inventory_Full_Message(bool result)
+    {
+        if (result == true)
+        {
+            Inventory_Full = true;
+        }
+        else
+        {
+            Cleanup();
+        }
+        print(result);
+    }
+   
 }

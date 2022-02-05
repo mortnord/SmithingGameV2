@@ -8,7 +8,7 @@ public class Unsorted_Ore_container : MonoBehaviour, IInteractor_Connector
     public Sprite[] spriteArray;
     public SpriteRenderer spriteRenderer;
 
-    public void Drop_Off(GameObject item_to_deposit)
+    public void Drop_Off(GameObject main_character)
     {
         throw new System.NotImplementedException();
     }
@@ -17,7 +17,17 @@ public class Unsorted_Ore_container : MonoBehaviour, IInteractor_Connector
     public void Pickup(GameObject main_character)
     {
         main_character.GetComponent<DwarfScript>().Item_in_inventory = Ores_in_tray[0];
+        Ores_in_tray.RemoveAt(0);
+        Return_Answer(main_character, true);
+  
     }
+
+    public void Return_Answer(GameObject main_character, bool result)
+    {
+        main_character.SendMessage("Inventory_Full_Message", result);
+    }
+
+   
 
     // Start is called before the first frame update
     void Start()
