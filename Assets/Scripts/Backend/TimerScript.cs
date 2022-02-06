@@ -20,17 +20,14 @@ public class TimerScript : MonoBehaviour
     {
         time_Remaining = 720; //Tid i sekunder per lvl / minecart noe. 
         timer_Is_Running = true; //Tiden ska begynne å gå
-
     }
-
     // Update is called once per frame
     void Update()
     {
         if (time_Remaining > 0 && timer_Is_Running)
         {
             time_Remaining -= Time.deltaTime; //Trekkes fra tiden tilsvarnede tiden brukt på en frame, gir en smooth 1 sekund per sekund. 
-            calculate_time_left(time_Remaining); //Beregne minutter og sekunder. 
-
+            calculate_time_left(time_Remaining); //Beregne minutter og sekunder
         }
         else
         {
@@ -55,7 +52,6 @@ public class TimerScript : MonoBehaviour
                 ekstra_mission_reset = true;
             }
         }
-
     }
     void calculate_time_left(float time_to_display)
     {
@@ -63,6 +59,4 @@ public class TimerScript : MonoBehaviour
         seconds = Mathf.FloorToInt(time_Remaining % 60);
         time_Text.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
-    
-
 }

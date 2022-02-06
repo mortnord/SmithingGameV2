@@ -31,12 +31,12 @@ public class DwarfScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E)) //Her aktiverer vi objekter, evnt så kan vi ha en spak vi interacter med for å gjøre det samme, vis alt ska være på space-knappen
         {
-            Nearest_Object = find_nearest_interactable_object_within_range(5); // 
+            Nearest_Object = Find_nearest_interactable_object_within_range(5); // 
             Nearest_Object.transform.parent.SendMessage("Work", gameObject);
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Nearest_Object = find_nearest_interactable_object_within_range(5);
+            Nearest_Object = Find_nearest_interactable_object_within_range(5);
             if (Inventory_Full == false)
             {
                 Nearest_Object.transform.parent.SendMessage("Pickup", gameObject);
@@ -55,7 +55,7 @@ public class DwarfScript : MonoBehaviour
         Item_in_inventory = null;
         Inventory_Full = false;
     }
-    GameObject find_nearest_interactable_object_within_range(int Range) //Her finner vi nærmeste objekt innenfor objekter med riktig tag, returnerer ett GameObject
+    GameObject Find_nearest_interactable_object_within_range(int Range) //Her finner vi nærmeste objekt innenfor objekter med riktig tag, returnerer ett GameObject
     {
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("Interact_Object");
@@ -77,7 +77,9 @@ public class DwarfScript : MonoBehaviour
         }
         return closest;
     }
+#pragma warning disable IDE0051 // Remove unused private members
     private void Inventory_Full_Message(bool result)
+#pragma warning restore IDE0051 // Remove unused private members
     {
         if (result == true)
         {

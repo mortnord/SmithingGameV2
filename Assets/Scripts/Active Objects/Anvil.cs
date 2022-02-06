@@ -27,15 +27,12 @@ public class Anvil : MonoBehaviour, IInteractor_Connector, IInteract_Work
                                                                                                                                              // med ingoten sin quality, og anvilen sin posisjon
                 Reset(); //Reset anvilen tilbake til normal og destroy ingot objektet
             }
-
         }
         else
         {
             convert = false; //ingen blueprint copy, så da mislykkes converteringen
         }
-        
     }
-
     private void Reset()
     {
         Destroy(object_to_be_destroyed);

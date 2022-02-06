@@ -44,8 +44,6 @@ public class Sorted_Ore_Tray : MonoBehaviour, IInteractor_Connector
     // Update is called once per frame
     void Update()
     {
-        handleSprite();
-        
 
     }
 
@@ -78,6 +76,7 @@ public class Sorted_Ore_Tray : MonoBehaviour, IInteractor_Connector
         main_character.GetComponent<DwarfScript>().Item_in_inventory = Ores_in_tray[0];
         Ores_in_tray.RemoveAt(0);
         Return_Answer(main_character, true);
+        handleSprite();
     }
 
     public void Drop_Off(GameObject main_character)
@@ -89,6 +88,7 @@ public class Sorted_Ore_Tray : MonoBehaviour, IInteractor_Connector
             Ores_in_tray.Add(main_character.GetComponent<DwarfScript>().Item_in_inventory);
             Return_Answer(main_character, false);
         }
+        handleSprite();
     }
 
   

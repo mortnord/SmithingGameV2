@@ -27,20 +27,11 @@ public class Find_Components : MonoBehaviour
         Unsorted_Ore_container Unsorted_Tray_Object = Unsorted_Tray.GetComponent<Unsorted_Ore_container>();
         return Unsorted_Tray_Object;
     }
-    
-    
     public static Ingot_Form find_ingot_form()
     {
         GameObject ingot_form = GameObject.Find("Ingot_form");
         Ingot_Form ingot_form_object = ingot_form.GetComponent<Ingot_Form>();
         return ingot_form_object;
-    }
-    
-    public static Export_Chute find_export_chute()
-    {
-        GameObject export_chute_GameObject = GameObject.Find("Export_Chute");
-        Export_Chute export_chute_object = export_chute_GameObject.GetComponent<Export_Chute>();
-        return export_chute_object;
     }
     public static Score find_score()
     {
@@ -54,12 +45,4 @@ public class Find_Components : MonoBehaviour
         Mission_System mission_system_object = mission_system.GetComponent<Mission_System>();
         return mission_system_object;
     }
-    
-    public static Table find_table()
-    {
-        GameObject table = GameObject.Find("Table_Blueprints");
-        Table table_object = table.GetComponent<Table>();
-        return table_object;
-    }
-
 }

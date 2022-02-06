@@ -21,7 +21,6 @@ public class Orders_Field : MonoBehaviour
 
     public void setMissionPosisions()
     {
-
         for (int i = 0; Mission_System_object.Missions_in_UI.Count > i; i++) //Denne flytter alle missions sakte bortover, sett transportspeed for å øke fart
         {
             Mission_System_object.Missions_in_UI[i].transform.position = new Vector3(Mission_System_object.Missions_in_UI[i].transform.position.x + 0.05f * transport_speed * Time.deltaTime, Mission_System_object.Missions_in_UI[i].transform.position.y);

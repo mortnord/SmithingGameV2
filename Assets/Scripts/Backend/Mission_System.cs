@@ -5,22 +5,20 @@ using UnityEngine;
 
 public class Mission_System : MonoBehaviour
 {
-
     TimerScript Timer_Object;
     Object_Creation Generation_Object;
     public float time_remaining;
     public bool completed_mission = true;
     public int amount_of_completed_missions = 0;
     public int difficulty = 0;
-
     public List<GameObject> Missions_in_UI = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
         Timer_Object = Find_Components.find_Timer_Object();
         Generation_Object = Find_Components.find_Object_Creation();
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -43,7 +41,6 @@ public class Mission_System : MonoBehaviour
             Timer_Object.ekstra_mission_reset = false;
             completed_mission = false;
         }
-        
     }
     void create_mission() //Her lager mission systemet selve missionet
     {
@@ -52,9 +49,7 @@ public class Mission_System : MonoBehaviour
         Missions_in_UI.Add(mission); //Legges inn i objekter som skal tegnes i UIet
         mission.GetComponent<Mission>().quality_of_object_for_mission = mission.GetComponentInChildren<Sword>().quality; //Kvaliteten på objektet som skal leveres
         mission.GetComponent<Mission>().type_of_object_for_mission = (int)Generation_Object.get_random_type(); //typen av objekt som ska leveres
-
         Timer_Object.reset_timer = 10; //Reset
-       
     }
     public bool check_mission_success(GameObject Object_to_check) //Her sjekker vi om ett levert objekt vil fullføre missionet
     {

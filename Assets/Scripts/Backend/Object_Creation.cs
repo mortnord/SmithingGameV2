@@ -74,12 +74,4 @@ public class Object_Creation : MonoBehaviour
         int index = rand.Next(values.Length);
         return index;
     }
-    /*
-    public int get_random_from_enum()
-    {
-        Type type = typeof();
-        Array values = type.GetEnumValues();
-        int index = rand.Next(values.Length);
-        return index;
-    }*/
 }
