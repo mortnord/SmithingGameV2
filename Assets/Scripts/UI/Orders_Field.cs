@@ -10,7 +10,7 @@ public class Orders_Field : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Mission_System_object = GetComponentInChildren<Mission_System>();
+        Mission_System_object = GetComponentInChildren<Mission_System>(); 
     }
 
     // Update is called once per frame
