@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Table : MonoBehaviour
+public class Table : MonoBehaviour, IInteractor_Connector
 {
 
     Object_Creation Generation_Object;
@@ -27,5 +27,24 @@ public class Table : MonoBehaviour
                 fake_copy = Generation_Object.create_blueprint_sword(transform.position); //Posisjonen til kopien er lik posisjonen til bordet. 
             }
         }
+    }
+
+    public void Pickup(GameObject main_character)
+    {
+
+        main_character.GetComponent<DwarfScript>().Item_in_inventory = fake_copy;
+        fake_copy = null;
+        main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.parent = null;
+        copied = true;
+        Return_Answer(main_character, true);
+    }
+    public void Drop_Off(GameObject main_character)
+    {
+        //Do nothing
+    }
+
+    public void Return_Answer(GameObject main_character, bool result)
+    {
+        main_character.SendMessage("Inventory_Full_Message", result);
     }
 }

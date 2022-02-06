@@ -28,44 +28,14 @@ public class Find_Components : MonoBehaviour
         return Unsorted_Tray_Object;
     }
     
-    public static Furnace find_furnace()
-    {
-        GameObject Furnace = GameObject.Find("Furnace");
-        Furnace Furnace_Object = Furnace.GetComponent<Furnace>();
-        return Furnace_Object;
-    }
+    
     public static Ingot_Form find_ingot_form()
     {
         GameObject ingot_form = GameObject.Find("Ingot_form");
         Ingot_Form ingot_form_object = ingot_form.GetComponent<Ingot_Form>();
         return ingot_form_object;
     }
-    public static Sorted_Ingots_Tray find_ingot_tray_low()
-    {
-        GameObject ingot_tray = GameObject.Find("Ingot_Tray_Low");
-        Sorted_Ingots_Tray ingot_tray_object = ingot_tray.GetComponent<Sorted_Ingots_Tray>();
-        return ingot_tray_object;
-
-    }
-    public static Sorted_Ingots_Tray find_ingot_tray_medium()
-    {
-        GameObject ingot_tray = GameObject.Find("Ingot_Tray_Medium");
-        Sorted_Ingots_Tray ingot_tray_object = ingot_tray.GetComponent<Sorted_Ingots_Tray>();
-        return ingot_tray_object;
-    }
-    public static Sorted_Ingots_Tray find_ingot_tray_high()
-    {
-        GameObject ingot_tray = GameObject.Find("Ingot_Tray_High");
-        Sorted_Ingots_Tray ingot_tray_object = ingot_tray.GetComponent<Sorted_Ingots_Tray>();
-        return ingot_tray_object;
-    }
-    public static Anvil find_anvil()
-    {
-        GameObject anvil_GameObject = GameObject.Find("Anvil");
-        Anvil anvil_object = anvil_GameObject.GetComponent<Anvil>();
-        return anvil_object;
-    }
-
+    
     public static Export_Chute find_export_chute()
     {
         GameObject export_chute_GameObject = GameObject.Find("Export_Chute");
@@ -83,12 +53,6 @@ public class Find_Components : MonoBehaviour
         GameObject mission_system = GameObject.Find("Mission_System");
         Mission_System mission_system_object = mission_system.GetComponent<Mission_System>();
         return mission_system_object;
-    }
-    public static Trashcan find_trashcan()
-    {
-        GameObject trashcan = GameObject.Find("Trashcan");
-        Trashcan trashcan_object = trashcan.GetComponent<Trashcan>();
-        return trashcan_object;
     }
     
     public static Table find_table()

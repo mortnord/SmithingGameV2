@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Export_Chute : MonoBehaviour
+public class Export_Chute : MonoBehaviour, IInteractor_Connector
 {
     Score Score_object;
     Mission_System mission_system_object;
@@ -35,5 +35,22 @@ public class Export_Chute : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Pickup(GameObject main_character)
+    {
+        //Do nothing
+    }
+
+    public void Drop_Off(GameObject main_character)
+    {
+        main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.position = gameObject.transform.position;
+        Stuff_to_transport.Add(main_character.GetComponent<DwarfScript>().Item_in_inventory);
+        Return_Answer(main_character, false);
+    }
+
+    public void Return_Answer(GameObject main_character, bool result)
+    {
+        main_character.SendMessage("Inventory_Full_Message", result);
     }
 }

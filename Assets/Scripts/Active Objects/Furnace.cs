@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Furnace : MonoBehaviour
+public class Furnace : MonoBehaviour, IInteractor_Connector, IInteract_Work
 {
 
     TimerScript Timer_Object;
@@ -41,13 +41,42 @@ public class Furnace : MonoBehaviour
         if (smelting_ready) //Når vi får klarsignalet fra dwarfen, så starter smelting
         {
             //Implementer en tidsbasert smelting her
+            smelting_in_progress = true;
             foreach (GameObject Ore in Ores_in_furnace)  // For hver ore, så lager vi en tilsvarende ingot med tilsvarende kvalitet, så destroyer vi oren
             {
                 ingot_form_object.Ingots_in_form.Add(Generation_Object.create_ingot(Ore.GetComponent<Ore>().quality));
+                
                 Destroy(Ore);
+                
             }
             Ores_in_furnace.Clear(); //Tømme inventory og cleare, ingots har blitt laget i ingot_form objektet, så det går fint
             smelting_ready = false; //reset tilbake til tidligere stadie
+            smelting_in_progress = false;
+        }
+    }
+
+    public void Pickup(GameObject main_character)
+    {
+        //Do Nothing
+    }
+
+    public void Drop_Off(GameObject main_character)
+    {
+        main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.position = gameObject.transform.position;
+        Ores_in_furnace.Add(main_character.GetComponent<DwarfScript>().Item_in_inventory);
+        Return_Answer(main_character, false);
+    }
+
+    public void Return_Answer(GameObject main_character, bool result)
+    {
+        main_character.SendMessage("Inventory_Full_Message", result);
+    }
+
+    public void Work(GameObject main_character)
+    {
+        if(smelting_in_progress == false)
+        {
+            smelting_ready = true;
         }
     }
 }

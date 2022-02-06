@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Anvil : MonoBehaviour
+public class Anvil : MonoBehaviour, IInteractor_Connector, IInteract_Work
 {
 
     Object_Creation Generation_Object;
     public GameObject Converted_Object;
-    public GameObject object_to_be_destroyed;
     public GameObject blueprint_copy;
+    public GameObject object_to_be_destroyed;
     public bool convert = false;
     // Start is called before the first frame update
     void Start()
@@ -38,7 +38,48 @@ public class Anvil : MonoBehaviour
 
     private void Reset()
     {
-        Destroy(object_to_be_destroyed); //Ingoten som blir ødelagt
+        Destroy(object_to_be_destroyed);
         convert = false;
+    }
+
+    public void Pickup(GameObject main_character)
+    {
+        if(Converted_Object != null)
+        {
+            main_character.GetComponent<DwarfScript>().Item_in_inventory = Converted_Object;
+            Converted_Object = null;
+        }
+        else
+        {
+            main_character.GetComponent<DwarfScript>().Item_in_inventory = blueprint_copy;
+            blueprint_copy = null;
+        }
+        Return_Answer(main_character, true);
+    }
+
+    public void Drop_Off(GameObject main_character)
+    {
+        if (main_character.GetComponent<DwarfScript>().Item_in_inventory.GetComponent<Ingot>() != null) //Her legger vi inn ingots i anvilen
+        {
+            object_to_be_destroyed = main_character.GetComponent<DwarfScript>().Item_in_inventory;
+            main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.position = gameObject.transform.position;
+            Return_Answer(main_character, false);
+        }
+        else if (main_character.GetComponent<DwarfScript>().Item_in_inventory.GetComponent<Blueprint_Sword>() != null) //Her kommer blueprints inn i anvilen
+        {
+            blueprint_copy = main_character.GetComponent<DwarfScript>().Item_in_inventory;
+            main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.position = gameObject.transform.position;
+            Return_Answer(main_character, false);
+        }
+    }
+
+    public void Return_Answer(GameObject main_character, bool result)
+    {
+        main_character.SendMessage("Inventory_Full_Message", result);
+    }
+
+    public void Work(GameObject main_character)
+    {
+        convert = true;
     }
 }

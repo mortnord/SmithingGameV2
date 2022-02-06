@@ -10,5 +10,8 @@ interface IInteractor_Connector
 
     public void Return_Answer(GameObject main_character, bool result);
 }
-
+interface IInteract_Work
+{
+    public void Work(GameObject main_character);
+}
     

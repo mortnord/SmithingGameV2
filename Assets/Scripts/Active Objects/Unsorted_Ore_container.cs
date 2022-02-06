@@ -10,7 +10,7 @@ public class Unsorted_Ore_container : MonoBehaviour, IInteractor_Connector
 
     public void Drop_Off(GameObject main_character)
     {
-        throw new System.NotImplementedException();
+       //Do nothing
     }
 
     
