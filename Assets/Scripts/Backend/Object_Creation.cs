@@ -22,6 +22,12 @@ public class Object_Creation : MonoBehaviour
         spawned_ore.GetComponent<Ore>().quality = get_random_quality(); //Vi bruker en instantitate av en prefab som er satt i inspektoren.
         return spawned_ore;
     }
+    public GameObject create_ore(int quality)
+    {
+        GameObject spawned_ore = Instantiate(Ore_prefab, new Vector3(UnityEngine.Random.Range(-9.2f, -8.2f), UnityEngine.Random.Range(-0.3f, -2f), 0), Quaternion.identity);
+        spawned_ore.GetComponent<Ore>().quality = quality; //Vi bruker en instantitate av en prefab som er satt i inspektoren.
+        return spawned_ore;
+    }
     public GameObject create_ingot(int quality)
     {
         GameObject spawned_ingot = Instantiate(ingot_prefab, new Vector3(-4.8f, 2f), Quaternion.identity);

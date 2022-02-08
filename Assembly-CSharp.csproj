@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Active Objects\Table.cs" />
     <Compile Include="Assets\Scripts\Backend\TimerScript.cs" />
     <Compile Include="Assets\Scripts\DwarfScript.cs" />
+    <Compile Include="Assets\Scripts\Backend\IInteractor_Script.cs" />
     <Compile Include="Assets\Scripts\Items\Ingot.cs" />
     <Compile Include="Assets\Scripts\Backend\Score.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Export_Chute.cs" />
@@ -81,7 +82,10 @@
     <Compile Include="Assets\Scripts\Items\Blueprint_Sword.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Sorted_Ingots_Tray.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Trashcan.cs" />
-    <Compile Include="Assets\Scripts\Backend\IInteractor_Script.cs" />
+    <Compile Include="Assets\Scripts\Backend\Scene_Transition_Script.cs" />
+    <Compile Include="Assets\Scripts\Active Objects\Vein.cs" />
+    <Compile Include="Assets\Scripts\Active Objects\Mined_Ore_Cart.cs" />
+    <Compile Include="Assets\Scripts\Backend\Static Data.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -28,7 +28,12 @@ public class Minecart : MonoBehaviour
         Unsorted_Tray_Object = Find_Components.find_Unsorted_Tray();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>(); //Dette er spirit-renderen, vi kan bruke denne til å bytte sprites.
         // Mengden ore som skal generates, må endres til mindre hardcoding. 
-        amount_of_ore = Random.Range(1, 7);
+        if(StaticData.Transition_Ores.Count > 0)
+        {
+
+        }
+        
+        
         time_until_move = 5;
         
     }
@@ -59,11 +64,12 @@ public class Minecart : MonoBehaviour
             movement_speed = 0; //stop
             spriteRenderer.sprite = spriteArray[1]; //Bytt sprite
             dumped_ore = true;
-            for (int i = 0; i < amount_of_ore; i++) //Generer ore og legg det i stockpilen for usortert ore
+            for (int i = 0; i < StaticData.Transition_Ores.Count; i++) //Generer ore og legg det i stockpilen for usortert ore
             {
-                Unsorted_Tray_Object.Ores_in_tray.Add(Generation_Object.create_ore());
+                Unsorted_Tray_Object.Ores_in_tray.Add(Generation_Object.create_ore((int)StaticData.Transition_Ores[i]));
             }
             amount_of_ore = 0;
+            StaticData.Transition_Ores.Clear();
             tilbake_tid = true;
         }
         if(Unsorted_Tray_Object.Ores_in_tray.Count == 0 && dumped_ore == true && tilbake_tid)
