@@ -37,13 +37,28 @@ public class DwarfScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Nearest_Object = Find_nearest_interactable_object_within_range(5);
-            if (Inventory_Full == false)
+            if (Inventory_Full == false && Nearest_Object != null)
             {
-                Nearest_Object.transform.parent.SendMessage("Pickup", gameObject);
+                try
+                {
+                    Nearest_Object.transform.parent.SendMessage("Pickup", gameObject);
+                }
+                catch
+                {
+                    //Do nothing
+                }
             }
-            else if (Inventory_Full == true)
+            else if (Inventory_Full == true && Nearest_Object != null)
             {
-                Nearest_Object.transform.parent.SendMessage("Drop_Off", gameObject);
+                try
+                {
+                    Nearest_Object.transform.parent.SendMessage("Drop_Off", gameObject);
+                }
+                catch
+                {
+                    //Do nothing
+                }
+                
             }
         }
         float moveByX = horizontal * 4; //Movement speed 
@@ -91,4 +106,5 @@ public class DwarfScript : MonoBehaviour
         }
         print(result);
     }
+    
 }

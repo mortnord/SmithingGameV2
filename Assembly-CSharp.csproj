@@ -56,6 +56,7 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Active Objects\Mined_Ore_Cart.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Unsorted_Ore_container.cs" />
     <Compile Include="Assets\Scripts\Backend\Mission_System.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Minecart.cs" />
@@ -75,17 +76,18 @@
     <Compile Include="Assets\Scripts\Active Objects\Sorted_Ore_Tray.cs" />
     <Compile Include="Assets\Scripts\Backend\Enum types.cs" />
     <Compile Include="Assets\Scripts\Backend\Object_Creation.cs" />
+    <Compile Include="Assets\Scripts\Active Objects\Vein.cs" />
+    <Compile Include="Assets\Scripts\Backend\Static Data.cs" />
     <Compile Include="Assets\Scripts\Backend\Group_of_Missions.cs" />
     <Compile Include="Assets\Scripts\Items\Sword.cs" />
     <Compile Include="Assets\Scripts\Items\Ore.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Channel.cs" />
     <Compile Include="Assets\Scripts\Items\Blueprint_Sword.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Sorted_Ingots_Tray.cs" />
-    <Compile Include="Assets\Scripts\Active Objects\Trashcan.cs" />
     <Compile Include="Assets\Scripts\Backend\Scene_Transition_Script.cs" />
-    <Compile Include="Assets\Scripts\Active Objects\Vein.cs" />
-    <Compile Include="Assets\Scripts\Active Objects\Mined_Ore_Cart.cs" />
-    <Compile Include="Assets\Scripts\Backend\Static Data.cs" />
+    <Compile Include="Assets\Scripts\Active Objects\Trashcan.cs" />
+    <Compile Include="Assets\Scripts\Backend\GridController.cs" />
+    <Compile Include="Assets\Scripts\Backend\Random_Ore_Generator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -658,6 +660,9 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.25f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Animation.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
@@ -714,6 +719,9 @@
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
