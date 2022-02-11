@@ -27,6 +27,7 @@ public class Mined_Ore_Cart : MonoBehaviour, IInteractor_Connector, IInteract_Wo
 
     public void Work(GameObject main_character)
     {
+        StaticData.Transition_Ores.Clear();
         for (int i = 0; i < Ores_in_tray.Count; i++) //Generer ore og legg det i stockpilen for usortert ore
         {
             StaticData.Transition_Ores.Add(Ores_in_tray[i].GetComponent<Ore>().ore_quality);

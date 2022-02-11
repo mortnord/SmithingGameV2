@@ -28,13 +28,14 @@ public class Object_Creation : MonoBehaviour
         spawned_ore.GetComponent<Ore>().quality = quality; //Vi bruker en instantitate av en prefab som er satt i inspektoren.
         return spawned_ore;
     }
-    public void create_ore(float x, float y, int quality)
+    public GameObject create_ore(float x, float y, int quality)
     {
         x = x + 0.5f;
         y = y + 0.5f;
         GameObject spawned_ore = Instantiate(Ore_prefab, new Vector3(x, y, 0), Quaternion.identity);
         spawned_ore.GetComponent<Ore>().quality = quality; //Vi bruker en instantitate av en prefab som er satt i inspektoren.
         spawned_ore.tag = "Mining_Ore";
+        return spawned_ore;
         
     }
     public GameObject create_ingot(int quality)

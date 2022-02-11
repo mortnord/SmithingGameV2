@@ -17,6 +17,7 @@ public class DwarfScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Denne trengs for å kunne gjøre physicsbasert movement
+        Application.targetFrameRate = 60;
     }
     // Update is called once per frame
     void Update()
@@ -31,8 +32,15 @@ public class DwarfScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E)) //Her aktiverer vi objekter, evnt så kan vi ha en spak vi interacter med for å gjøre det samme, vis alt ska være på space-knappen
         {
-            Nearest_Object = Find_nearest_interactable_object_within_range(5); // 
-            Nearest_Object.transform.parent.SendMessage("Work", gameObject);
+            try
+            {
+                Nearest_Object = Find_nearest_interactable_object_within_range(5); // 
+                Nearest_Object.transform.parent.SendMessage("Work", gameObject);
+            }
+            catch
+            {
+                //Do nothing
+            }
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {

@@ -8,13 +8,16 @@ using UnityEngine.Tilemaps;
 public class Random_Ore_Generator : MonoBehaviour
 {
     // Start is called before the first frame update
-    public List<GameObject> Random_Ores = new List<GameObject>();
+    public List<GameObject> List_of_ores = new List<GameObject>();
     Tilemap map_to_generate_in = null;
 
     System.Random rand = new System.Random();
     int randnr = 0;
     public Object_Creation Generation_Object;
     public Ore_Quality ore_quality;
+
+    public GameObject dwarf = null;
+
 
     void Start()
     {
@@ -24,7 +27,17 @@ public class Random_Ore_Generator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        for (int i = 0; i < List_of_ores.Count; i++)
+        {
+            if (Vector3.Distance(dwarf.transform.position, List_of_ores[i].transform.position) > 5)
+            {
+                List_of_ores[i].SetActive(false);
+            }
+            else
+            {
+                List_of_ores[i].SetActive(true);
+            }
+        }
     }
     void mapToGenerateIn(Tilemap Map_in)
     {
@@ -41,15 +54,15 @@ public class Random_Ore_Generator : MonoBehaviour
                 randnr = rand.Next(40);
                 if(randnr == 0)
                 {
-                    Generation_Object.create_ore(i, j, (int)Ore_Quality.Copper);
+                    List_of_ores.Add(Generation_Object.create_ore(i, j, (int)Ore_Quality.Copper));
                 }
                 else if (randnr == 1)
                 {
-                    Generation_Object.create_ore(i, j, (int)Ore_Quality.Iron);
+                    List_of_ores.Add(Generation_Object.create_ore(i, j, (int)Ore_Quality.Iron));
                 }
                 else if (randnr == 2)
                 {
-                    Generation_Object.create_ore(i, j, (int)Ore_Quality.Mithril);
+                    List_of_ores.Add(Generation_Object.create_ore(i, j, (int)Ore_Quality.Mithril));
                 }
             }
         }
