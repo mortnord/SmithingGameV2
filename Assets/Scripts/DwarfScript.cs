@@ -35,7 +35,7 @@ using UnityEngine;
             try
             {
                 Nearest_Object = Find_nearest_interactable_object_within_range(5); // 
-                Nearest_Object.transform.parent.SendMessage("Work", gameObject);
+                Nearest_Object.transform.parent.SendMessage("Work", gameObject); 
             }
             catch
             {
