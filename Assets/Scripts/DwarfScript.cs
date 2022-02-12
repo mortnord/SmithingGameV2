@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class DwarfScript : MonoBehaviour
+[Serializable]public class DwarfScript : MonoBehaviour
 {
     Rigidbody2D rb;
 
@@ -69,6 +69,12 @@ public class DwarfScript : MonoBehaviour
                 
             }
         }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            GameObject MainObject = GameObject.FindGameObjectWithTag("GameController");
+            MainObject.BroadcastMessage("Storage");
+        }
+        
         float moveByX = horizontal * 4; //Movement speed 
         float moveByY = vertical * 4; // Movement speed 
         rb.velocity = new Vector2(moveByX, moveByY); //Legge til krefer på fysikken, slik at figuren beveger seg

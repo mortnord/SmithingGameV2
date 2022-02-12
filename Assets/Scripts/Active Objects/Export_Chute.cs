@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class Export_Chute : MonoBehaviour, IInteractor_Connector
 {
-    Score Score_object;
     Mission_System mission_system_object;
     // Start is called before the first frame update
     public int transport_speed = 1;
     public List<GameObject> Stuff_to_transport = new List<GameObject>();
     void Start()
     {
-        Score_object = Find_Components.find_score(); //Score objektet
         mission_system_object = Find_Components.find_mission_system(); //Mission system objektet
     }
 
@@ -28,7 +26,7 @@ public class Export_Chute : MonoBehaviour, IInteractor_Connector
                 {
                     if(mission_system_object.check_mission_success(Stuff_to_transport[i])) //Returnerer True vis objektet oppfyller ett krav til ett mission
                     {
-                        Score_object.score += Stuff_to_transport[i].GetComponent<Sword>().value; //Gi score
+                        StaticData.score += Stuff_to_transport[i].GetComponent<Sword>().value; //Gi score
                         Destroy(Stuff_to_transport[i]); //Slett objekt fra spillet 
                         Stuff_to_transport.Remove(Stuff_to_transport[i]); //Slett objekt fra listen
                     }

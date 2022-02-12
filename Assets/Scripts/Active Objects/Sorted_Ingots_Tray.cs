@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector
+public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_transfer
 {
     public int quality;
     public List<GameObject> Ingots_in_tray = new List<GameObject>();
 
     public Sprite[] spriteArray;
     public SpriteRenderer spriteRenderer;
+
+    public Object_Creation Generation_Object;
     bool result;
 
     public void Drop_Off(GameObject main_character)
@@ -36,9 +38,11 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
+        Generation_Object = Find_Components.find_Object_Creation(); //Generation objektet
     }
 
     // Update is called once per frame
@@ -104,6 +108,32 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector
         else if (Ingots_in_tray.Count == 0) //Tilbake til tomt når det er tomt. 
         {
             //spriteRenderer.sprite = Ingots_in_tray[0];
+        }
+    }
+
+    public void Storage()
+    {
+        List<Enumtypes.Ore_Quality> Ore_Quality = new List<Enumtypes.Ore_Quality>();
+        for (int i = 0; i < Ingots_in_tray.Count; i++) //Generer ore og legg det i stockpilen for usortert ore
+        {
+            Ore_Quality.Add(Ingots_in_tray[i].GetComponent<Ingot>().ore_quality);
+        }
+        StaticData.Ingot_Quality.Add(Ore_Quality);
+    }
+
+    public void Loading()
+    {
+        if (StaticData.Ingot_Quality.Count > 0)
+        {
+            List<Enumtypes.Ore_Quality> Ore_Quality = StaticData.Ingot_Quality[0];
+            StaticData.Ingot_Quality.RemoveAt(0);
+            for (int i = 0; i < Ore_Quality.Count; i++) //Generer ore og legg det i stockpilen for usortert ore
+            {
+
+                handleQuality(Ore_Quality[i]);
+                Ingots_in_tray.Add(Generation_Object.create_ingot((int)Ore_Quality[i], gameObject));
+            }
+            handleSprite();
         }
     }
 }

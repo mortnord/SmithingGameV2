@@ -16,15 +16,16 @@ public class Object_Creation : MonoBehaviour
     public Sprite test_sprite;
 
     System.Random rand = new System.Random();
-    public GameObject create_ore_with_set_position()//Her er koden vi bruker for å generate ore og ingots, posisjonsdataen for vectoren må endres engang i framtiden
-    {
-        GameObject spawned_ore = Instantiate(Ore_prefab, new Vector3(UnityEngine.Random.Range(-9.2f, - 8.2f), UnityEngine.Random.Range(-0.3f, -2f), 0), Quaternion.identity);
-        spawned_ore.GetComponent<Ore>().quality = get_random_quality(); //Vi bruker en instantitate av en prefab som er satt i inspektoren.
-        return spawned_ore;
-    }
+   
     public GameObject create_ore(int quality)
     {
         GameObject spawned_ore = Instantiate(Ore_prefab, new Vector3(UnityEngine.Random.Range(-9.2f, -8.2f), UnityEngine.Random.Range(-0.3f, -2f), 0), Quaternion.identity);
+        spawned_ore.GetComponent<Ore>().quality = quality; //Vi bruker en instantitate av en prefab som er satt i inspektoren.
+        return spawned_ore;
+    }
+    public GameObject create_ore(int quality, GameObject parent)
+    {
+        GameObject spawned_ore = Instantiate(Ore_prefab, new Vector3(parent.transform.position.x, parent.transform.position.y, 0), Quaternion.identity);
         spawned_ore.GetComponent<Ore>().quality = quality; //Vi bruker en instantitate av en prefab som er satt i inspektoren.
         return spawned_ore;
     }
@@ -76,6 +77,14 @@ public class Object_Creation : MonoBehaviour
         
         return created_card_with_mission;
     }
+
+    internal GameObject create_ingot(int quality, GameObject gameObject)
+    {
+        GameObject spawned_ingot = Instantiate(ingot_prefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
+        spawned_ingot.GetComponent<Ingot>().quality = quality;
+        return spawned_ingot;
+    }
+
     public int get_random_quality()
     {
         Type type = typeof(Ore_Quality);

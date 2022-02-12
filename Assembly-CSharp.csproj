@@ -56,40 +56,40 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Active Objects\Mined_Ore_Cart.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Unsorted_Ore_container.cs" />
-    <Compile Include="Assets\Scripts\Backend\Mission_System.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Minecart.cs" />
     <Compile Include="Assets\Scripts\Backend\GridController.cs" />
-    <Compile Include="Assets\Scripts\Backend\Mission.cs" />
-    <Compile Include="Assets\Scripts\Backend\Find_Components.cs" />
-    <Compile Include="Assets\Scripts\UI\Orders_Field.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Ingot_Form.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Table.cs" />
-    <Compile Include="Assets\Scripts\Backend\TimerScript.cs" />
-    <Compile Include="Assets\Scripts\DwarfScript.cs" />
-    <Compile Include="Assets\Scripts\Backend\IInteractor_Script.cs" />
     <Compile Include="Assets\Scripts\Items\Ingot.cs" />
     <Compile Include="Assets\Scripts\Backend\Score.cs" />
-    <Compile Include="Assets\Scripts\Active Objects\Export_Chute.cs" />
-    <Compile Include="Assets\Scripts\Active Objects\Furnace.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Anvil.cs" />
-    <Compile Include="Assets\Scripts\Active Objects\Sorted_Ore_Tray.cs" />
     <Compile Include="Assets\Scripts\Backend\Enum types.cs" />
-    <Compile Include="Assets\Scripts\Backend\Object_Creation.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Vein.cs" />
-    <Compile Include="Assets\Scripts\Backend\Static Data.cs" />
-    <Compile Include="Assets\Scripts\Backend\Group_of_Missions.cs" />
-    <Compile Include="Assets\Scripts\Items\Sword.cs" />
     <Compile Include="Assets\Scripts\Backend\Random_Ore_Generator.cs" />
     <Compile Include="Assets\Scripts\Items\Ore.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Channel.cs" />
-    <Compile Include="Assets\Scripts\Items\Blueprint_Sword.cs" />
-    <Compile Include="Assets\Scripts\Active Objects\Sorted_Ingots_Tray.cs" />
     <Compile Include="Assets\Scripts\Backend\Scene_Transition_Script.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Trashcan.cs" />
-    <Compile Include="Assets\Scripts\Lånt\Runtime\TilemapShadowCaster2D.cs" />
-    <Compile Include="Assets\Scripts\Lånt\Runtime\PathShadow.cs" />
+    <Compile Include="Assets\Scripts\Active Objects\Mined_Ore_Cart.cs" />
+    <Compile Include="Assets\Scripts\Backend\Mission_System.cs" />
+    <Compile Include="Assets\Scripts\Backend\Mission.cs" />
+    <Compile Include="Assets\Scripts\Backend\Find_Components.cs" />
+    <Compile Include="Assets\Scripts\UI\Orders_Field.cs" />
+    <Compile Include="Assets\Scripts\Backend\TimerScript.cs" />
+    <Compile Include="Assets\Scripts\DwarfScript.cs" />
+    <Compile Include="Assets\Scripts\Backend\IInteractor_Script.cs" />
+    <Compile Include="Assets\Scripts\Scene_Loader.cs" />
+    <Compile Include="Assets\Scripts\Active Objects\Export_Chute.cs" />
+    <Compile Include="Assets\Scripts\Active Objects\Furnace.cs" />
+    <Compile Include="Assets\Scripts\Active Objects\Sorted_Ore_Tray.cs" />
+    <Compile Include="Assets\Scripts\Backend\Object_Creation.cs" />
+    <Compile Include="Assets\Scripts\Backend\Static Data.cs" />
+    <Compile Include="Assets\Scripts\Backend\Group_of_Missions.cs" />
+    <Compile Include="Assets\Scripts\Items\Sword.cs" />
+    <Compile Include="Assets\Scripts\Items\Blueprint_Sword.cs" />
+    <Compile Include="Assets\Scripts\Active Objects\Sorted_Ingots_Tray.cs" />
+    <Compile Include="Assets\Scripts\UI\UI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -665,9 +665,6 @@
     <Reference Include="Unity.2D.Tilemap.Extras">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Animation.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
       <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
     </Reference>
@@ -677,11 +674,20 @@
     <Reference Include="Unity.2D.PixelPerfect">
       <HintPath>Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Animation.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="PsdPlugin">
       <HintPath>Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
@@ -695,6 +701,9 @@
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Searcher.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.IK.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
     </Reference>
@@ -707,8 +716,8 @@
     <Reference Include="Unity.2D.Path.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.InternalAPIEditorBridge.001">
-      <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
@@ -719,17 +728,29 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Extras.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.InternalAPIEditorBridge.001">
+      <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.IK.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ShaderGraph.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Triangle.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
@@ -739,6 +760,12 @@
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
@@ -755,38 +782,11 @@
     <Reference Include="Unity.2D.Common.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.SpriteShape.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Searcher.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ShaderGraph.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    <Reference Include="Unity.2D.SpriteShape.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

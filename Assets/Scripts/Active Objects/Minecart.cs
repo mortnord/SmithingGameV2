@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Minecart : MonoBehaviour
 {
-    TimerScript Timer_Object;
+
     Object_Creation Generation_Object;
     Unsorted_Ore_container Unsorted_Tray_Object;
     bool not_moved = true;
@@ -23,16 +23,11 @@ public class Minecart : MonoBehaviour
     void Start()
     {
         //første vi gjør er å finne objekten til andre scripts vi trenger å gjøre noe med, dette skjer her. 
-        Timer_Object = Find_Components.find_Timer_Object();
+        
         Generation_Object = Find_Components.find_Object_Creation();
         Unsorted_Tray_Object = Find_Components.find_Unsorted_Tray();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>(); //Dette er spirit-renderen, vi kan bruke denne til å bytte sprites.
         // Mengden ore som skal generates, må endres til mindre hardcoding. 
-        if(StaticData.Transition_Ores.Count > 0)
-        {
-
-        }
-        
         
         time_until_move = 5;
         

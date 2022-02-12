@@ -31,7 +31,7 @@ public class GridController : MonoBehaviour
         Vector3Int mousePos = GetMousePosition();
         if (!mousePos.Equals(prev_mouse_pos))
         {
-
+            
             backgroundmap.SetTile(prev_mouse_pos, null); // Remove old hoverTile
 
             backgroundmap.SetTile(mousePos, mouse_tile);
@@ -46,17 +46,25 @@ public class GridController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0)) 
         {
-            rock_map.SetTile(mousePos, null);
-            Nearest_object = Find_nearest_interactable_object_within_range(0.5f);
-            if(Nearest_object != null)
+            Vector3Int dwarfPos = grid.WorldToCell(dwarf.transform.position);
+            print(dwarfPos);
+            print(mousePos);
+            if(Vector3.Distance(dwarfPos, mousePos) <= 1)
             {
-                dwarfScript.Item_in_inventory = Nearest_object;
-                dwarf.SendMessage("Inventory_Full_Message", true);
-                Nearest_object = null;
+                rock_map.SetTile(mousePos, null);
+                Nearest_object = Find_nearest_interactable_object_within_range(0.5f);
+                if (Nearest_object != null)
+                {
+                    dwarfScript.Item_in_inventory = Nearest_object;
+                    dwarf.SendMessage("Inventory_Full_Message", true);
+                    Nearest_object = null;
+                }
             }
-                
+               
             
-            
+            // if (Vector3.Distance(dwarf.transform.position, List_of_ores[i].transform.position) > 5)
+
+
         }
     }
     

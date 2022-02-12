@@ -14,4 +14,10 @@ interface IInteract_Work
 {
     public void Work(GameObject main_character);
 }
+interface IIData_transfer
+{
+    public void Storage();
+    public void Loading();
+}
+
     

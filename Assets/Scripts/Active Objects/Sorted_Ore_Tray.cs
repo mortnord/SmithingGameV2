@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sorted_Ore_Tray : MonoBehaviour, IInteractor_Connector
+public class Sorted_Ore_Tray : MonoBehaviour, IInteractor_Connector, IIData_transfer
 {
     public int quality = 0;
+
     public List<GameObject> Ores_in_tray = new List<GameObject>();
 
     public Sprite[] spriteArray_iron;
@@ -15,11 +16,13 @@ public class Sorted_Ore_Tray : MonoBehaviour, IInteractor_Connector
 
     public Sprite[] using_sprite;
     public SpriteRenderer spriteRenderer;
+    public Object_Creation Generation_Object;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        Generation_Object = Find_Components.find_Object_Creation(); //Generation objektet
         Change_Sprite_Set(0);
     }
 
@@ -91,7 +94,7 @@ public class Sorted_Ore_Tray : MonoBehaviour, IInteractor_Connector
         handleSprite();
     }
 
-  
+
 
     private bool handleQuality(Enumtypes.Ore_Quality ore_quality)
     {
@@ -114,5 +117,31 @@ public class Sorted_Ore_Tray : MonoBehaviour, IInteractor_Connector
     public void Return_Answer(GameObject main_character, bool result)
     {
         main_character.SendMessage("Inventory_Full_Message", result);
+    }
+
+    public void Storage()
+    {
+        List<Enumtypes.Ore_Quality> Ore_Quality = new List<Enumtypes.Ore_Quality>();
+        for (int i = 0; i < Ores_in_tray.Count; i++) //Generer ore og legg det i stockpilen for usortert ore
+        {
+            Ore_Quality.Add(Ores_in_tray[i].GetComponent<Ore>().ore_quality);
+        }
+        StaticData.Ore_Quality.Add(Ore_Quality);
+    }
+
+    public void Loading()
+    {
+        if (StaticData.Ore_Quality.Count > 0)
+        {
+            List<Enumtypes.Ore_Quality> Ore_Quality = StaticData.Ore_Quality[0];
+            StaticData.Ore_Quality.RemoveAt(0);
+            for (int i = 0; i < Ore_Quality.Count; i++) //Generer ore og legg det i stockpilen for usortert ore
+            {
+                
+                handleQuality(Ore_Quality[i]);
+                Ores_in_tray.Add(Generation_Object.create_ore((int)Ore_Quality[i], gameObject));
+            }
+            handleSprite();
+        }
     }
 }

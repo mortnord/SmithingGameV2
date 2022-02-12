@@ -44,7 +44,7 @@ public class Mission_System : MonoBehaviour
     }
     void create_mission() //Her lager mission systemet selve missionet
     {
-        time_remaining = Timer_Object.time_Remaining; //Vi finner tid igjen, men ska vel rewrites?
+        time_remaining = StaticData.time_Remaining; //Vi finner tid igjen, men ska vel rewrites?
         GameObject mission = Generation_Object.create_card_with_mission(time_remaining, new Vector3(0, 0, 0)); //Missionet blir laget i create_objekts koden
         Missions_in_UI.Add(mission); //Legges inn i objekter som skal tegnes i UIet
         mission.GetComponent<Mission>().quality_of_object_for_mission = mission.GetComponentInChildren<Sword>().quality; //Kvaliteten på objektet som skal leveres
