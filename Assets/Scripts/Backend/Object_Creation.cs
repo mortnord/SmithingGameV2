@@ -77,6 +77,21 @@ public class Object_Creation : MonoBehaviour
         
         return created_card_with_mission;
     }
+    public GameObject recreate_mission(float time_remaining, int quality_object, float x_position, float y_position)
+    {
+        GameObject recreated_mission = Instantiate(Orders_card, new Vector3(x_position, y_position, 0), Quaternion.identity);
+        Mission mission = recreated_mission.AddComponent<Mission>();
+        recreated_mission.transform.parent = Mission_System.transform;
+        mission.setTime(time_remaining);
+        GameObject temp_sword = create_sword(quality_object, new Vector3(0, 0, -1));
+        temp_sword.transform.parent = recreated_mission.transform;
+        temp_sword.transform.position = recreated_mission.transform.position;
+        temp_sword.GetComponent<SpriteRenderer>().sortingOrder = 2; //Posisjoner i drawing
+        temp_sword.GetComponent<SpriteRenderer>().sortingLayerName = "UI";
+
+        return recreated_mission;
+
+    }
 
     internal GameObject create_ingot(int quality, GameObject gameObject)
     {

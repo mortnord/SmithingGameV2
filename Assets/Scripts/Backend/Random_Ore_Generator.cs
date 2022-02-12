@@ -44,6 +44,10 @@ public class Random_Ore_Generator : MonoBehaviour
         map_to_generate_in = Map_in;
         generateMap(map_to_generate_in);
     }
+    void RemoveFromList(GameObject ore_to_be_removed)
+    {
+        List_of_ores.Remove(ore_to_be_removed);
+    }
 
     private void generateMap(Tilemap Map_in)
     {

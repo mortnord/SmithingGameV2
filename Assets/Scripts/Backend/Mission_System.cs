@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mission_System : MonoBehaviour
+public class Mission_System : MonoBehaviour, IIData_transfer
 {
     TimerScript Timer_Object;
     Object_Creation Generation_Object;
@@ -18,6 +18,7 @@ public class Mission_System : MonoBehaviour
     {
         Timer_Object = Find_Components.find_Timer_Object();
         Generation_Object = Find_Components.find_Object_Creation();
+        Loading();
     }
     // Update is called once per frame
     void Update()
@@ -77,5 +78,39 @@ public class Mission_System : MonoBehaviour
         Missions_in_UI.Remove(Missions_in_UI[i]);
         completed_mission = true; //Øker difficutly
         amount_of_completed_missions++;
+    }
+
+    public void Storage()
+    {
+        if (Missions_in_UI.Count > 0) // Kun vis vi har aktive missions
+        {
+            for (int i = 0; i < Missions_in_UI.Count; i++)
+            {
+                StaticData.quality_of_object_for_mission_static_data.Add(Missions_in_UI[i].GetComponent<Mission>().quality_of_object_for_mission);
+                StaticData.Time_remaining_static_data.Add(Missions_in_UI[i].GetComponent<Mission>().Time_remaining);
+                StaticData.type_of_object_for_mission_static_data.Add(Missions_in_UI[i].GetComponent<Mission>().type_of_object_for_mission);
+                StaticData.x_position.Add(Missions_in_UI[i].GetComponent<Mission>().transform.position.x);
+                StaticData.y_position.Add(Missions_in_UI[i].GetComponent<Mission>().transform.position.y);
+            }
+        }
+    }
+
+    public void Loading()
+    {
+        if(StaticData.quality_of_object_for_mission_static_data.Count > 0)
+        {
+            for (int i = 0; i < StaticData.quality_of_object_for_mission_static_data.Count; i++)
+            {
+                GameObject mission = Generation_Object.recreate_mission(StaticData.Time_remaining_static_data[i], StaticData.quality_of_object_for_mission_static_data[i],StaticData.x_position[i], StaticData.y_position[i]); //Missionet blir laget i create_objekts koden
+                Missions_in_UI.Add(mission); //Legges inn i objekter som skal tegnes i UIet
+                mission.GetComponent<Mission>().quality_of_object_for_mission = StaticData.quality_of_object_for_mission_static_data[i]; //Kvaliteten på objektet som skal leveres
+                mission.GetComponent<Mission>().type_of_object_for_mission = StaticData.type_of_object_for_mission_static_data[i]; //typen av objekt som ska leveres
+            }  
+        }
+        StaticData.quality_of_object_for_mission_static_data.Clear();
+        StaticData.Time_remaining_static_data.Clear();
+        StaticData.type_of_object_for_mission_static_data.Clear();
+        StaticData.x_position.Clear();
+        StaticData.y_position.Clear();
     }
 }

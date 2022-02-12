@@ -90,6 +90,8 @@
     <Compile Include="Assets\Scripts\Items\Blueprint_Sword.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Sorted_Ingots_Tray.cs" />
     <Compile Include="Assets\Scripts\UI\UI.cs" />
+    <Compile Include="Assets\Scripts\Backend\Go_Down.cs" />
+    <Compile Include="Assets\Scripts\Backend\Go_Up.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

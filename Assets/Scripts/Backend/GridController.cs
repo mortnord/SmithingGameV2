@@ -57,6 +57,8 @@ public class GridController : MonoBehaviour
                 {
                     dwarfScript.Item_in_inventory = Nearest_object;
                     dwarf.SendMessage("Inventory_Full_Message", true);
+                    
+                    grid.SendMessage("RemoveFromList", Nearest_object);
                     Nearest_object = null;
                 }
             }
