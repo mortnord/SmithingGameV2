@@ -17,7 +17,7 @@ public class GridController : MonoBehaviour
     private Vector3Int prev_mouse_pos = new Vector3Int();
 
     // Start is called before the first frame update
-    void Start()
+    void Start() //Vi finner nødvendige objekter, og gir beskjed til rock mappet om å generate ore. 
     {
         grid = gameObject.GetComponent<Grid>();
         rock_map.CompressBounds();
@@ -29,7 +29,7 @@ public class GridController : MonoBehaviour
     void Update()
     {
         Vector3Int mousePos = GetMousePosition();
-        if (!mousePos.Equals(prev_mouse_pos))
+        if (!mousePos.Equals(prev_mouse_pos)) //Her finner vi posisjonen til musepeker tilen, som viser hvilken vi peker på. 
         {
             
             backgroundmap.SetTile(prev_mouse_pos, null); // Remove old hoverTile
@@ -46,31 +46,24 @@ public class GridController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0)) 
         {
-            Vector3Int dwarfPos = grid.WorldToCell(dwarf.transform.position);
-            print(dwarfPos);
-            print(mousePos);
-            if(Vector3.Distance(dwarfPos, mousePos) <= 1)
+            Vector3Int dwarfPos = grid.WorldToCell(dwarf.transform.position); //Vi gjør dvergen sin posisjon om til cell-grid posisjon, 
+            if(Vector3.Distance(dwarfPos, mousePos) <= 1) //Så sammenligner vi om vi er nærme nok til å grave, vis vi er så fortsetter vi 
             {
-                rock_map.SetTile(mousePos, null);
-                Nearest_object = Find_nearest_interactable_object_within_range(0.5f);
+                rock_map.SetTile(mousePos, null); //Tilen på mousa sin posisjon blir satt til null. 
+                Nearest_object = Find_nearest_interactable_object_within_range(0.5f); //Vi prøver å plukke opp metal //Endre til annen knapp i framtiden.
                 if (Nearest_object != null)
                 {
                     dwarfScript.Item_in_inventory = Nearest_object;
                     dwarf.SendMessage("Inventory_Full_Message", true);
                     
-                    grid.SendMessage("RemoveFromList", Nearest_object);
+                    grid.SendMessage("RemoveFromList", Nearest_object); //Her fjerner vi oren fra lista over synlig / ikke synlig
                     Nearest_object = null;
                 }
             }
-               
-            
-            // if (Vector3.Distance(dwarf.transform.position, List_of_ores[i].transform.position) > 5)
-
-
         }
     }
     
-    Vector3Int GetMousePosition()
+    Vector3Int GetMousePosition() //Gjør musa sin posisjon om til Gridcell posisjon. 
     {
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 

@@ -111,7 +111,7 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
         }
     }
 
-    public void Storage()
+    public void Storage() //Interface metode for å lagre qualitien av objekter i storage i staticData. 
     {
         List<Enumtypes.Ore_Quality> Ore_Quality = new List<Enumtypes.Ore_Quality>();
         for (int i = 0; i < Ingots_in_tray.Count; i++) //Generer ore og legg det i stockpilen for usortert ore
@@ -121,7 +121,7 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
         StaticData.Ingot_Quality.Add(Ore_Quality);
     }
 
-    public void Loading()
+    public void Loading() //Her henter vi ut igjen dataen fra staticdata filene, vi leser inn en og en list, og legger den til. Så fjernes det fra staticData
     {
         if (StaticData.Ingot_Quality.Count > 0)
         {

@@ -40,14 +40,14 @@ public class Export_Chute : MonoBehaviour, IInteractor_Connector
         //Do nothing
     }
 
-    public void Drop_Off(GameObject main_character)
+    public void Drop_Off(GameObject main_character) //Interface metode for å legge fra seg ting
     {
         main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.position = gameObject.transform.position;
         Stuff_to_transport.Add(main_character.GetComponent<DwarfScript>().Item_in_inventory);
         Return_Answer(main_character, false);
     }
 
-    public void Return_Answer(GameObject main_character, bool result)
+    public void Return_Answer(GameObject main_character, bool result) //Interface metode for å returnere ett svar. 
     {
         main_character.SendMessage("Inventory_Full_Message", result);
     }

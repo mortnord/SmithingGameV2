@@ -6,10 +6,10 @@ public class Anvil : MonoBehaviour, IInteractor_Connector, IInteract_Work
 {
 
     Object_Creation Generation_Object;
-    public GameObject Converted_Object;
-    public GameObject blueprint_copy;
-    public GameObject object_to_be_destroyed;
-    public bool convert = false;
+    public GameObject Converted_Object; //Resultat
+    public GameObject blueprint_copy; 
+    public GameObject object_to_be_destroyed; //Inn-objekt. 
+    public bool convert = false; //Om ingoten skal converteres. 
     // Start is called before the first frame update
     void Start()
     {
@@ -33,49 +33,50 @@ public class Anvil : MonoBehaviour, IInteractor_Connector, IInteract_Work
             convert = false; //ingen blueprint copy, så da mislykkes converteringen
         }
     }
-    private void Reset()
+    private void Reset() // Lett måte å resette anvilen på. Destroyer forrige objekt, og setter convert tilbake til false
     {
         Destroy(object_to_be_destroyed);
         convert = false;
     }
 
-    public void Pickup(GameObject main_character)
+    public void Pickup(GameObject main_character) //Interface metode for å hente ut converted objekt først, så prøver den å rydde opp i blueprint copien
     {
         if(Converted_Object != null)
         {
             main_character.GetComponent<DwarfScript>().Item_in_inventory = Converted_Object;
             Converted_Object = null;
+            Return_Answer(main_character, true); //Returnerer svar at vi fikk plukket oppe noe
         }
         else
         {
             main_character.GetComponent<DwarfScript>().Item_in_inventory = blueprint_copy;
             blueprint_copy = null;
+            Return_Answer(main_character, true); //Returnerer svar at vi fikk plukket oppe noe
         }
-        Return_Answer(main_character, true);
     }
 
-    public void Drop_Off(GameObject main_character)
+    public void Drop_Off(GameObject main_character) //Interface metode for å legge inn objekt. 
     {
         if (main_character.GetComponent<DwarfScript>().Item_in_inventory.GetComponent<Ingot>() != null) //Her legger vi inn ingots i anvilen
         {
             object_to_be_destroyed = main_character.GetComponent<DwarfScript>().Item_in_inventory;
             main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.position = gameObject.transform.position;
-            Return_Answer(main_character, false);
+            Return_Answer(main_character, false); //Returnerer svar at vi fikk lagt fra oss noe. 
         }
         else if (main_character.GetComponent<DwarfScript>().Item_in_inventory.GetComponent<Blueprint_Sword>() != null) //Her kommer blueprints inn i anvilen
         {
             blueprint_copy = main_character.GetComponent<DwarfScript>().Item_in_inventory;
             main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.position = gameObject.transform.position;
-            Return_Answer(main_character, false);
+            Return_Answer(main_character, false); //Returnerer svar at vi fikk lagt fra oss noe.
         }
     }
 
-    public void Return_Answer(GameObject main_character, bool result)
+    public void Return_Answer(GameObject main_character, bool result) //Interface metode for å returnere svar. 
     {
         main_character.SendMessage("Inventory_Full_Message", result);
     }
 
-    public void Work(GameObject main_character)
+    public void Work(GameObject main_character) //Interface metode for å gjøre arbeid, i dette tilfelle konvertere ett objekt. 
     {
         convert = true;
     }

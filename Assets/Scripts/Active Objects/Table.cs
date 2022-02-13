@@ -29,7 +29,7 @@ public class Table : MonoBehaviour, IInteractor_Connector
         }
     }
 
-    public void Pickup(GameObject main_character)
+    public void Pickup(GameObject main_character) //Interface metode for å hente opp blueprint copies. 
     {
 
         main_character.GetComponent<DwarfScript>().Item_in_inventory = fake_copy;
@@ -43,7 +43,7 @@ public class Table : MonoBehaviour, IInteractor_Connector
         //Do nothing
     }
 
-    public void Return_Answer(GameObject main_character, bool result)
+    public void Return_Answer(GameObject main_character, bool result) //Returnerer svar til dwarf character
     {
         main_character.SendMessage("Inventory_Full_Message", result);
     }

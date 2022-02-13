@@ -17,19 +17,19 @@ public class Object_Creation : MonoBehaviour
 
     System.Random rand = new System.Random();
    
-    public GameObject create_ore(int quality)
+    public GameObject create_ore(int quality) //Oren som blir generert i usorta ore plassen. 
     {
         GameObject spawned_ore = Instantiate(Ore_prefab, new Vector3(UnityEngine.Random.Range(-9.2f, -8.2f), UnityEngine.Random.Range(-0.3f, -2f), 0), Quaternion.identity);
         spawned_ore.GetComponent<Ore>().quality = quality; //Vi bruker en instantitate av en prefab som er satt i inspektoren.
         return spawned_ore;
     }
-    public GameObject create_ore(int quality, GameObject parent)
+    public GameObject create_ore(int quality, GameObject parent) //Oren som blir generert basert på parent etter å ha blitt lagra. 
     {
         GameObject spawned_ore = Instantiate(Ore_prefab, new Vector3(parent.transform.position.x, parent.transform.position.y, 0), Quaternion.identity);
         spawned_ore.GetComponent<Ore>().quality = quality; //Vi bruker en instantitate av en prefab som er satt i inspektoren.
         return spawned_ore;
     }
-    public GameObject create_ore(float x, float y, int quality)
+    public GameObject create_ore(float x, float y, int quality) //Oren som blir generert basert på X og Y posisjon, i dette tilfelle i random generation
     {
         x = x + 0.5f;
         y = y + 0.5f;
@@ -39,14 +39,20 @@ public class Object_Creation : MonoBehaviour
         return spawned_ore;
         
     }
-    public GameObject create_ingot(int quality)
+    public GameObject create_ingot(int quality) //Ingots laga etter smelting
     {
         GameObject spawned_ingot = Instantiate(ingot_prefab, new Vector3(-4.8f, 2f), Quaternion.identity);
         spawned_ingot.GetComponent<Ingot>().quality = quality;
         return spawned_ingot;
     }
+    public GameObject create_ingot(int quality, GameObject gameObject) //Ingots laget etter lasting av filer, lages i stockpiles. 
+    {
+        GameObject spawned_ingot = Instantiate(ingot_prefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
+        spawned_ingot.GetComponent<Ingot>().quality = quality;
+        return spawned_ingot;
+    }
 
-    public GameObject create_sword(int quality, Vector3 position)
+    public GameObject create_sword(int quality, Vector3 position) //Sverd laget basert på tidligere posisjon av objektet, i dette tilfellet på ambolten
     {
         GameObject spawned_sword = Instantiate(sword_prefab, position, Quaternion.identity);
         spawned_sword.GetComponent<Sword>().quality = quality;
@@ -77,7 +83,8 @@ public class Object_Creation : MonoBehaviour
         
         return created_card_with_mission;
     }
-    public GameObject recreate_mission(float time_remaining, int quality_object, float x_position, float y_position)
+    public GameObject recreate_mission(float time_remaining, int quality_object, float x_position, float y_position) //Her bestiller vi ett mission med satte 
+                                                                                                                    //parametre, slik at vi får tilbake tidligere missions
     {
         GameObject recreated_mission = Instantiate(Orders_card, new Vector3(x_position, y_position, 0), Quaternion.identity);
         Mission mission = recreated_mission.AddComponent<Mission>();
@@ -93,12 +100,6 @@ public class Object_Creation : MonoBehaviour
 
     }
 
-    internal GameObject create_ingot(int quality, GameObject gameObject)
-    {
-        GameObject spawned_ingot = Instantiate(ingot_prefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
-        spawned_ingot.GetComponent<Ingot>().quality = quality;
-        return spawned_ingot;
-    }
 
     public int get_random_quality()
     {

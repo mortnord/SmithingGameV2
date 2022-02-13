@@ -29,7 +29,7 @@ public class Vein : MonoBehaviour,IInteractor_Connector
         
     }
 
-    public void Pickup(GameObject main_character)
+    public void Pickup(GameObject main_character) //Her har vi en vein, som generer ore i inventory
     {
         main_character.GetComponent<DwarfScript>().Item_in_inventory = Generation_Object.create_ore((int)ore_quality);
         Return_Answer(main_character, true);
@@ -40,7 +40,7 @@ public class Vein : MonoBehaviour,IInteractor_Connector
         //Do nothing
     }
 
-    public void Return_Answer(GameObject main_character, bool result)
+    public void Return_Answer(GameObject main_character, bool result) //Returnerer svar på at inventory er fult eller tomt
     {
         main_character.SendMessage("Inventory_Full_Message", result);
     }

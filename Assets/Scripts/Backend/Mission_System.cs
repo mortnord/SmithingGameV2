@@ -80,7 +80,8 @@ public class Mission_System : MonoBehaviour, IIData_transfer
         amount_of_completed_missions++;
     }
 
-    public void Storage()
+    public void Storage() //Her tar vi den nødvendige basis dataen ut av missions, og lagrer det i staticData. Dette er kvalitet
+                          //tid, og type objekt, samt X og Y posisjon. 
     {
         if (Missions_in_UI.Count > 0) // Kun vis vi har aktive missions
         {
@@ -95,7 +96,7 @@ public class Mission_System : MonoBehaviour, IIData_transfer
         }
     }
 
-    public void Loading()
+    public void Loading() //Her lager vi nye missions basert på tidligere lagret data, slik at vi får tilbake de missionsa vi hadde før vi byttet scene. 
     {
         if(StaticData.quality_of_object_for_mission_static_data.Count > 0)
         {
@@ -107,6 +108,7 @@ public class Mission_System : MonoBehaviour, IIData_transfer
                 mission.GetComponent<Mission>().type_of_object_for_mission = StaticData.type_of_object_for_mission_static_data[i]; //typen av objekt som ska leveres
             }  
         }
+        //Her rengjør vi staticData filen for evnt feil. 
         StaticData.quality_of_object_for_mission_static_data.Clear();
         StaticData.Time_remaining_static_data.Clear();
         StaticData.type_of_object_for_mission_static_data.Clear();

@@ -42,7 +42,7 @@ using UnityEngine;
                 //Do nothing
             }
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q)) //Her prøver vi å plukke opp eller sette ned objekter, avhengig om vi har eller ikke har objekter allerede. 
         {
             Nearest_Object = Find_nearest_interactable_object_within_range(5);
             if (Inventory_Full == false && Nearest_Object != null)
@@ -69,11 +69,7 @@ using UnityEngine;
                 
             }
         }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            GameObject MainObject = GameObject.FindGameObjectWithTag("GameController");
-            MainObject.BroadcastMessage("Storage");
-        }
+        
         
         float moveByX = horizontal * 4; //Movement speed 
         float moveByY = vertical * 4; // Movement speed 

@@ -7,7 +7,9 @@ public class Go_Down : MonoBehaviour, IInteract_Work
 {
 
     Mission_System mission_system_object;
-    public void Work(GameObject main_character)
+    public void Work(GameObject main_character) //Når E trykkes, så finner vi hovedGameobjektet, så calles storage på alt nedover
+                                                //Dette gjør at all info lagres i staticData. Dette gjøres også
+                                                // i mission objektet. og så er vi klar til å bytte scene
     {
         GameObject MainObject = GameObject.FindGameObjectWithTag("GameController");
         MainObject.BroadcastMessage("Storage", SendMessageOptions.DontRequireReceiver);

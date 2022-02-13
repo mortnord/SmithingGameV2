@@ -25,7 +25,7 @@ public class Random_Ore_Generator : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() //Her gjør vi ore synlig og usynlig basert på distansen mellom dwarf og ore. 
     {
         for (int i = 0; i < List_of_ores.Count; i++)
         {
@@ -39,17 +39,18 @@ public class Random_Ore_Generator : MonoBehaviour
             }
         }
     }
-    void mapToGenerateIn(Tilemap Map_in)
+    void mapToGenerateIn(Tilemap Map_in) //Metode som kalles for å generate ore. 
     {
         map_to_generate_in = Map_in;
         generateMap(map_to_generate_in);
     }
-    void RemoveFromList(GameObject ore_to_be_removed)
+    void RemoveFromList(GameObject ore_to_be_removed) //Når vi plukker opp ett objekt, så fjernes det fra lista over ore som ska updates for synlig / ikke synlig
     {
-        List_of_ores.Remove(ore_to_be_removed);
+        List_of_ores.Remove(ore_to_be_removed); 
     }
 
-    private void generateMap(Tilemap Map_in)
+    private void generateMap(Tilemap Map_in) //Vi har en dobbel for-loop som iterater over hele griddet, og vis terningen viser 0 1 eller 2 blir det generert malm
+                                             //Vis ikke så blir det generert ingenting enn så leng
     {
         for (int i = Map_in.cellBounds.xMin; i < Map_in.cellBounds.xMax; i++) 
         {

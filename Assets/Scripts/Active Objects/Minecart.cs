@@ -27,9 +27,9 @@ public class Minecart : MonoBehaviour
         Generation_Object = Find_Components.find_Object_Creation();
         Unsorted_Tray_Object = Find_Components.find_Unsorted_Tray();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>(); //Dette er spirit-renderen, vi kan bruke denne til å bytte sprites.
-        // Mengden ore som skal generates, må endres til mindre hardcoding. 
         
-        time_until_move = 5;
+        
+        time_until_move = 5; //Tid til vi beveger minecarten
         
     }
 

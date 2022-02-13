@@ -60,19 +60,19 @@ public class Furnace : MonoBehaviour, IInteractor_Connector, IInteract_Work
         //Do Nothing
     }
 
-    public void Drop_Off(GameObject main_character)
+    public void Drop_Off(GameObject main_character) //Interface metode for å legge fra seg ting
     {
         main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.position = gameObject.transform.position;
         Ores_in_furnace.Add(main_character.GetComponent<DwarfScript>().Item_in_inventory);
         Return_Answer(main_character, false);
     }
 
-    public void Return_Answer(GameObject main_character, bool result)
+    public void Return_Answer(GameObject main_character, bool result) //Interface metode for å returnere svar
     {
         main_character.SendMessage("Inventory_Full_Message", result);
     }
 
-    public void Work(GameObject main_character)
+    public void Work(GameObject main_character) //Vis furnacen ikke er allerede aktiv, sett den aktiv // planlagt å ha tidsbasert smelting. 
     {
         if(smelting_in_progress == false)
         {

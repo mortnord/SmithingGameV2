@@ -14,7 +14,7 @@ public class Unsorted_Ore_container : MonoBehaviour, IInteractor_Connector
     }
 
     
-    public void Pickup(GameObject main_character)
+    public void Pickup(GameObject main_character) //Interface metode for legge fra seg ting. 
     {
         main_character.GetComponent<DwarfScript>().Item_in_inventory = Ores_in_tray[0];
         Ores_in_tray.RemoveAt(0);
@@ -22,7 +22,7 @@ public class Unsorted_Ore_container : MonoBehaviour, IInteractor_Connector
   
     }
 
-    public void Return_Answer(GameObject main_character, bool result)
+    public void Return_Answer(GameObject main_character, bool result) //Svarmetode for å svare maincharacter.
     {
         main_character.SendMessage("Inventory_Full_Message", result);
     }
