@@ -76,10 +76,13 @@ public class Sorted_Ore_Tray : MonoBehaviour, IInteractor_Connector, IIData_tran
 
     public void Pickup(GameObject main_character)
     {
-        main_character.GetComponent<DwarfScript>().Item_in_inventory = Ores_in_tray[0];
-        Ores_in_tray.RemoveAt(0);
-        Return_Answer(main_character, true);
-        handleSprite();
+        if (Ores_in_tray.Count > 0)
+        {
+            main_character.GetComponent<DwarfScript>().Item_in_inventory = Ores_in_tray[0];
+            Ores_in_tray.RemoveAt(0);
+            Return_Answer(main_character, true);
+            handleSprite();
+        }
     }
 
     public void Drop_Off(GameObject main_character)

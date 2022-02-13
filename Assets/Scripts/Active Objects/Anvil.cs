@@ -41,16 +41,22 @@ public class Anvil : MonoBehaviour, IInteractor_Connector, IInteract_Work
 
     public void Pickup(GameObject main_character) //Interface metode for å hente ut converted objekt først, så prøver den å rydde opp i blueprint copien
     {
-        if(Converted_Object != null)
+        if (Converted_Object != null)
         {
             main_character.GetComponent<DwarfScript>().Item_in_inventory = Converted_Object;
             Converted_Object = null;
             Return_Answer(main_character, true); //Returnerer svar at vi fikk plukket oppe noe
         }
-        else
+        else if (blueprint_copy != null)
         {
             main_character.GetComponent<DwarfScript>().Item_in_inventory = blueprint_copy;
             blueprint_copy = null;
+            Return_Answer(main_character, true); //Returnerer svar at vi fikk plukket oppe noe
+        }
+        else if (object_to_be_destroyed != null)
+        {
+            main_character.GetComponent<DwarfScript>().Item_in_inventory = object_to_be_destroyed;
+            object_to_be_destroyed = null;
             Return_Answer(main_character, true); //Returnerer svar at vi fikk plukket oppe noe
         }
     }

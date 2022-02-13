@@ -27,9 +27,13 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
 
     public void Pickup(GameObject main_character)
     {
-        main_character.GetComponent<DwarfScript>().Item_in_inventory = Ingots_in_tray[0];
-        Ingots_in_tray.RemoveAt(0);
-        Return_Answer(main_character, true);
+        if(Ingots_in_tray.Count > 0)
+        {
+            main_character.GetComponent<DwarfScript>().Item_in_inventory = Ingots_in_tray[0];
+            Ingots_in_tray.RemoveAt(0);
+            Return_Answer(main_character, true);
+        }
+        
     }
 
     public void Return_Answer(GameObject main_character, bool result)

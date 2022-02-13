@@ -50,15 +50,18 @@ public class GridController : MonoBehaviour
             if(Vector3.Distance(dwarfPos, mousePos) <= 1) //Så sammenligner vi om vi er nærme nok til å grave, vis vi er så fortsetter vi 
             {
                 rock_map.SetTile(mousePos, null); //Tilen på mousa sin posisjon blir satt til null. 
-                Nearest_object = Find_nearest_interactable_object_within_range(0.5f); //Vi prøver å plukke opp metal //Endre til annen knapp i framtiden.
-                if (Nearest_object != null)
-                {
-                    dwarfScript.Item_in_inventory = Nearest_object;
-                    dwarf.SendMessage("Inventory_Full_Message", true);
-                    
-                    grid.SendMessage("RemoveFromList", Nearest_object); //Her fjerner vi oren fra lista over synlig / ikke synlig
-                    Nearest_object = null;
-                }
+            }
+        }
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            Nearest_object = Find_nearest_interactable_object_within_range(0.5f); //Vi prøver å plukke opp metal //Endre til annen knapp i framtiden.
+            if (Nearest_object != null)
+            {
+                dwarfScript.Item_in_inventory = Nearest_object;
+                dwarf.SendMessage("Inventory_Full_Message", true);
+
+                grid.SendMessage("RemoveFromList", Nearest_object); //Her fjerner vi oren fra lista over synlig / ikke synlig
+                Nearest_object = null;
             }
         }
     }

@@ -35,7 +35,7 @@ using UnityEngine;
             try
             {
                 Nearest_Object = Find_nearest_interactable_object_within_range(5); // 
-                Nearest_Object.transform.parent.SendMessage("Work", gameObject); 
+                Nearest_Object.transform.parent.SendMessage("Work", gameObject, SendMessageOptions.DontRequireReceiver); 
             }
             catch
             {
@@ -49,7 +49,7 @@ using UnityEngine;
             {
                 try
                 {
-                    Nearest_Object.transform.parent.SendMessage("Pickup", gameObject);
+                    Nearest_Object.transform.parent.SendMessage("Pickup", gameObject, SendMessageOptions.DontRequireReceiver);
                 }
                 catch
                 {
@@ -60,7 +60,7 @@ using UnityEngine;
             {
                 try
                 {
-                    Nearest_Object.transform.parent.SendMessage("Drop_Off", gameObject);
+                    Nearest_Object.transform.parent.SendMessage("Drop_Off", gameObject, SendMessageOptions.DontRequireReceiver);
                 }
                 catch
                 {
