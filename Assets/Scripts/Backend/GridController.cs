@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -31,7 +29,7 @@ public class GridController : MonoBehaviour
         Vector3Int mousePos = GetMousePosition();
         if (!mousePos.Equals(prev_mouse_pos)) //Her finner vi posisjonen til musepeker tilen, som viser hvilken vi peker på. 
         {
-            
+
             backgroundmap.SetTile(prev_mouse_pos, null); // Remove old hoverTile
 
             backgroundmap.SetTile(mousePos, mouse_tile);
@@ -39,20 +37,20 @@ public class GridController : MonoBehaviour
             prev_mouse_pos = mousePos;
 
         }
-       
+
 
 
         // Right mouse click -> remove path tile
 
-        if (Input.GetMouseButtonDown(0)) 
+        if (Input.GetMouseButtonDown(0))
         {
             Vector3Int dwarfPos = grid.WorldToCell(dwarf.transform.position); //Vi gjør dvergen sin posisjon om til cell-grid posisjon, 
-            if(Vector3.Distance(dwarfPos, mousePos) <= 1) //Så sammenligner vi om vi er nærme nok til å grave, vis vi er så fortsetter vi 
+            if (Vector3.Distance(dwarfPos, mousePos) <= 1) //Så sammenligner vi om vi er nærme nok til å grave, vis vi er så fortsetter vi 
             {
                 rock_map.SetTile(mousePos, null); //Tilen på mousa sin posisjon blir satt til null. 
             }
         }
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             Nearest_object = Find_nearest_interactable_object_within_range(0.5f); //Vi prøver å plukke opp metal //Endre til annen knapp i framtiden.
             if (Nearest_object != null)
@@ -65,7 +63,7 @@ public class GridController : MonoBehaviour
             }
         }
     }
-    
+
     Vector3Int GetMousePosition() //Gjør musa sin posisjon om til Gridcell posisjon. 
     {
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -93,7 +91,7 @@ public class GridController : MonoBehaviour
                 distance = curDistance;
             }
         }
-        
+
         return closest;
     }
 }

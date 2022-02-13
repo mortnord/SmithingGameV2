@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -79,6 +77,8 @@ public class Sorted_Ore_Tray : MonoBehaviour, IInteractor_Connector, IIData_tran
         if (Ores_in_tray.Count > 0)
         {
             main_character.GetComponent<DwarfScript>().Item_in_inventory = Ores_in_tray[0];
+
+            Ores_in_tray[0].SetActive(true);
             Ores_in_tray.RemoveAt(0);
             Return_Answer(main_character, true);
             handleSprite();
@@ -90,8 +90,10 @@ public class Sorted_Ore_Tray : MonoBehaviour, IInteractor_Connector, IIData_tran
         result = handleQuality(main_character.GetComponent<DwarfScript>().Item_in_inventory.GetComponent<Ore>().ore_quality);
         if (result == true)
         {
+
             main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.position = gameObject.transform.position;
             Ores_in_tray.Add(main_character.GetComponent<DwarfScript>().Item_in_inventory);
+            Ores_in_tray[0].SetActive(false);
             Return_Answer(main_character, false);
         }
         handleSprite();
@@ -140,7 +142,7 @@ public class Sorted_Ore_Tray : MonoBehaviour, IInteractor_Connector, IIData_tran
             StaticData.Ore_Quality.RemoveAt(0);
             for (int i = 0; i < Ore_Quality.Count; i++) //Generer ore og legg det i stockpilen for usortert ore
             {
-                
+
                 handleQuality(Ore_Quality[i]);
                 Ores_in_tray.Add(Generation_Object.create_ore((int)Ore_Quality[i], gameObject));
             }

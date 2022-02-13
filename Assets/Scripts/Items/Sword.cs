@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static Enumtypes;
 
@@ -7,7 +5,7 @@ public class Sword : MonoBehaviour
 {
     public int value;
     public Sprite[] spriteArray;
-    public SpriteRenderer spriteRenderer;    
+    public SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
 
     public int quality; //0 = low, 1 = normal, 2 = high
@@ -24,5 +22,5 @@ public class Sword : MonoBehaviour
         ore_quality = (Ore_Quality)quality;
     }
 
-   
+
 }

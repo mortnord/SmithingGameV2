@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 using static Enumtypes;
 
-public class Vein : MonoBehaviour,IInteractor_Connector
+public class Vein : MonoBehaviour, IInteractor_Connector
 {
     // Start is called before the first frame update
 
@@ -20,13 +18,13 @@ public class Vein : MonoBehaviour,IInteractor_Connector
         Generation_Object = Find_Components.find_Object_Creation();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>(); //Dette er spirit-renderen, vi kan bruke denne til å bytte sprites.
         spriteRenderer.sprite = spriteArray[(int)ore_quality];
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Pickup(GameObject main_character) //Her har vi en vein, som generer ore i inventory

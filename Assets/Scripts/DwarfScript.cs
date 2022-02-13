@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-[Serializable]public class DwarfScript : MonoBehaviour
+[Serializable]
+public class DwarfScript : MonoBehaviour
 {
     Rigidbody2D rb;
 
@@ -35,7 +33,7 @@ using UnityEngine;
             try
             {
                 Nearest_Object = Find_nearest_interactable_object_within_range(5); // 
-                Nearest_Object.transform.parent.SendMessage("Work", gameObject, SendMessageOptions.DontRequireReceiver); 
+                Nearest_Object.transform.parent.SendMessage("Work", gameObject, SendMessageOptions.DontRequireReceiver);
             }
             catch
             {
@@ -66,11 +64,11 @@ using UnityEngine;
                 {
                     //Do nothing
                 }
-                
+
             }
         }
-        
-        
+
+
         float moveByX = horizontal * 4; //Movement speed 
         float moveByY = vertical * 4; // Movement speed 
         rb.velocity = new Vector2(moveByX, moveByY); //Legge til krefer på fysikken, slik at figuren beveger seg
@@ -116,5 +114,5 @@ using UnityEngine;
         }
         print(result);
     }
-    
+
 }

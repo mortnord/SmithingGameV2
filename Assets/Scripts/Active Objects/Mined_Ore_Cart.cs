@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,11 +29,11 @@ public class Mined_Ore_Cart : MonoBehaviour, IInteractor_Connector, IInteract_Wo
                                                 //Så slettes selve ore objektene, og listen over de tømmes. Dette gjøres i bakover rekkefølge fordi destroy er herk
 
     {
-        
+
         for (int i = Ores_in_tray.Count; i > 0; i--) //Generer ore og legg det i stockpilen for usortert ore
         {
-            StaticData.Transition_Ores.Add(Ores_in_tray[i-1].GetComponent<Ore>().ore_quality);
-            Destroy(Ores_in_tray[i-1]);
+            StaticData.Transition_Ores.Add(Ores_in_tray[i - 1].GetComponent<Ore>().ore_quality);
+            Destroy(Ores_in_tray[i - 1]);
         }
         Ores_in_tray.Clear();
     }
@@ -42,12 +41,12 @@ public class Mined_Ore_Cart : MonoBehaviour, IInteractor_Connector, IInteract_Wo
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

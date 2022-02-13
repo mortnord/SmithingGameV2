@@ -33,7 +33,13 @@ public class Find_Components : MonoBehaviour
         Ingot_Form ingot_form_object = ingot_form.GetComponent<Ingot_Form>();
         return ingot_form_object;
     }
-   
+    public static Furnace find_furnace()
+    {
+        GameObject furnace = GameObject.Find("Furnace");
+        Furnace furnace_object = furnace.GetComponent<Furnace>();
+        return furnace_object;
+    }
+
     public static Mission_System find_mission_system()
     {
         GameObject mission_system = GameObject.Find("Mission_System");

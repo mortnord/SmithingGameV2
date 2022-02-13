@@ -1,9 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Enumtypes;
 using UnityEngine.Tilemaps;
+using static Enumtypes;
 
 public class Random_Ore_Generator : MonoBehaviour
 {
@@ -46,18 +44,18 @@ public class Random_Ore_Generator : MonoBehaviour
     }
     void RemoveFromList(GameObject ore_to_be_removed) //Når vi plukker opp ett objekt, så fjernes det fra lista over ore som ska updates for synlig / ikke synlig
     {
-        List_of_ores.Remove(ore_to_be_removed); 
+        List_of_ores.Remove(ore_to_be_removed);
     }
 
     private void generateMap(Tilemap Map_in) //Vi har en dobbel for-loop som iterater over hele griddet, og vis terningen viser 0 1 eller 2 blir det generert malm
                                              //Vis ikke så blir det generert ingenting enn så leng
     {
-        for (int i = Map_in.cellBounds.xMin; i < Map_in.cellBounds.xMax; i++) 
+        for (int i = Map_in.cellBounds.xMin; i < Map_in.cellBounds.xMax; i++)
         {
             for (int j = Map_in.cellBounds.yMin; j < Map_in.cellBounds.yMax; j++)
             {
                 randnr = rand.Next(40);
-                if(randnr == 0)
+                if (randnr == 0)
                 {
                     List_of_ores.Add(Generation_Object.create_ore(i, j, (int)Ore_Quality.Copper));
                 }

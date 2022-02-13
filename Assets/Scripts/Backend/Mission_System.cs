@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,18 +21,18 @@ public class Mission_System : MonoBehaviour, IIData_transfer
     // Update is called once per frame
     void Update()
     {
-        if(Timer_Object.reset == true && completed_mission == true) //Vis man har brukt mer enn 10 sekund, men mindre en maks tid mellom missions
-                                                                    //, og har gjort ett mission får du ett nytt
+        if (Timer_Object.reset == true && completed_mission == true) //Vis man har brukt mer enn 10 sekund, men mindre en maks tid mellom missions
+                                                                     //, og har gjort ett mission får du ett nytt
         {
             create_mission(); //Lag ny mission
             Timer_Object.reset = false; //Reset
             completed_mission = false;
         }
-        else if(Timer_Object.ekstra_mission_reset == true) //Vis du bruker maks tid mellom missions, får du ett nytt, ala scaling difficulty
+        else if (Timer_Object.ekstra_mission_reset == true) //Vis du bruker maks tid mellom missions, får du ett nytt, ala scaling difficulty
         {
             create_mission(); //Lag nytt mission 
             Timer_Object.ekstra_mission_spawn = 30 - amount_of_completed_missions; //Øk difficulty
-            if(Timer_Object.ekstra_mission_spawn < 10) //Ikke for vansklig da
+            if (Timer_Object.ekstra_mission_spawn < 10) //Ikke for vansklig da
             {
                 Timer_Object.ekstra_mission_spawn = 10;
             }
@@ -56,7 +54,7 @@ public class Mission_System : MonoBehaviour, IIData_transfer
     {
         if (Missions_in_UI.Count > 0) // Kun vis vi har aktive missions
         {
-            for (int i = 0; i < Missions_in_UI.Count; i++) 
+            for (int i = 0; i < Missions_in_UI.Count; i++)
             {
                 if (Object_to_check.GetComponent<Sword>()) //Sjekk sword missions
                 {
@@ -64,12 +62,13 @@ public class Mission_System : MonoBehaviour, IIData_transfer
                     if (Missions_in_UI[i].GetComponent<Mission>().quality_of_object_for_mission == Object_to_check.GetComponent<Sword>().quality && Missions_in_UI[i].GetComponent<Mission>().type_of_object_for_mission == (int)Object_to_check.GetComponent<Sword>().mission_tag)
                     {
                         Destroy_Object(i); //Destroyer objekt og rydder opp
-                        
+
                         return true;
                     }
                 }
             }
-        }return false;
+        }
+        return false;
     }
 
     private void Destroy_Object(int i)
@@ -90,29 +89,29 @@ public class Mission_System : MonoBehaviour, IIData_transfer
                 StaticData.quality_of_object_for_mission_static_data.Add(Missions_in_UI[i].GetComponent<Mission>().quality_of_object_for_mission);
                 StaticData.Time_remaining_static_data.Add(Missions_in_UI[i].GetComponent<Mission>().Time_remaining);
                 StaticData.type_of_object_for_mission_static_data.Add(Missions_in_UI[i].GetComponent<Mission>().type_of_object_for_mission);
-                StaticData.x_position.Add(Missions_in_UI[i].GetComponent<Mission>().transform.position.x);
-                StaticData.y_position.Add(Missions_in_UI[i].GetComponent<Mission>().transform.position.y);
+                StaticData.x_position_mission.Add(Missions_in_UI[i].GetComponent<Mission>().transform.position.x);
+                StaticData.y_position_mission.Add(Missions_in_UI[i].GetComponent<Mission>().transform.position.y);
             }
         }
     }
 
     public void Loading() //Her lager vi nye missions basert på tidligere lagret data, slik at vi får tilbake de missionsa vi hadde før vi byttet scene. 
     {
-        if(StaticData.quality_of_object_for_mission_static_data.Count > 0)
+        if (StaticData.quality_of_object_for_mission_static_data.Count > 0)
         {
             for (int i = 0; i < StaticData.quality_of_object_for_mission_static_data.Count; i++)
             {
-                GameObject mission = Generation_Object.recreate_mission(StaticData.Time_remaining_static_data[i], StaticData.quality_of_object_for_mission_static_data[i],StaticData.x_position[i], StaticData.y_position[i]); //Missionet blir laget i create_objekts koden
+                GameObject mission = Generation_Object.recreate_mission(StaticData.Time_remaining_static_data[i], StaticData.quality_of_object_for_mission_static_data[i], StaticData.x_position_mission[i], StaticData.y_position_mission[i]); //Missionet blir laget i create_objekts koden
                 Missions_in_UI.Add(mission); //Legges inn i objekter som skal tegnes i UIet
                 mission.GetComponent<Mission>().quality_of_object_for_mission = StaticData.quality_of_object_for_mission_static_data[i]; //Kvaliteten på objektet som skal leveres
                 mission.GetComponent<Mission>().type_of_object_for_mission = StaticData.type_of_object_for_mission_static_data[i]; //typen av objekt som ska leveres
-            }  
+            }
         }
         //Her rengjør vi staticData filen for evnt feil. 
         StaticData.quality_of_object_for_mission_static_data.Clear();
         StaticData.Time_remaining_static_data.Clear();
         StaticData.type_of_object_for_mission_static_data.Clear();
-        StaticData.x_position.Clear();
-        StaticData.y_position.Clear();
+        StaticData.x_position_mission.Clear();
+        StaticData.y_position_mission.Clear();
     }
 }

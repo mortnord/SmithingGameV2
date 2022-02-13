@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Mission : MonoBehaviour
@@ -17,7 +15,7 @@ public class Mission : MonoBehaviour
         time_for_mission = Time_remaining - 180; //Rewrite all this shit. 
         print("i am alive");
     }
-    
-    
-    
+
+
+
 }

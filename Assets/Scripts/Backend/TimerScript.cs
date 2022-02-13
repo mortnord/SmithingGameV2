@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TimerScript : MonoBehaviour
 {
-    
+
     public bool timer_Is_Running = false;
     public float minutes = 0;
     public float seconds = 0;
@@ -14,11 +12,11 @@ public class TimerScript : MonoBehaviour
     public bool ekstra_mission_reset = false;
     public float reset_timer = 10;
     public float ekstra_mission_spawn = 30;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
         timer_Is_Running = true; //Tiden ska begynne å gå
     }
     // Update is called once per frame
@@ -32,21 +30,21 @@ public class TimerScript : MonoBehaviour
         else
         {
             StaticData.time_Remaining = 0; //Runde ned til null
-            timer_Is_Running = false; 
+            timer_Is_Running = false;
         }
-        if(reset == false) //Minimumstiden mellom hver mission
+        if (reset == false) //Minimumstiden mellom hver mission
         {
             reset_timer -= Time.deltaTime;
-            if(reset_timer < 0)
+            if (reset_timer < 0)
             {
                 reset = true;
                 reset_timer = 10;
             }
         }
-        if(ekstra_mission_reset == false) //Maksimumstiden mellom hver mission
+        if (ekstra_mission_reset == false) //Maksimumstiden mellom hver mission
         {
             ekstra_mission_spawn -= Time.deltaTime;
-            if(ekstra_mission_spawn < 0)
+            if (ekstra_mission_spawn < 0)
             {
                 reset = true;
                 ekstra_mission_reset = true;

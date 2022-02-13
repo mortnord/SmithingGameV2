@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Anvil : MonoBehaviour, IInteractor_Connector, IInteract_Work
@@ -7,7 +5,7 @@ public class Anvil : MonoBehaviour, IInteractor_Connector, IInteract_Work
 
     Object_Creation Generation_Object;
     public GameObject Converted_Object; //Resultat
-    public GameObject blueprint_copy; 
+    public GameObject blueprint_copy;
     public GameObject object_to_be_destroyed; //Inn-objekt. 
     public bool convert = false; //Om ingoten skal converteres. 
     // Start is called before the first frame update
@@ -19,9 +17,9 @@ public class Anvil : MonoBehaviour, IInteractor_Connector, IInteract_Work
     // Update is called once per frame
     void Update()
     {
-        if(convert && blueprint_copy != null) //Sjekk om vi i det hele tatt har en blueprint
+        if (convert && blueprint_copy != null) //Sjekk om vi i det hele tatt har en blueprint
         {
-            if(blueprint_copy.GetComponent<Blueprint_Sword>()) //Hvis sverd blueprint.
+            if (blueprint_copy.GetComponent<Blueprint_Sword>()) //Hvis sverd blueprint.
             {
                 Converted_Object = Generation_Object.create_sword(object_to_be_destroyed.GetComponent<Ingot>().quality, transform.position); // Her caller vi create sword
                                                                                                                                              // med ingoten sin quality, og anvilen sin posisjon

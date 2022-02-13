@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
+using UnityEngine;
 using static Enumtypes;
 
 public class Object_Creation : MonoBehaviour
 {
-    
+
     public GameObject Ore_prefab; //Åpner for å sette prefaben i inspektoren, noe jeg vil endre i framtiden til script istedenfor inspector jobb. 
     public GameObject ingot_prefab;
     public GameObject sword_prefab;
@@ -16,7 +14,7 @@ public class Object_Creation : MonoBehaviour
     public Sprite test_sprite;
 
     System.Random rand = new System.Random();
-   
+
     public GameObject create_ore(int quality) //Oren som blir generert i usorta ore plassen. 
     {
         GameObject spawned_ore = Instantiate(Ore_prefab, new Vector3(UnityEngine.Random.Range(-9.2f, -8.2f), UnityEngine.Random.Range(-0.3f, -2f), 0), Quaternion.identity);
@@ -29,6 +27,12 @@ public class Object_Creation : MonoBehaviour
         spawned_ore.GetComponent<Ore>().quality = quality; //Vi bruker en instantitate av en prefab som er satt i inspektoren.
         return spawned_ore;
     }
+    public GameObject create_ore(int quality, Vector3 position) //Oren som blir generert basert på parent etter å ha blitt lagra. 
+    {
+        GameObject spawned_ore = Instantiate(Ore_prefab, position, Quaternion.identity);
+        spawned_ore.GetComponent<Ore>().quality = quality; //Vi bruker en instantitate av en prefab som er satt i inspektoren.
+        return spawned_ore;
+    }
     public GameObject create_ore(float x, float y, int quality) //Oren som blir generert basert på X og Y posisjon, i dette tilfelle i random generation
     {
         x = x + 0.5f;
@@ -37,11 +41,13 @@ public class Object_Creation : MonoBehaviour
         spawned_ore.GetComponent<Ore>().quality = quality; //Vi bruker en instantitate av en prefab som er satt i inspektoren.
         spawned_ore.tag = "Mining_Ore";
         return spawned_ore;
-        
     }
+
+
     public GameObject create_ingot(int quality) //Ingots laga etter smelting
     {
         GameObject spawned_ingot = Instantiate(ingot_prefab, new Vector3(-4.8f, 2f), Quaternion.identity);
+        print(quality + "Er kval");
         spawned_ingot.GetComponent<Ingot>().quality = quality;
         return spawned_ingot;
     }
@@ -58,6 +64,7 @@ public class Object_Creation : MonoBehaviour
         spawned_sword.GetComponent<Sword>().quality = quality;
         return spawned_sword;
     }
+
     public GameObject create_blueprint_sword(Vector3 position) //Denne creater ett sverd Blueprint kopi, og setter sorting orderen slik at den havner under andre objekter
     {
         GameObject spawned_sword_blueprint = Instantiate(blueprint_sword, position, Quaternion.identity);
@@ -66,7 +73,7 @@ public class Object_Creation : MonoBehaviour
         spawned_sword_blueprint.GetComponent<SpriteRenderer>().sortingOrder = -1;
         return spawned_sword_blueprint;
     }
-    
+
     public GameObject create_card_with_mission(float time, Vector3 position) //Oh boy, en bestilling om mission kommer inn fra Mission_systemet
     {
         GameObject created_card_with_mission = Instantiate(Orders_card, position, Quaternion.identity); //Lager ordre card her 
@@ -74,17 +81,17 @@ public class Object_Creation : MonoBehaviour
         created_card_with_mission.transform.position = Mission_System.transform.position; //Posisjon og parents til mission-cardet
         created_card_with_mission.transform.parent = Mission_System.transform;
         mission.setTime(time); //Rewrite
-        GameObject temp_sword = create_sword(get_random_quality(), new Vector3(0,0,-1)); //Dette er figuren som er på selve mission cardet, 
+        GameObject temp_sword = create_sword(get_random_quality(), new Vector3(0, 0, -1)); //Dette er figuren som er på selve mission cardet, 
         temp_sword.transform.parent = created_card_with_mission.transform; //Vi setter posisjon og parent, slik at figuren på mission cardet følger etter
         temp_sword.transform.position = created_card_with_mission.transform.position;
         temp_sword.GetComponent<SpriteRenderer>().sortingOrder = 2; //Posisjoner i drawing
         temp_sword.GetComponent<SpriteRenderer>().sortingLayerName = "UI";
-        
-        
+
+
         return created_card_with_mission;
     }
     public GameObject recreate_mission(float time_remaining, int quality_object, float x_position, float y_position) //Her bestiller vi ett mission med satte 
-                                                                                                                    //parametre, slik at vi får tilbake tidligere missions
+                                                                                                                     //parametre, slik at vi får tilbake tidligere missions
     {
         GameObject recreated_mission = Instantiate(Orders_card, new Vector3(x_position, y_position, 0), Quaternion.identity);
         Mission mission = recreated_mission.AddComponent<Mission>();

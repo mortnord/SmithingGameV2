@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Scene_Loader : MonoBehaviour
@@ -14,6 +12,6 @@ public class Scene_Loader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

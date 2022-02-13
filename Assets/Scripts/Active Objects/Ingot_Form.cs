@@ -1,11 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Ingot_Form : MonoBehaviour, IInteractor_Connector
 {
     public List<GameObject> Ingots_in_form = new List<GameObject>();
-
+    public Furnace furnace_object;
     public void Drop_Off(GameObject main_character)
     {
         //Do nothing
@@ -23,17 +22,17 @@ public class Ingot_Form : MonoBehaviour, IInteractor_Connector
         main_character.SendMessage("Inventory_Full_Message", result);
     }
 
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        furnace_object = Find_Components.find_furnace();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

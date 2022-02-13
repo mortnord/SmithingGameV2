@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -20,4 +18,4 @@ interface IIData_transfer //Interface metode for lagring og lasting av data.
     public void Loading();
 }
 
-    
+

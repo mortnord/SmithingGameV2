@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,19 +19,22 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
         {
             main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.position = gameObject.transform.position;
             Ingots_in_tray.Add(main_character.GetComponent<DwarfScript>().Item_in_inventory);
+            Ingots_in_tray[0].SetActive(false);
             Return_Answer(main_character, false);
         }
     }
 
     public void Pickup(GameObject main_character)
     {
-        if(Ingots_in_tray.Count > 0)
+        if (Ingots_in_tray.Count > 0)
         {
             main_character.GetComponent<DwarfScript>().Item_in_inventory = Ingots_in_tray[0];
+
+            Ingots_in_tray[0].SetActive(true);
             Ingots_in_tray.RemoveAt(0);
             Return_Answer(main_character, true);
         }
-        
+
     }
 
     public void Return_Answer(GameObject main_character, bool result)
@@ -52,7 +53,7 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private bool handleQuality(Enumtypes.Ore_Quality ore_quality)
     {
@@ -72,7 +73,7 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
         }
     }
 
-    
+
     private void Change_Sprite_Set(int quality)
     {
         /*

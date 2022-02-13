@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Table : MonoBehaviour, IInteractor_Connector
@@ -19,9 +17,9 @@ public class Table : MonoBehaviour, IInteractor_Connector
     // Update is called once per frame
     void Update()
     {
-        if(copied == true) //Denne brukes for å lage en ny kopi med engang vi har fjernet den første kopien, da har vi alltid en kopi liggende som vi kan plukke opp
+        if (copied == true) //Denne brukes for å lage en ny kopi med engang vi har fjernet den første kopien, da har vi alltid en kopi liggende som vi kan plukke opp
         {                  //Kopien ligger under orginalen, så spiller vil ikke se den. 
-            if(blueprint_original_on_table.GetComponent<Blueprint_Sword>())
+            if (blueprint_original_on_table.GetComponent<Blueprint_Sword>())
             {
                 copied = false;
                 fake_copy = Generation_Object.create_blueprint_sword(transform.position); //Posisjonen til kopien er lik posisjonen til bordet. 

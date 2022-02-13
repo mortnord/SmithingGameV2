@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static Enumtypes;
 
@@ -11,7 +8,7 @@ public class Ore : MonoBehaviour
     public int quality; //0 = low, 1 = normal, 2 = high
     public Ore_Quality ore_quality;
     public Object_Types object_tag;
-    
+
 
     void Start()
     {
