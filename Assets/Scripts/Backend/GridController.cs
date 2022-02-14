@@ -9,8 +9,10 @@ public class GridController : MonoBehaviour
     public Tile mouse_tile = null;
     public RuleTile mined_tile = null;
     public GameObject dwarf = null;
+    public GameObject UI = null;
     GameObject Nearest_object = null;
     DwarfScript dwarfScript = null;
+    
 
     private Vector3Int prev_mouse_pos = new Vector3Int();
 
@@ -47,8 +49,22 @@ public class GridController : MonoBehaviour
             Vector3Int dwarfPos = grid.WorldToCell(dwarf.transform.position); //Vi gjør dvergen sin posisjon om til cell-grid posisjon, 
             if (Vector3.Distance(dwarfPos, mousePos) <= 1) //Så sammenligner vi om vi er nærme nok til å grave, vis vi er så fortsetter vi 
             {
-                rock_map.SetTile(mousePos, null); //Tilen på mousa sin posisjon blir satt til null. 
+                if (rock_map.GetTile(mousePos) != null && StaticData.Energy_mining_static > 0)
+                {
+                    rock_map.SetTile(mousePos, null); //Tilen på mousa sin posisjon blir satt til null. 
+                    StaticData.Energy_mining_static = StaticData.Energy_mining_static - 1;
+                    UI.SendMessage("calculateSprites");
+                }
             }
+        }
+        if (Input.GetKeyDown(KeyCode.H)) //Her aktiverer vi objekter, evnt så kan vi ha en spak vi interacter med for å gjøre det samme, vis alt ska være på space-knappen
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                StaticData.Energy_mining_static = StaticData.Energy_mining_static + 1;
+                UI.SendMessage("calculateSprites");
+            }
+            
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {

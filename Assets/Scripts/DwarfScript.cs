@@ -40,7 +40,9 @@ public class DwarfScript : MonoBehaviour
                 //Do nothing
             }
         }
-        if (Input.GetKeyDown(KeyCode.Q)) //Her prøver vi å plukke opp eller sette ned objekter, avhengig om vi har eller ikke har objekter allerede. 
+      
+
+            if (Input.GetKeyDown(KeyCode.Q)) //Her prøver vi å plukke opp eller sette ned objekter, avhengig om vi har eller ikke har objekter allerede. 
         {
             Nearest_Object = Find_nearest_interactable_object_within_range(5);
             if (Inventory_Full == false && Nearest_Object != null)

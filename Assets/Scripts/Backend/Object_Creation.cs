@@ -11,7 +11,9 @@ public class Object_Creation : MonoBehaviour
     public GameObject Orders_card;
     public GameObject Mission_System;
     public GameObject blueprint_sword;
+    public GameObject energy_object;
     public Sprite test_sprite;
+    
 
     System.Random rand = new System.Random();
 
@@ -24,12 +26,6 @@ public class Object_Creation : MonoBehaviour
     public GameObject create_ore(int quality, GameObject parent) //Oren som blir generert basert på parent etter å ha blitt lagra. 
     {
         GameObject spawned_ore = Instantiate(Ore_prefab, new Vector3(parent.transform.position.x, parent.transform.position.y, 0), Quaternion.identity);
-        spawned_ore.GetComponent<Ore>().quality = quality; //Vi bruker en instantitate av en prefab som er satt i inspektoren.
-        return spawned_ore;
-    }
-    public GameObject create_ore(int quality, Vector3 position) //Oren som blir generert basert på parent etter å ha blitt lagra. 
-    {
-        GameObject spawned_ore = Instantiate(Ore_prefab, position, Quaternion.identity);
         spawned_ore.GetComponent<Ore>().quality = quality; //Vi bruker en instantitate av en prefab som er satt i inspektoren.
         return spawned_ore;
     }
@@ -104,7 +100,12 @@ public class Object_Creation : MonoBehaviour
         temp_sword.GetComponent<SpriteRenderer>().sortingLayerName = "UI";
 
         return recreated_mission;
+    }
 
+    public GameObject create_energy_indicator(GameObject parent)
+    {
+        GameObject created_Energy_object = Instantiate(energy_object, new Vector3(parent.transform.position.x, parent.transform.position.y, 0), Quaternion.identity);
+        return created_Energy_object;
     }
 
 

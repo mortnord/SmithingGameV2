@@ -67,10 +67,6 @@ public class Export_Chute : MonoBehaviour, IInteractor_Connector, IIData_transfe
     public void Loading()
     {
 
-        print(StaticData.export_chute_quality_static.Count);
-        print(StaticData.export_chute_object_static.Count);
-        print(StaticData.x_position_export_chute.Count);
-        print(StaticData.y_position_export_chute.Count);
         for (int i = 0; i < StaticData.export_chute_quality_static.Count; i++)
         {
             Stuff_to_transport.Add(Generation_Object.create_sword((int)StaticData.export_chute_quality_static[i], new Vector3(StaticData.x_position_export_chute[i], StaticData.y_position_export_chute[i], 0)));

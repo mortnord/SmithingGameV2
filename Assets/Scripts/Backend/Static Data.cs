@@ -29,4 +29,7 @@ public static class StaticData //Her har vi static data som lagres mellom scenes
     public static List<Enumtypes.Object_Types> export_chute_object_static = new List<Enumtypes.Object_Types>();
     public static List<float> x_position_export_chute = new List<float>();
     public static List<float> y_position_export_chute = new List<float>();
+
+    //Energy for Mining
+    public static int Energy_mining_static = 20;
 }
