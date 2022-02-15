@@ -56,7 +56,7 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Active Objects\Unsorted_Ore_container.cs" />
+    <Compile Include="Assets\Scripts\Deprecated\Unsorted_Ore_container.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Minecart.cs" />
     <Compile Include="Assets\Scripts\Backend\GridController.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Ingot_Form.cs" />
@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Items\Ingot.cs" />
     <Compile Include="Assets\Scripts\Backend\Score.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Anvil.cs" />
+    <Compile Include="Assets\Scripts\UI\Pickaxe.cs" />
     <Compile Include="Assets\Scripts\Backend\Enum types.cs" />
     <Compile Include="Assets\Scripts\Backend\Go_Up.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Vein.cs" />
@@ -87,13 +88,12 @@
     <Compile Include="Assets\Scripts\Active Objects\Furnace.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Sorted_Ore_Tray.cs" />
     <Compile Include="Assets\Scripts\Backend\Object_Creation.cs" />
+    <Compile Include="Assets\Scripts\Backend\Energy.cs" />
     <Compile Include="Assets\Scripts\Backend\Static Data.cs" />
     <Compile Include="Assets\Scripts\Backend\Group_of_Missions.cs" />
     <Compile Include="Assets\Scripts\Items\Sword.cs" />
     <Compile Include="Assets\Scripts\Items\Blueprint_Sword.cs" />
     <Compile Include="Assets\Scripts\Active Objects\Sorted_Ingots_Tray.cs" />
-    <Compile Include="Assets\Scripts\Backend\Energy.cs" />
-    <Compile Include="Assets\Scripts\UI\Pickaxe.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

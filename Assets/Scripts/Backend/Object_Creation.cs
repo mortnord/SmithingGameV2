@@ -18,12 +18,6 @@ public class Object_Creation : MonoBehaviour
 
     System.Random rand = new System.Random();
 
-    public GameObject create_ore(int quality) //Oren som blir generert i usorta ore plassen. 
-    {
-        GameObject spawned_ore = Instantiate(Ore_prefab, new Vector3(UnityEngine.Random.Range(-9.2f, -8.2f), UnityEngine.Random.Range(-0.3f, -2f), 0), Quaternion.identity);
-        spawned_ore.GetComponent<Ore>().quality = quality; //Vi bruker en instantitate av en prefab som er satt i inspektoren.
-        return spawned_ore;
-    }
     public GameObject create_ore(int quality, GameObject parent) //Oren som blir generert basert på parent etter å ha blitt lagra. 
     {
         GameObject spawned_ore = Instantiate(Ore_prefab, new Vector3(parent.transform.position.x, parent.transform.position.y, 0), Quaternion.identity);

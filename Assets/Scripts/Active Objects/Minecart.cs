@@ -1,90 +1,88 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Minecart : MonoBehaviour
+public class Minecart : MonoBehaviour, IInteractor_Connector
 {
 
-    Object_Creation Generation_Object;
-    Unsorted_Ore_container Unsorted_Tray_Object;
-    bool not_moved = true;
-    bool dumped_ore = false;
-    public bool tilbake_tid = false;
-    public int movement_speed = 0;
+
+    public List<GameObject> list_of_ore = new List<GameObject>();
+    public Object_Creation Generation_Object;
+    public float time_until_go = 5;
     Vector2 position;
+    SpriteRenderer spriteRenderer;
     public Sprite[] spriteArray;
-    public SpriteRenderer spriteRenderer;
-    public int cooldown_time;
-
-    public int amount_of_ore = 0;
-    public float time_until_move = 0;
-
     // Start is called before the first frame update
     void Start()
     {
-        //første vi gjør er å finne objekten til andre scripts vi trenger å gjøre noe med, dette skjer her. 
-
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         Generation_Object = Find_Components.find_Object_Creation();
-        Unsorted_Tray_Object = Find_Components.find_Unsorted_Tray();
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>(); //Dette er spirit-renderen, vi kan bruke denne til å bytte sprites.
+        GetOreFromBelow();
+        position = transform.position;
+    }
 
-
-        time_until_move = 5; //Tid til vi beveger minecarten
-
+    private void GetOreFromBelow()
+    {
+        for (int i = 0; i < StaticData.Transition_Ores.Count; i++)
+        {
+            list_of_ore.Add(Generation_Object.create_ore((int)StaticData.Transition_Ores[i], gameObject));
+            list_of_ore[i].SetActive(false);
+        }
+        StaticData.Transition_Ores.Clear();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (not_moved)
+        if (list_of_ore.Count > 0 && gameObject.transform.position.y > 1.2)
         {
-            time_until_move = time_until_move - Time.deltaTime;
-        }
-        //Alt dette blir vell endret av deg når du lager en patrolpath?
-        position = transform.position;
-        if (time_until_move < 0 && not_moved)
-        {
-            print("Tid for å flytte seg");
-            not_moved = false;
-            movement_speed = 4; //Movement speed minecart
-            time_until_move = 0;
-        }
-        if (not_moved == false && tilbake_tid == false)
-        {
-            position.y -= movement_speed * Time.deltaTime; //Vi flytter bilde nedover
-            transform.position = position;
-        }
-        if (position.y < 1 && dumped_ore == false) //Når vi er i posisjon, gjør dette
-        {
-            movement_speed = 0; //stop
-            spriteRenderer.sprite = spriteArray[1]; //Bytt sprite
-            dumped_ore = true;
-            for (int i = 0; i < StaticData.Transition_Ores.Count; i++) //Generer ore og legg det i stockpilen for usortert ore
+            spriteRenderer.sprite = spriteArray[0];
+            if (time_until_go > 0)
             {
-                Unsorted_Tray_Object.Ores_in_tray.Add(Generation_Object.create_ore((int)StaticData.Transition_Ores[i]));
+                time_until_go -= 1 * Time.deltaTime;
             }
-            amount_of_ore = 0;
-            StaticData.Transition_Ores.Clear();
-            tilbake_tid = true;
-        }
-        if (Unsorted_Tray_Object.Ores_in_tray.Count == 0 && dumped_ore == true && tilbake_tid)
-        {
-            print("Tid for å dra tilbake");
-            movement_speed = 2;
-            position.y += movement_speed * Time.deltaTime; //Vi flytter bilde nedover
-            transform.position = position;
-            if (position.y > 8)
+            if (time_until_go < 0)
             {
-                Reset();
+                position.y -= 4 * Time.deltaTime;
+                gameObject.transform.position = position;
             }
         }
+        else if (list_of_ore.Count > 0)
+        {
+            spriteRenderer.sprite = spriteArray[1];
+            time_until_go = 1;
+        }
+        else if (list_of_ore.Count == 0 && gameObject.transform.position.y < 7)
+        {
+            spriteRenderer.sprite = spriteArray[2];
+            if (time_until_go > 0)
+            {
+                time_until_go -= 1 * Time.deltaTime;
+            }
+            if (time_until_go < 0)
+            {
+                position.y += 2 * Time.deltaTime;
+                gameObject.transform.position = position;
+            }
+        }
+       
     }
 
-    private void Reset()
+    public void Pickup(GameObject main_character)
     {
-        time_until_move = 5;
-        not_moved = true;
-        dumped_ore = false;
-        tilbake_tid = false;
-        transform.position = new Vector3(-8.7f, 8f);
-        amount_of_ore = Random.Range(1, 7);
+        main_character.GetComponent<DwarfScript>().Item_in_inventory = list_of_ore[0];
+        
+        list_of_ore.RemoveAt(0);
+        Return_Answer(main_character, true);
+    }
+
+    public void Drop_Off(GameObject main_character)
+    {
+        //Do nothing
+    }
+
+    public void Return_Answer(GameObject main_character, bool result)
+    {
+        main_character.SendMessage("Inventory_Full_Message", result);
     }
 }

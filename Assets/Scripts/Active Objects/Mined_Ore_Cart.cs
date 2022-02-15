@@ -11,6 +11,7 @@ public class Mined_Ore_Cart : MonoBehaviour, IInteractor_Connector, IInteract_Wo
     {
         main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.position = gameObject.transform.position;
         main_character.GetComponent<DwarfScript>().Item_in_inventory.tag = "Object";
+        main_character.GetComponent<DwarfScript>().Item_in_inventory.SetActive(false);
         Ores_in_tray.Add(main_character.GetComponent<DwarfScript>().Item_in_inventory);
         Return_Answer(main_character, false); //returnere svar 
     }

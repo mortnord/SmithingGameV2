@@ -80,11 +80,11 @@ public class Energy : MonoBehaviour
     public void change_sprite()
     {
         int last_object = Energy_Objects.Count - 1;
-        if(StaticData.Energy_mining_static % 2 != 0)
+        if(StaticData.Energy_mining_static % 2 != 0 && StaticData.Energy_mining_static > 0)
         {
             Energy_Objects[last_object].GetComponent<Pickaxe>().spriteRenderer.sprite = Energy_Objects[last_object].GetComponent<Pickaxe>().spriteArray[1];
         }
-        else
+        else if(StaticData.Energy_mining_static > 0)
         {
             Energy_Objects[last_object].GetComponent<Pickaxe>().spriteRenderer.sprite = Energy_Objects[last_object].GetComponent<Pickaxe>().spriteArray[0];
         }

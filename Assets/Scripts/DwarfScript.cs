@@ -26,6 +26,7 @@ public class DwarfScript : MonoBehaviour
         if (Inventory_Full && Input.GetKeyDown(KeyCode.Space) == false) //Vis inventory er tomt (alså false på testen), og vi ikke trykker space, så ska vi flytte med oss inventoriet
         {
             Item_in_inventory.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+            Item_in_inventory.SetActive(true);
 
         }
         if (Input.GetKeyDown(KeyCode.E)) //Her aktiverer vi objekter, evnt så kan vi ha en spak vi interacter med for å gjøre det samme, vis alt ska være på space-knappen

@@ -18,8 +18,9 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
         if (result == true)
         {
             main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.position = gameObject.transform.position;
+            main_character.GetComponent<DwarfScript>().Item_in_inventory.SetActive(false);
             Ingots_in_tray.Add(main_character.GetComponent<DwarfScript>().Item_in_inventory);
-            Ingots_in_tray[0].SetActive(false);
+            
             Return_Answer(main_character, false);
         }
     }

@@ -29,7 +29,7 @@ public class Vein : MonoBehaviour, IInteractor_Connector
 
     public void Pickup(GameObject main_character) //Her har vi en vein, som generer ore i inventory
     {
-        main_character.GetComponent<DwarfScript>().Item_in_inventory = Generation_Object.create_ore((int)ore_quality);
+        main_character.GetComponent<DwarfScript>().Item_in_inventory = Generation_Object.create_ore((int)ore_quality, gameObject);
         Return_Answer(main_character, true);
     }
 

@@ -93,7 +93,7 @@ public class Sorted_Ore_Tray : MonoBehaviour, IInteractor_Connector, IIData_tran
 
             main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.position = gameObject.transform.position;
             Ores_in_tray.Add(main_character.GetComponent<DwarfScript>().Item_in_inventory);
-            Ores_in_tray[0].SetActive(false);
+            main_character.GetComponent<DwarfScript>().Item_in_inventory.SetActive(false);
             Return_Answer(main_character, false);
         }
         handleSprite();
