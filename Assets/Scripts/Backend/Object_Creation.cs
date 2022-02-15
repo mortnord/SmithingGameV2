@@ -12,6 +12,7 @@ public class Object_Creation : MonoBehaviour
     public GameObject Mission_System;
     public GameObject blueprint_sword;
     public GameObject energy_object;
+    public GameObject beer_object;
     public Sprite test_sprite;
     
 
@@ -106,6 +107,12 @@ public class Object_Creation : MonoBehaviour
     {
         GameObject created_Energy_object = Instantiate(energy_object, new Vector3(parent.transform.position.x, parent.transform.position.y, 0), Quaternion.identity);
         return created_Energy_object;
+    }
+    public GameObject create_beer_object(GameObject parent)
+    {
+        GameObject create_beer_object = Instantiate(beer_object, new Vector3(parent.transform.position.x, parent.transform.position.y, 0), Quaternion.identity);
+        
+        return create_beer_object;
     }
 
 

@@ -9,7 +9,7 @@ public class DwarfScript : MonoBehaviour
     public bool Inventory_Full = false;
     public GameObject Item_in_inventory = null;
     public GameObject Nearest_Object = null;
-
+    public GameObject All_Scenes_UI;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +39,19 @@ public class DwarfScript : MonoBehaviour
             {
                 //Do nothing
             }
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            if(StaticData.amount_of_beer_static < 3)
+            {
+                StaticData.amount_of_beer_static = StaticData.amount_of_beer_static + 1;
+                All_Scenes_UI.SendMessage("setPosition_Beers");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            StaticData.amount_of_beer_static = StaticData.amount_of_beer_static - 1;
+            All_Scenes_UI.SendMessage("setPosition_Beers");
         }
       
 

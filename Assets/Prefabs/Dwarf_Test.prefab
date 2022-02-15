@@ -112,6 +112,7 @@ MonoBehaviour:
   Inventory_Full: 0
   Item_in_inventory: {fileID: 0}
   Nearest_Object: {fileID: 0}
+  All_Scenes_UI: {fileID: 6300775606018243361, guid: 129bdda4fe7771b4ea6f3fc996b06c9e, type: 3}
 --- !u!61 &4280508825317021801
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 public static class StaticData //Her har vi static data som lagres mellom scenes. 
 {
     //UI
-    public static int score;
+    public static int score = 0;
     public static float time_Remaining = 720;
 
     public static List<Enumtypes.Ore_Quality> Transition_Ores = new List<Enumtypes.Ore_Quality>();
@@ -32,4 +32,9 @@ public static class StaticData //Her har vi static data som lagres mellom scenes
 
     //Energy for Mining
     public static int Energy_mining_static = 20;
+
+    //Amount of Beers
+    public static int amount_of_beer_static = 0;
+    public static int Energy_value_beer = 5;
+      
 }

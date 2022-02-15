@@ -93,6 +93,7 @@ MonoBehaviour:
   Mission_System: {fileID: 0}
   blueprint_sword: {fileID: 6860259032430118147, guid: 21acebdd35399324e8f936ece97e0512, type: 3}
   energy_object: {fileID: 1394730054550234308, guid: d4063ab522f41cb43b6a08a95bd3d50a, type: 3}
+  beer_object: {fileID: 7432843859290704772, guid: 016ed51ea0e70504fa091889c10a867a, type: 3}
   test_sprite: {fileID: 21300000, guid: 0b099a28befb56940a4aa1662fdddbaa, type: 3}
 --- !u!1 &8886776928534896467
 GameObject:

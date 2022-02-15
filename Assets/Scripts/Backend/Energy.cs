@@ -8,6 +8,7 @@ public class Energy : MonoBehaviour
     // Start is called before the first frame update
     public List<GameObject> Energy_Objects = new List<GameObject>();
     public List<GameObject> Removed_Energy_objects = new List<GameObject>();
+    public List<GameObject> Beers = new List<GameObject>();
     Object_Creation Generation_Object;
     void Start()
     {
@@ -18,8 +19,9 @@ public class Energy : MonoBehaviour
             i++;
             
         }
-        SetPosition();
+        SetPosition_Energy();
         calculateSprites();
+        setPosition_Beers();
     }
 
     public void calculateSprites()
@@ -42,11 +44,37 @@ public class Energy : MonoBehaviour
         change_sprite();
 
     }
-    public void SetPosition()
+    public void SetPosition_Energy()
     {
         for (int i = 0; i < Energy_Objects.Count; i++)
         {
-            Energy_Objects[i].transform.position = new Vector3(-12 + (i), 9, 0);
+            Energy_Objects[i].transform.position = new Vector3(-12.5f + (i), 9, 0);
+        }
+    }
+    public void setPosition_Beers()
+    {
+        if(StaticData.amount_of_beer_static > 0)
+        {
+            while (Beers.Count < StaticData.amount_of_beer_static)
+            {
+                Beers.Add(Generation_Object.create_beer_object(gameObject));
+            }
+            for (int i = 0; i < Beers.Count; i++)
+            {
+                Beers[i].transform.position = new Vector3(-13 + (i), 7.95f, 0);
+            }
+        }
+        if(StaticData.amount_of_beer_static < Beers.Count)
+        {
+
+            Destroy(Beers[Beers.Count - 1]);
+            Beers.RemoveAt(Beers.Count-1);
+            for (int i = 0; i < StaticData.Energy_value_beer; i++)
+            {
+                StaticData.Energy_mining_static++;
+                calculateSprites();
+            }
+            
         }
     }
     public void change_sprite()
