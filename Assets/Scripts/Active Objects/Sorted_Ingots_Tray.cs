@@ -12,7 +12,8 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
     public Object_Creation Generation_Object;
     bool result;
 
-    public void Drop_Off(GameObject main_character)
+    public void Drop_Off(GameObject main_character) //Her legger vi fra oss objekter, først sjekker vi om kvaliteten matcher det som skal være i stockpilen. 
+                                                    //Vis kvaliteten matcher, så legger vi itemen i stockpilen
     {
         result = handleQuality(main_character.GetComponent<DwarfScript>().Item_in_inventory.GetComponent<Ingot>().ore_quality);
         if (result == true)
@@ -25,7 +26,7 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
         }
     }
 
-    public void Pickup(GameObject main_character)
+    public void Pickup(GameObject main_character) //Her henter vi opp ting fra stockpilen. 
     {
         if (Ingots_in_tray.Count > 0)
         {
@@ -56,21 +57,22 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
     {
 
     }
-    private bool handleQuality(Enumtypes.Ore_Quality ore_quality)
+    private bool handleQuality(Enumtypes.Ore_Quality ore_quality) //Her sjekker vi om kvaliteten matcher
+                                                                  //Hvis det er tomt, så matcher jo alle, og kvaliteten på stockpilen blir kvaliteten på malmen. 
     {
-        if (Ingots_in_tray.Count == 0)
+        if (Ingots_in_tray.Count == 0) //Hvis tomt, innkommende malm = kvalitet
         {
             quality = (int)ore_quality;
             Change_Sprite_Set(quality);
             return true;
         }
-        else if ((int)ore_quality == quality)
+        else if ((int)ore_quality == quality) //Matcher den?
         {
-            return true;
+            return true; //ja
         }
         else
         {
-            return false;
+            return false; //Nei
         }
     }
 

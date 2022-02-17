@@ -45,7 +45,7 @@ public class Furnace : MonoBehaviour, IInteractor_Connector, IIData_transfer
             smelting_time = 11;
             smelting_in_progress = false;
         }
-        if (smelting_time < 1) //Når vi får klarsignalet fra dwarfen, så starter smelting
+        if (smelting_time < 1) //Når det har gått 10 sekund etter at vi la inn første malmen, så smeltes den til en barre. 
         {
             smelting_quality = FindQuality(Ores_in_furnace[0]);
             ingot_form_object.Ingots_in_form.Add(Generation_Object.create_ingot(smelting_quality));
@@ -61,16 +61,15 @@ public class Furnace : MonoBehaviour, IInteractor_Connector, IIData_transfer
     public int FindQuality(GameObject item_in_inventory)
     {
         
-        if (item_in_inventory.GetComponent<Ore>() != null)
+        if (item_in_inventory.GetComponent<Ore>() != null) //Hvis ore, sjekk kvalitet og bruk det som input. 
         {
             quality_in_input = (int)item_in_inventory.GetComponent<Ore>().ore_quality;
-            print((int)item_in_inventory.GetComponent<Ore>().ore_quality);
         }
-        else if (item_in_inventory.GetComponent<Ingot>() != null)
+        else if (item_in_inventory.GetComponent<Ingot>() != null) //Sjekker hvis det er ingot
         {
             quality_in_input = (int)item_in_inventory.GetComponent<Ingot>().ore_quality;
         }
-        else if (item_in_inventory.GetComponent<Sword>() != null)
+        else if (item_in_inventory.GetComponent<Sword>() != null) //sjekker hvis det er sword. Finn en bedre løsning her. 
         {
             quality_in_input = (int)item_in_inventory.GetComponent<Sword>().ore_quality;
         }
@@ -94,7 +93,7 @@ public class Furnace : MonoBehaviour, IInteractor_Connector, IIData_transfer
 
     }
 
-    private bool handleQuality(int ore_quality)
+    private bool handleQuality(int ore_quality) //Her setter vi kvaliteten som skal være i furnacen, dette hindrer 2 typer malm å være inni samtidig.
     {
         if (Ores_in_furnace.Count == 0)
         {
@@ -116,17 +115,15 @@ public class Furnace : MonoBehaviour, IInteractor_Connector, IIData_transfer
         main_character.SendMessage("Inventory_Full_Message", result);
     }
 
-    public void Storage()
+    public void Storage() //Her lagrer vi malmen som er i furnacen. 
     {
         for (int i = 0; i < Ores_in_furnace.Count; i++) //Generer ore og legg det i stockpilen for usortert ore
         {
-            if (Ores_in_furnace[i].GetComponent<Ore>() != null)
+            if (Ores_in_furnace[i].GetComponent<Ore>() != null) //Hvis Ore, hent kvaliteten. og lagre den. 
             {
-                print(Ores_in_furnace[i].GetComponent<Ore>().ore_quality + " D");
                 StaticData.furnace_quality_static_object.Add(Ores_in_furnace[i].GetComponent<Ore>().ore_quality);
-                print(StaticData.furnace_quality_static_object[i] + " X");
             }
-            else if (Ores_in_furnace[i].GetComponent<Ingot>() != null)
+            else if (Ores_in_furnace[i].GetComponent<Ingot>() != null) //Samme på ingots og barre
             {
                 StaticData.furnace_quality_static_object.Add(Ores_in_furnace[i].GetComponent<Ingot>().ore_quality);
             }
@@ -135,23 +132,25 @@ public class Furnace : MonoBehaviour, IInteractor_Connector, IIData_transfer
                 StaticData.furnace_quality_static_object.Add(Ores_in_furnace[i].GetComponent<Sword>().ore_quality);
             }
         }
-        StaticData.smelting_time_static = smelting_time;
+        StaticData.smelting_time_static = smelting_time; //Lagre annen data og
         StaticData.smelting_input_static = quality_in_furnace;
     }
 
-    public void Loading()
+    public void Loading() //Last inn data. 
     {
         if (StaticData.furnace_quality_static_object.Count > 0)
         {
             for (int i = 0; i < StaticData.furnace_quality_static_object.Count; i++) //Generer ore og legg det i stockpilen for usortert ore
             {
-                print(StaticData.furnace_quality_static_object[i]);
+                print(StaticData.furnace_quality_static_object[i]); //Vi lager alt som malm, selv om det kanskje var ett sverd f.eks, før,
+                                                                    //dette har lite betydning siden du ikke kan hente det opp igjen
                 Ores_in_furnace.Add(Generation_Object.create_ore((int)StaticData.furnace_quality_static_object[i], gameObject));
                 Ores_in_furnace[i].GetComponent<Ore>().ore_quality = (Enumtypes.Ore_Quality)Ores_in_furnace[i].GetComponent<Ore>().quality;
                 Ores_in_furnace[i].SetActive(false);
             }
             StaticData.furnace_quality_static_object.Clear();
         }
+        //Henter in data
         smelting_time = StaticData.smelting_time_static;
         smelting_quality = StaticData.smelting_input_static;
         quality_in_furnace = StaticData.smelting_input_static;

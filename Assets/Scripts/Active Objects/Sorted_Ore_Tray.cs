@@ -24,7 +24,7 @@ public class Sorted_Ore_Tray : MonoBehaviour, IInteractor_Connector, IIData_tran
         Change_Sprite_Set(0);
     }
 
-    private void Change_Sprite_Set(int quality)
+    private void Change_Sprite_Set(int quality) //Velger hva sprite-set som skal brukes. 
     {
         if (quality == 0)
         {
@@ -54,15 +54,15 @@ public class Sorted_Ore_Tray : MonoBehaviour, IInteractor_Connector, IIData_tran
         {
             spriteRenderer.sprite = using_sprite[1];
         }
-        else if (Ores_in_tray.Count > 3 && Ores_in_tray.Count <= 6)
+        else if (Ores_in_tray.Count > 3 && Ores_in_tray.Count <= 6) //Vis mellom 3 og 6
         {
             spriteRenderer.sprite = using_sprite[2];
         }
-        else if (Ores_in_tray.Count > 6 && Ores_in_tray.Count <= 9)
+        else if (Ores_in_tray.Count > 6 && Ores_in_tray.Count <= 9) //Mellom 7 og 9
         {
-            spriteRenderer.sprite = using_sprite[3];
+            spriteRenderer.sprite = using_sprite[3]; 
         }
-        else if (Ores_in_tray.Count == 10)
+        else if (Ores_in_tray.Count == 10) //Hvis 10
         {
             spriteRenderer.sprite = using_sprite[4];
         }
@@ -85,7 +85,8 @@ public class Sorted_Ore_Tray : MonoBehaviour, IInteractor_Connector, IIData_tran
         }
     }
 
-    public void Drop_Off(GameObject main_character)
+    public void Drop_Off(GameObject main_character) //Her legger vi fra oss objekter, først sjekker vi om kvaliteten matcher det som skal være i stockpilen. 
+                                                    //Vis kvaliteten matcher, så legger vi itemen i stockpilen
     {
         result = handleQuality(main_character.GetComponent<DwarfScript>().Item_in_inventory.GetComponent<Ore>().ore_quality);
         if (result == true)
@@ -101,7 +102,8 @@ public class Sorted_Ore_Tray : MonoBehaviour, IInteractor_Connector, IIData_tran
 
 
 
-    private bool handleQuality(Enumtypes.Ore_Quality ore_quality)
+    private bool handleQuality(Enumtypes.Ore_Quality ore_quality)//Her sjekker vi om kvaliteten matcher
+                                                                 //Hvis det er tomt, så matcher jo alle, og kvaliteten på stockpilen blir kvaliteten på malmen. 
     {
         if (Ores_in_tray.Count == 0)
         {

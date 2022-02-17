@@ -53,21 +53,22 @@ public class Export_Chute : MonoBehaviour, IInteractor_Connector, IIData_transfe
         main_character.SendMessage("Inventory_Full_Message", result);
     }
 
-    public void Storage()
+    public void Storage() //Lagring og lasting av objekter på export-chuten. 
     {
-        for (int i = 0; i < Stuff_to_transport.Count; i++)
+        for (int i = 0; i < Stuff_to_transport.Count; i++) //Sjekker alle objekter i lista
         {
-            StaticData.export_chute_object_static.Add(Stuff_to_transport[i].GetComponent<Sword>().object_tag);
-            StaticData.export_chute_quality_static.Add(Stuff_to_transport[i].GetComponent<Sword>().ore_quality);
-            StaticData.x_position_export_chute.Add(Stuff_to_transport[i].transform.position.x);
-            StaticData.y_position_export_chute.Add(Stuff_to_transport[i].transform.position.y);
+            StaticData.export_chute_object_static.Add(Stuff_to_transport[i].GetComponent<Sword>().object_tag); //Lagrer hva type objekt det er
+            StaticData.export_chute_quality_static.Add(Stuff_to_transport[i].GetComponent<Sword>().ore_quality); //Lagrer hva kvaliteten er
+            StaticData.x_position_export_chute.Add(Stuff_to_transport[i].transform.position.x); //x-posisjon
+            StaticData.y_position_export_chute.Add(Stuff_to_transport[i].transform.position.y); //y-posisjon
         }
     }
 
-    public void Loading()
+    public void Loading() // her laster vi inn data, for å gjenskape situasjonen
     {
 
-        for (int i = 0; i < StaticData.export_chute_quality_static.Count; i++)
+        for (int i = 0; i < StaticData.export_chute_quality_static.Count; i++) //Vi gjør det for alle objekter i lista, antar at det er samme mengde data i alle 4 listene
+                                                                               //Så lager vi ett antall sverd objekt basert på dataen vi har, så clearer vi alt.
         {
             Stuff_to_transport.Add(Generation_Object.create_sword((int)StaticData.export_chute_quality_static[i], new Vector3(StaticData.x_position_export_chute[i], StaticData.y_position_export_chute[i], 0)));
         }

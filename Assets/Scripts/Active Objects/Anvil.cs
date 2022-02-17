@@ -39,19 +39,19 @@ public class Anvil : MonoBehaviour, IInteractor_Connector, IInteract_Work
 
     public void Pickup(GameObject main_character) //Interface metode for å hente ut converted objekt først, så prøver den å rydde opp i blueprint copien
     {
-        if (Converted_Object != null)
+        if (Converted_Object != null) // Her sjekker vi om vi har laget ett objekt
         {
             main_character.GetComponent<DwarfScript>().Item_in_inventory = Converted_Object;
             Converted_Object = null;
             Return_Answer(main_character, true); //Returnerer svar at vi fikk plukket oppe noe
         }
-        else if (blueprint_copy != null)
+        else if (blueprint_copy != null) //hvis ikke, hent opp blueprint copien
         {
             main_character.GetComponent<DwarfScript>().Item_in_inventory = blueprint_copy;
             blueprint_copy = null;
             Return_Answer(main_character, true); //Returnerer svar at vi fikk plukket oppe noe
         }
-        else if (object_to_be_destroyed != null)
+        else if (object_to_be_destroyed != null) //hvis ikke, hent råmaterialet
         {
             main_character.GetComponent<DwarfScript>().Item_in_inventory = object_to_be_destroyed;
             object_to_be_destroyed = null;
@@ -63,7 +63,7 @@ public class Anvil : MonoBehaviour, IInteractor_Connector, IInteract_Work
     {
         if (main_character.GetComponent<DwarfScript>().Item_in_inventory.GetComponent<Ingot>() != null) //Her legger vi inn ingots i anvilen
         {
-            object_to_be_destroyed = main_character.GetComponent<DwarfScript>().Item_in_inventory;
+            object_to_be_destroyed = main_character.GetComponent<DwarfScript>().Item_in_inventory; //Legger inn og flytter råmateriale på ambolten
             main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.position = gameObject.transform.position;
             Return_Answer(main_character, false); //Returnerer svar at vi fikk lagt fra oss noe. 
         }
