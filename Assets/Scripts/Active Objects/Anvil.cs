@@ -17,7 +17,7 @@ public class Anvil : MonoBehaviour, IInteractor_Connector, IInteract_Work
     // Update is called once per frame
     void Update()
     {
-        if (convert && blueprint_copy != null) //Sjekk om vi i det hele tatt har en blueprint
+        if (convert && blueprint_copy != null && object_to_be_destroyed != null) //Sjekk om vi i det hele tatt har en blueprint
         {
             if (blueprint_copy.GetComponent<Blueprint_Sword>()) //Hvis sverd blueprint.
             {
@@ -61,15 +61,15 @@ public class Anvil : MonoBehaviour, IInteractor_Connector, IInteract_Work
 
     public void Drop_Off(GameObject main_character) //Interface metode for å legge inn objekt. 
     {
-        if (main_character.GetComponent<DwarfScript>().Item_in_inventory.GetComponent<Ingot>() != null) //Her legger vi inn ingots i anvilen
+        if (main_character.GetComponent<DwarfScript>().Item_in_inventory.GetComponent<Ingot>() != null && object_to_be_destroyed == null) //Her legger vi inn ingots i anvilen
         {
             object_to_be_destroyed = main_character.GetComponent<DwarfScript>().Item_in_inventory; //Legger inn og flytter råmateriale på ambolten
             main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.position = gameObject.transform.position;
             Return_Answer(main_character, false); //Returnerer svar at vi fikk lagt fra oss noe. 
         }
-        else if (main_character.GetComponent<DwarfScript>().Item_in_inventory.GetComponent<Blueprint_Sword>() != null) //Her kommer blueprints inn i anvilen
+        else if (main_character.GetComponent<DwarfScript>().Item_in_inventory.GetComponent<Blueprint_Sword>() != null && blueprint_copy == null) //Her kommer blueprints inn i anvilen
         {
-            blueprint_copy = main_character.GetComponent<DwarfScript>().Item_in_inventory;
+            blueprint_copy = main_character.GetComponent<DwarfScript>().Item_in_inventory; 
             main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.position = gameObject.transform.position;
             Return_Answer(main_character, false); //Returnerer svar at vi fikk lagt fra oss noe.
         }

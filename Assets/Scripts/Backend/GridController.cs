@@ -57,11 +57,7 @@ public class GridController : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.H)) //Her aktiverer vi objekter, evnt så kan vi ha en spak vi interacter med for å gjøre det samme, vis alt ska være på space-knappen
-        { 
-            StaticData.Energy_mining_static = StaticData.Energy_mining_static + 1;
-            UI.SendMessage("calculateSprites");
-        }
+        
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Nearest_object = Find_nearest_interactable_object_within_range(0.5f); //Vi prøver å plukke opp metal //Endre til annen knapp i framtiden.

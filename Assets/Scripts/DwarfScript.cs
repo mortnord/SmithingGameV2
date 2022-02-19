@@ -51,8 +51,13 @@ public class DwarfScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.G))
         {
-            StaticData.amount_of_beer_static = StaticData.amount_of_beer_static - 1;
-            All_Scenes_UI.SendMessage("setPosition_Beers");
+            if(StaticData.amount_of_beer_static > 0)
+            {
+
+                StaticData.amount_of_beer_static = StaticData.amount_of_beer_static - 1;
+                All_Scenes_UI.SendMessage("setPosition_Beers");
+            }
+           
         }
       
 

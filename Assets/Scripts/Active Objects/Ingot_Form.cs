@@ -12,9 +12,12 @@ public class Ingot_Form : MonoBehaviour, IInteractor_Connector
 
     public void Pickup(GameObject main_character) //Interface metode for å plukke opp objekter. 
     {
-        main_character.GetComponent<DwarfScript>().Item_in_inventory = Ingots_in_form[0];
-        Ingots_in_form.RemoveAt(0);
-        Return_Answer(main_character, true);
+        if (Ingots_in_form.Count > 0)
+        {
+            main_character.GetComponent<DwarfScript>().Item_in_inventory = Ingots_in_form[0];
+            Ingots_in_form.RemoveAt(0);
+            Return_Answer(main_character, true);
+        }
     }
 
     public void Return_Answer(GameObject main_character, bool result) //Interface metode for å returnere ett svar

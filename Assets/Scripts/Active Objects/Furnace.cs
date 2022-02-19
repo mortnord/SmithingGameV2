@@ -53,7 +53,6 @@ public class Furnace : MonoBehaviour, IInteractor_Connector, IIData_transfer
             Ores_in_furnace.RemoveAt(0); //Tømme inventory og cleare, ingots har blitt laget i ingot_form objektet, så det går fint
 
             smelting_time = 11;
-
         }
 
 
@@ -73,6 +72,7 @@ public class Furnace : MonoBehaviour, IInteractor_Connector, IIData_transfer
         {
             quality_in_input = (int)item_in_inventory.GetComponent<Sword>().ore_quality;
         }
+        
         return quality_in_input;
     }
     public void Pickup(GameObject main_character)

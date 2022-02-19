@@ -36,6 +36,7 @@ public class Minecart : MonoBehaviour, IInteractor_Connector
     {
         if (list_of_ore.Count > 0 && gameObject.transform.position.y > 1.2) //Vis vi ikke har kjørt helt fram, og malmen er i vogna, gjør neste
         {
+            
             spriteRenderer.sprite = spriteArray[0];
             if (time_until_go > 0) //Tid for å kjøre?, ja/nei
             {

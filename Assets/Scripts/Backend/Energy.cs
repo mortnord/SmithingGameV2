@@ -71,10 +71,12 @@ public class Energy : MonoBehaviour
             Beers.RemoveAt(Beers.Count-1);
             for (int i = 0; i < StaticData.Energy_value_beer; i++) //Gi energi tilsvarnede energien vi har. 
             {
-                StaticData.Energy_mining_static++; //Legg til energi. 
-                calculateSprites(); 
+                if(StaticData.Energy_mining_static < 20)
+                {
+                    StaticData.Energy_mining_static++; //Legg til energi. 
+                    calculateSprites();
+                }
             }
-            
         }
     }
     public void change_sprite() //Denne sjekker om vi ska ha 1 eller 2 pickaxes. 
