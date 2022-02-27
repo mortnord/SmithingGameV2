@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Background
+  - Foreground
+  - Pickable Object
+  - Object
+  - Interact_Object
+  - Mining_Ore
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Player
+  - 
+  - 
+  - 
+  - Foreground
+  - Background
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3614356067
+    locked: 0
+  - name: Foreground
+    uniqueID: 2829760975
+    locked: 0
+  - name: Active Objects
+    uniqueID: 3982087171
+    locked: 0
+  - name: Items
+    uniqueID: 3645263075
+    locked: 0
+  - name: Player
+    uniqueID: 4089845407
+    locked: 0
+  - name: UI
+    uniqueID: 2691569
+    locked: 0

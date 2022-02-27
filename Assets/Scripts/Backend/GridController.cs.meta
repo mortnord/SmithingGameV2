@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 401ed34719719c148b7c71f017d8f272
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - backgroundmap: {fileID: 9002509227266400534, guid: 606174a3487a9784f941114ed4b7b659, type: 3}
+  - rock_map: {fileID: 6017179320750982142, guid: 8b9dae890a030f54b907ed48882a8173, type: 3}
+  - mouse_tile: {fileID: 11400000, guid: 6c2ec93597b2bbc448b2bd1911c83248, type: 2}
+  - mined_tile: {fileID: 11400000, guid: da48e8cf0442a794f8eebbc675417174, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
