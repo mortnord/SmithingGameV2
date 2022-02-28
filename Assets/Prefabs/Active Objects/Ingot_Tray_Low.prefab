@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 439923030955931387}
   - component: {fileID: 439923030955931908}
-  - component: {fileID: 439923030955931909}
   - component: {fileID: 1524390941952993617}
+  - component: {fileID: -1957245764032241941}
   m_Layer: 0
   m_Name: Ingot_Tray_Low
   m_TagString: Pickable Object
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: -1465206321
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a4111d084f8e0fa4abd4ae026c261bde, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7883f27874813bb409f26b69aff9922f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,7 +85,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &439923030955931909
+--- !u!114 &1524390941952993617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439923030955931386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7185d5ce976647448b1e001f49c4ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quality: 0
+  Ingots_in_tray: []
+  spriteArray_iron:
+  - {fileID: 21300000, guid: 7883f27874813bb409f26b69aff9922f, type: 3}
+  - {fileID: 21300000, guid: 03845fd1efd96994d9cbc1e1adf974da, type: 3}
+  spriteArray_copper:
+  - {fileID: 21300000, guid: 7883f27874813bb409f26b69aff9922f, type: 3}
+  - {fileID: 21300000, guid: 98a763a110852454c97d856982cea086, type: 3}
+  spriteArray_mithril:
+  - {fileID: 21300000, guid: 7883f27874813bb409f26b69aff9922f, type: 3}
+  - {fileID: 21300000, guid: 29ce08c9c2624d945815eea485058b2e, type: 3}
+  using_sprite: []
+  spriteRenderer: {fileID: 0}
+  Generation_Object: {fileID: 0}
+--- !u!61 &-1957245764032241941
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,35 +128,15 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.79, y: 1.07}
+    oldSize: {x: 2, y: 1.2}
     newSize: {x: 1.79, y: 1.07}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.79, y: 1.07}
+  m_Size: {x: 2, y: 1.2}
   m_EdgeRadius: 0
---- !u!114 &1524390941952993617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 439923030955931386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7185d5ce976647448b1e001f49c4ce1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quality: 0
-  Ingots_in_tray: []
-  spriteArray:
-  - {fileID: 21300000, guid: a4111d084f8e0fa4abd4ae026c261bde, type: 3}
-  - {fileID: 21300000, guid: 3c8442851e391e64c91c817a0e77d25e, type: 3}
-  - {fileID: 21300000, guid: 23aafb781c4e45e428ae254dcee2f418, type: 3}
-  - {fileID: 21300000, guid: 0d1ba3c35d17eb64aa3f11728d28e863, type: 3}
-  spriteRenderer: {fileID: 0}
 --- !u!1 &1922043960590731494
 GameObject:
   m_ObjectHideFlags: 0

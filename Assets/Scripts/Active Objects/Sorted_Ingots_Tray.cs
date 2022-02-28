@@ -6,11 +6,16 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
     public int quality;
     public List<GameObject> Ingots_in_tray = new List<GameObject>();
 
-    public Sprite[] spriteArray;
+    public Sprite[] spriteArray_iron;
+    public Sprite[] spriteArray_copper;
+    public Sprite[] spriteArray_mithril;
+    bool result;
+
+    public Sprite[] using_sprite;
+
     public SpriteRenderer spriteRenderer;
 
     public Object_Creation Generation_Object;
-    bool result;
 
     public void Drop_Off(GameObject main_character) //Her legger vi fra oss objekter, først sjekker vi om kvaliteten matcher det som skal være i stockpilen. 
                                                     //Vis kvaliteten matcher, så legger vi itemen i stockpilen
@@ -24,6 +29,8 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
             
             Return_Answer(main_character, false);
         }
+
+        handleSprite();
     }
 
     public void Pickup(GameObject main_character) //Her henter vi opp ting fra stockpilen. 
@@ -35,6 +42,8 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
             Ingots_in_tray[0].SetActive(true);
             Ingots_in_tray.RemoveAt(0);
             Return_Answer(main_character, true);
+
+            handleSprite();
         }
 
     }
@@ -50,6 +59,7 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
         Generation_Object = Find_Components.find_Object_Creation(); //Generation objektet
+        Change_Sprite_Set(0);
     }
 
     // Update is called once per frame
@@ -79,7 +89,7 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
 
     private void Change_Sprite_Set(int quality)
     {
-        /*
+       
         if (quality == 0)
         {
             using_sprite = spriteArray_copper;
@@ -93,13 +103,15 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
         else if (quality == 2)
         {
             using_sprite = spriteArray_mithril;
-        }*/
+        }
     }
     private void handleSprite()
     {
+
+        spriteRenderer.sprite = using_sprite[0];
         if (Ingots_in_tray.Count > 0 && Ingots_in_tray.Count <= 3)//Sprite endring fra tomt til fult. 
         {
-            //spriteRenderer.sprite = using_sprite[1];
+            spriteRenderer.sprite = using_sprite[1];
         }
         else if (Ingots_in_tray.Count > 3 && Ingots_in_tray.Count <= 6)
         {
