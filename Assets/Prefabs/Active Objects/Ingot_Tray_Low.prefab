@@ -101,13 +101,22 @@ MonoBehaviour:
   Ingots_in_tray: []
   spriteArray_iron:
   - {fileID: 21300000, guid: 7883f27874813bb409f26b69aff9922f, type: 3}
-  - {fileID: 21300000, guid: 03845fd1efd96994d9cbc1e1adf974da, type: 3}
+  - {fileID: -7366392911346533730, guid: 2a496fe8973bf26418ade90f0e06eee7, type: 3}
+  - {fileID: -7488152147482328439, guid: 2a496fe8973bf26418ade90f0e06eee7, type: 3}
+  - {fileID: -8355802850793114883, guid: 2a496fe8973bf26418ade90f0e06eee7, type: 3}
+  - {fileID: -5979886611810437656, guid: 2a496fe8973bf26418ade90f0e06eee7, type: 3}
   spriteArray_copper:
   - {fileID: 21300000, guid: 7883f27874813bb409f26b69aff9922f, type: 3}
-  - {fileID: 21300000, guid: 98a763a110852454c97d856982cea086, type: 3}
+  - {fileID: 1121581823830490243, guid: b7e714d24b817044182737eb68afe8af, type: 3}
+  - {fileID: 4415910821634001364, guid: b7e714d24b817044182737eb68afe8af, type: 3}
+  - {fileID: 6211772656501679813, guid: b7e714d24b817044182737eb68afe8af, type: 3}
+  - {fileID: -4206831960978160415, guid: b7e714d24b817044182737eb68afe8af, type: 3}
   spriteArray_mithril:
   - {fileID: 21300000, guid: 7883f27874813bb409f26b69aff9922f, type: 3}
-  - {fileID: 21300000, guid: 29ce08c9c2624d945815eea485058b2e, type: 3}
+  - {fileID: -4548069090394588328, guid: 1e1fe8db6c31d824abeddc44f5cc4070, type: 3}
+  - {fileID: -5157633286920524804, guid: 1e1fe8db6c31d824abeddc44f5cc4070, type: 3}
+  - {fileID: 1460739282829533610, guid: 1e1fe8db6c31d824abeddc44f5cc4070, type: 3}
+  - {fileID: -4498728564922208872, guid: 1e1fe8db6c31d824abeddc44f5cc4070, type: 3}
   using_sprite: []
   spriteRenderer: {fileID: 0}
   Generation_Object: {fileID: 0}

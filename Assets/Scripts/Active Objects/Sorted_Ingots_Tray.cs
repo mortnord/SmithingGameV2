@@ -108,26 +108,25 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
     private void handleSprite()
     {
 
-        spriteRenderer.sprite = using_sprite[0];
-        if (Ingots_in_tray.Count > 0 && Ingots_in_tray.Count <= 3)//Sprite endring fra tomt til fult. 
+        if (Ingots_in_tray.Count > 0 && Ingots_in_tray.Count <= 6)//Sprite endring fra tomt til fult. 
         {
             spriteRenderer.sprite = using_sprite[1];
         }
-        else if (Ingots_in_tray.Count > 3 && Ingots_in_tray.Count <= 6)
+        else if (Ingots_in_tray.Count > 6 && Ingots_in_tray.Count <= 12)
         {
-            //spriteRenderer.sprite = using_sprite[2];
+            spriteRenderer.sprite = using_sprite[2];
         }
-        else if (Ingots_in_tray.Count > 6 && Ingots_in_tray.Count <= 9)
+        else if (Ingots_in_tray.Count > 12 && Ingots_in_tray.Count <= 19)
         {
-            //spriteRenderer.sprite = using_sprite[3];
+            spriteRenderer.sprite = using_sprite[3];
         }
-        else if (Ingots_in_tray.Count == 10)
+        else if (Ingots_in_tray.Count == 20)
         {
-            //spriteRenderer.sprite = Ingots_in_tray[4];
+            spriteRenderer.sprite = using_sprite[4];
         }
         else if (Ingots_in_tray.Count == 0) //Tilbake til tomt når det er tomt. 
         {
-            //spriteRenderer.sprite = Ingots_in_tray[0];
+            spriteRenderer.sprite = using_sprite[0];
         }
     }
 

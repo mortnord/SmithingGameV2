@@ -36,5 +36,6 @@ public static class StaticData //Her har vi static data som lagres mellom scenes
     //Amount of Beers
     public static int amount_of_beer_static = 0;
     public static int Energy_value_beer = 5;
-      
+
+
 }
