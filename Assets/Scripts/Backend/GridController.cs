@@ -54,7 +54,8 @@ public class GridController : MonoBehaviour
                 {
                     rock_map.SetTile(mousePos, null); //Tilen på mousa sin posisjon blir satt til null. 
                     StaticData.Energy_mining_static = StaticData.Energy_mining_static - 1;
-                    UI.SendMessage("calculateSprites");
+                    UI.SendMessage("SetPosition_Energy");
+                    UI.SendMessage("change_sprite");
                 }
             }
         }

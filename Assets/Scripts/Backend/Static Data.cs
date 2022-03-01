@@ -32,6 +32,7 @@ public static class StaticData //Her har vi static data som lagres mellom scenes
 
     //Energy for Mining
     public static int Energy_mining_static = 20;
+    public static int Amount_of_energy_objects = 0;
 
     //Amount of Beers
     public static int amount_of_beer_static = 0;
