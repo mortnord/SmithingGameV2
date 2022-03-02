@@ -16,7 +16,7 @@ public class Mission_System : MonoBehaviour, IIData_transfer
     {
         Timer_Object = Find_Components.find_Timer_Object();
         Generation_Object = Find_Components.find_Object_Creation();
-        Loading();
+        Loading(); 
     }
     // Update is called once per frame
     void Update()

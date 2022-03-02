@@ -15,7 +15,7 @@ public class DwarfScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Denne trengs for å kunne gjøre physicsbasert movement
-        Application.targetFrameRate = 60;
+        
     }
     // Update is called once per frame
     void Update()

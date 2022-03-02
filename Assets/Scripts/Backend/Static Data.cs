@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public static class StaticData //Her har vi static data som lagres mellom scenes. 
 {
@@ -38,5 +39,10 @@ public static class StaticData //Her har vi static data som lagres mellom scenes
     public static int amount_of_beer_static = 0;
     public static int Energy_value_beer = 5;
 
+    //Map Generattion
+    public static int seed_caves = Random.Range(0, 9999);
+    public static int size_chunk = 16;
+    public static int size_total = size_chunk * size_chunk;
+    public static int size_negative = -size_total;
 
 }

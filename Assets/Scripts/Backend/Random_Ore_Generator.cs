@@ -6,68 +6,216 @@ using static Enumtypes;
 public class Random_Ore_Generator : MonoBehaviour
 {
     // Start is called before the first frame update
-    public List<GameObject> List_of_ores = new List<GameObject>();
+    
     Tilemap map_to_generate_in = null;
 
-    System.Random rand = new System.Random();
-    int randnr = 0;
-    public Object_Creation Generation_Object;
     public Ore_Quality ore_quality;
 
     public GameObject dwarf = null;
+    public RuleTile rock_tile;
+    public Tile copper_tile;
+    public Tile iron_tile;
+    public Tile mithril_tile;
+    public List<int> copper_spread = new List<int>();
+    public List<int> iron_spread = new List<int>();
+    public List<int> mithril_spread = new List<int>();
 
-
-    void Start()
-    {
-        Generation_Object = Find_Components.find_Object_Creation();
-    }
-
+    System.Random rand = new System.Random(); 
+    
     // Update is called once per frame
     void Update() //Her gjør vi ore synlig og usynlig basert på distansen mellom dwarf og ore. 
     {
-        for (int i = 0; i < List_of_ores.Count; i++)
-        {
-            if (Vector3.Distance(dwarf.transform.position, List_of_ores[i].transform.position) > 5)
-            {
-                List_of_ores[i].SetActive(false);
-            }
-            else
-            {
-                List_of_ores[i].SetActive(true);
-            }
-        }
+       
+    }
+
+    void Awake()
+    {
+        copper_spread.Add(1);
+        copper_spread.Add(1);
+        copper_spread.Add(2);
+        copper_spread.Add(2);
+        copper_spread.Add(2);
+
+        iron_spread.Add(1);
+        iron_spread.Add(1);
+        iron_spread.Add(1);
+        iron_spread.Add(2);
+        iron_spread.Add(2);
+
+        mithril_spread.Add(1);
+        mithril_spread.Add(1);
+        mithril_spread.Add(1);
+        mithril_spread.Add(1);
+        mithril_spread.Add(2);
     }
     void mapToGenerateIn(Tilemap Map_in) //Metode som kalles for å generate ore. 
     {
         map_to_generate_in = Map_in;
         generateMap(map_to_generate_in);
     }
-    void RemoveFromList(GameObject ore_to_be_removed) //Når vi plukker opp ett objekt, så fjernes det fra lista over ore som ska updates for synlig / ikke synlig
-    {
-        List_of_ores.Remove(ore_to_be_removed);
-    }
-
+    
     private void generateMap(Tilemap Map_in) //Vi har en dobbel for-loop som iterater over hele griddet, og vis terningen viser 0 1 eller 2 blir det generert malm
                                              //Vis ikke så blir det generert ingenting enn så leng
     {
+        
+
+        int seed_Copper = Random.Range(0, 9999);
+
+        int seed_Iron = Random.Range(0, 9999);
+
+        int seed_Mithril = Random.Range(0, 9999);
+        float oreNoise;
+        float xCoord;
+        float yCoord;
+
+
+        for (int i = Map_in.cellBounds.xMin; i < Map_in.cellBounds.xMax; i += 12)
+        {
+            for (int j = Map_in.cellBounds.yMin; j < Map_in.cellBounds.yMax; j += 12)
+            {
+                int ore_generate = Random.Range(0, 3);
+                
+                Ore_chunk_Bloom(ore_generate, Map_in, i, j);
+                
+            }
+        }
         for (int i = Map_in.cellBounds.xMin; i < Map_in.cellBounds.xMax; i++)
         {
             for (int j = Map_in.cellBounds.yMin; j < Map_in.cellBounds.yMax; j++)
             {
-                randnr = rand.Next(40);
-                if (randnr == 0)
+                xCoord = (float)i / (Mathf.Abs(Map_in.cellBounds.xMin + Mathf.Abs(Map_in.cellBounds.xMax)));
+                yCoord = (float)j / (Mathf.Abs(Map_in.cellBounds.yMin + Mathf.Abs(Map_in.cellBounds.yMax)));
+                oreNoise = Mathf.PerlinNoise(xCoord + seed_Copper, yCoord + seed_Copper);
+                
+                if(oreNoise > 0.75f)
                 {
-                    List_of_ores.Add(Generation_Object.create_ore(i, j, (int)Ore_Quality.Copper));
-                }
-                else if (randnr == 1)
-                {
-                    List_of_ores.Add(Generation_Object.create_ore(i, j, (int)Ore_Quality.Iron));
-                }
-                else if (randnr == 2)
-                {
-                    List_of_ores.Add(Generation_Object.create_ore(i, j, (int)Ore_Quality.Mithril));
+                    Map_in.SetTile(new Vector3Int(i, j, 0), copper_tile);
                 }
             }
+        }
+        for (int i = Map_in.cellBounds.xMin; i < Map_in.cellBounds.xMax; i++)
+        {
+            for (int j = Map_in.cellBounds.yMin; j < Map_in.cellBounds.yMax; j++)
+            {
+                xCoord = (float)i / (Mathf.Abs(Map_in.cellBounds.xMin + Mathf.Abs(Map_in.cellBounds.xMax)));
+                yCoord = (float)j / (Mathf.Abs(Map_in.cellBounds.yMin + Mathf.Abs(Map_in.cellBounds.yMax)));
+                oreNoise = Mathf.PerlinNoise(xCoord + seed_Iron, yCoord + seed_Iron);
+                
+                if (oreNoise > 0.80f)
+                {
+                    Map_in.SetTile(new Vector3Int(i, j, 0), iron_tile);
+                }
+            }
+        }
+        for (int i = Map_in.cellBounds.xMin; i < Map_in.cellBounds.xMax; i++)
+        {
+            for (int j = Map_in.cellBounds.yMin; j < Map_in.cellBounds.yMax; j++)
+            {
+                xCoord = (float)i / (Mathf.Abs(Map_in.cellBounds.xMin + Mathf.Abs(Map_in.cellBounds.xMax)));
+                yCoord = (float)j / (Mathf.Abs(Map_in.cellBounds.yMin + Mathf.Abs(Map_in.cellBounds.yMax)));
+                oreNoise = Mathf.PerlinNoise(xCoord + seed_Mithril, yCoord + seed_Mithril);
+               
+                if (oreNoise > 0.85f)
+                {
+                    Map_in.SetTile(new Vector3Int(i, j, 0), mithril_tile);
+                }
+            }
+        }
+        for (int i = Map_in.cellBounds.xMin; i < Map_in.cellBounds.xMax; i++)
+        {
+            for (int j = Map_in.cellBounds.xMin; j < Map_in.cellBounds.xMax; j++)
+            {
+
+                xCoord = (float)i / (Mathf.Abs(Map_in.cellBounds.xMin + Mathf.Abs(Map_in.cellBounds.xMax)));
+                yCoord = (float)j / (Mathf.Abs(Map_in.cellBounds.yMin + Mathf.Abs(Map_in.cellBounds.yMax)));
+
+                oreNoise = Mathf.PerlinNoise(xCoord + StaticData.seed_caves, yCoord + StaticData.seed_caves);
+                
+                if (oreNoise > 0.80f)
+                {
+                    Map_in.SetTile(new Vector3Int(i, j, 0), null);
+                }
+            }
+        }
+        
+    }
+
+    private void Ore_chunk_Bloom(int ore_generate, Tilemap map_in, int i, int j)
+    {
+        int spreadXplus;
+        int spreadYplus;
+        int spreadXminus;
+        int spreadYminux;
+        int randNr;
+        if (ore_generate == 0)
+        {
+            randNr = rand.Next(0, copper_spread.Count);
+            print(randNr);
+            spreadXplus = copper_spread[randNr];
+            spreadYplus = copper_spread[randNr];
+            spreadXminus = copper_spread[randNr]; 
+            spreadYminux = copper_spread[randNr];
+            map_in.SetTile(new Vector3Int(i, j, 0), copper_tile);
+            calculateSpread(spreadXplus, spreadXminus, spreadYminux, spreadYplus, map_in, copper_tile, i, j);
+            
+        }
+        else if(ore_generate == 1)
+        {
+
+            randNr = rand.Next(0, iron_spread.Count);
+            spreadXplus = iron_spread[randNr];
+            spreadYplus = iron_spread[randNr];
+            spreadXminus = iron_spread[randNr];
+            spreadYminux = iron_spread[randNr];
+
+            map_in.SetTile(new Vector3Int(i, j, 0), iron_tile);
+            calculateSpread(spreadXplus, spreadXminus, spreadYminux, spreadYplus, map_in, iron_tile, i, j);
+        }
+        else if (ore_generate == 2)
+        {
+
+            randNr = rand.Next(0, mithril_spread.Count);
+            spreadXplus = mithril_spread[randNr];
+            spreadYplus = mithril_spread[randNr];
+            spreadXminus = mithril_spread[randNr];
+            spreadYminux = mithril_spread[randNr];
+
+            
+            map_in.SetTile(new Vector3Int(i, j, 0), mithril_tile);
+            calculateSpread(spreadXplus, spreadXminus, spreadYminux, spreadYplus, map_in, mithril_tile, i, j);
+        }
+        
+    }
+
+    private void calculateSpread(int spreadXplus, int spreadXminus, int spreadYminux, int spreadYplus, Tilemap map_in, Tile tile_spread, int i, int j)
+    {
+        int iterator = 0;
+        while (spreadXplus > 0)
+        {
+            iterator++;
+            map_in.SetTile(new Vector3Int(i + iterator, j, 0), tile_spread);
+            spreadXplus--;
+        }
+        iterator = 0;
+        while (spreadYplus > 0)
+        {
+            iterator++;
+            map_in.SetTile(new Vector3Int(i, j + iterator, 0), tile_spread);
+            spreadYplus--;
+        }
+        iterator = 0;
+        while (spreadXminus > 0)
+        {
+            iterator--;
+            map_in.SetTile(new Vector3Int(i + iterator, j, 0), tile_spread);
+            spreadXminus--;
+        }
+        iterator = 0;
+        while (spreadYminux > 0)
+        {
+            iterator--;
+            map_in.SetTile(new Vector3Int(i, j + iterator, 0), tile_spread);
+            spreadYminux--;
         }
     }
 }
