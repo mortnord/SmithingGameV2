@@ -54,7 +54,7 @@ public class GridController : MonoBehaviour
         {
             for (int j = shade_map.cellBounds.yMin; j < shade_map.cellBounds.yMax; j++)
             {
-                if(Vector3Int.Distance(dwarfPos, new Vector3Int(i, j, 0)) < 5)
+                if(Vector3Int.Distance(dwarfPos, new Vector3Int(i, j, 0)) < 500)
                 {
                     shade_map.SetTile(new Vector3Int(i, j, 0), null);
                 }
