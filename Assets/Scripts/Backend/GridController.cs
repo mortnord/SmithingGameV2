@@ -50,11 +50,11 @@ public class GridController : MonoBehaviour
 
         }
 
-        for (int i = shade_map.cellBounds.xMin; i < shade_map.cellBounds.xMax; i++)
+        for (int i = shade_map.cellBounds.xMin; i < shade_map.cellBounds.xMax; i++) //Her fjerner vi fra shader mappet, som gjør at underlagene blir synlige
         {
             for (int j = shade_map.cellBounds.yMin; j < shade_map.cellBounds.yMax; j++)
             {
-                if(Vector3Int.Distance(dwarfPos, new Vector3Int(i, j, 0)) < 500)
+                if(Vector3Int.Distance(dwarfPos, new Vector3Int(i, j, 0)) < 5)
                 {
                     shade_map.SetTile(new Vector3Int(i, j, 0), null);
                 }
@@ -62,32 +62,31 @@ public class GridController : MonoBehaviour
         }
                 // Right mouse click -> remove path tile
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && dwarfScript.Item_in_inventory == null)
         {
             
             if (Vector3.Distance(dwarfPos, mousePos) <= 1) //Så sammenligner vi om vi er nærme nok til å grave, vis vi er så fortsetter vi 
             {
-                if (rock_map.GetTile(mousePos) != null && StaticData.Energy_mining_static > 0)
+                if (rock_map.GetTile(mousePos) != null && StaticData.Energy_mining_static > 0) //Hvis vi har energi, og vi prøver å grave på en ting
                 {
-                    if(rock_map.GetTile(mousePos) == copper_tile)
+                    if(rock_map.GetTile(mousePos) == copper_tile) //Hvis copper, gi copper
                     {
                         dwarfScript.Item_in_inventory = Generation_Object.create_ore((int)Enumtypes.Ore_Quality.Copper, dwarf);
                         dwarf.SendMessage("Inventory_Full_Message", true);
                     }
-                    else if (rock_map.GetTile(mousePos) == iron_tile)
+                    else if (rock_map.GetTile(mousePos) == iron_tile) //Iron
                     {
                         dwarfScript.Item_in_inventory = Generation_Object.create_ore((int)Enumtypes.Ore_Quality.Iron, dwarf);
                         dwarf.SendMessage("Inventory_Full_Message", true);
                     }
-                    else if (rock_map.GetTile(mousePos) == mithril_tile)
+                    else if (rock_map.GetTile(mousePos) == mithril_tile) //Mithril
                     {
                         dwarfScript.Item_in_inventory = Generation_Object.create_ore((int)Enumtypes.Ore_Quality.Mithril, dwarf);
                         dwarf.SendMessage("Inventory_Full_Message", true);
                     }
                     rock_map.SetTile(mousePos, null); //Tilen på mousa sin posisjon blir satt til null. 
-                    StaticData.Energy_mining_static = StaticData.Energy_mining_static - 1;
-                    UI.SendMessage("SetPosition_Energy");
-                    UI.SendMessage("change_sprite");
+                    StaticData.Energy_mining_static = StaticData.Energy_mining_static - 1; //Mindre energi
+                    UI.SendMessage("SetPosition_Energy"); //Metode for å beregne energi.
                 }
             }
         }

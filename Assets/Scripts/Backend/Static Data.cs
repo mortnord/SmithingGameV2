@@ -41,6 +41,9 @@ public static class StaticData //Her har vi static data som lagres mellom scenes
 
     //Map Generattion
     public static int seed_caves = Random.Range(0, 9999);
+    public static int seed_Copper = Random.Range(0, 9999);
+    public static int seed_Iron = Random.Range(0, 9999);
+    public static int seed_Mithril = Random.Range(0, 9999);
     public static int size_chunk = 16;
     public static int size_total = size_chunk * size_chunk;
     public static int size_negative = -size_total;

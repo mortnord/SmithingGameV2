@@ -20,13 +20,13 @@ public class Energy : MonoBehaviour
         setPosition_Beers(); //Evnt øl / energibarer
     }
 
-    public void SetPosition_Energy()
+    public void SetPosition_Energy() //Her setter vi energien til posisjon og mengde
     {
 
-        amount_of_energy_objects = (int)Math.Ceiling(StaticData.Energy_mining_static / 2d);
-        if (StaticData.Energy_mining_static > 0)
+        amount_of_energy_objects = (int)Math.Ceiling(StaticData.Energy_mining_static / 2d); //Finn ut hvor mange vi trenger
+        if (StaticData.Energy_mining_static > 0) //Så lenge vi har energi da..
         {
-            while (Energy_Objects.Count <= amount_of_energy_objects)
+            while (Energy_Objects.Count <= amount_of_energy_objects) //vis vi skal ha mer objekter enn vi har, så lag og legg til
             {
                 Energy_Objects.Add(Generation_Object.create_energy_indicator(gameObject));
                 StaticData.Amount_of_energy_objects++;
@@ -36,7 +36,7 @@ public class Energy : MonoBehaviour
                 Energy_Objects[i].transform.position = new Vector3(-12.5f + (i), 9, 0); //Her setter vi posisjonen, enkel matte. 
             }
         }
-        if(StaticData.Amount_of_energy_objects >= amount_of_energy_objects)
+        if(StaticData.Amount_of_energy_objects >= amount_of_energy_objects) //Hvis vi har mer energi-objekter en vi skal ha, så slett. 
         {
             Destroy(Energy_Objects[Energy_Objects.Count - 1]);
             Energy_Objects.RemoveAt(Energy_Objects.Count-1);
