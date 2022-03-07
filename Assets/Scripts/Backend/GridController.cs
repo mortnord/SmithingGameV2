@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -19,6 +20,7 @@ public class GridController : MonoBehaviour
     public GameObject dwarf = null;
     public GameObject UI = null;
     DwarfScript dwarfScript = null;
+    public Mineable_Tile mine_tile;
     
 
     private Vector3Int prev_mouse_pos = new Vector3Int();
@@ -27,12 +29,39 @@ public class GridController : MonoBehaviour
     void Start() //Vi finner nødvendige objekter, og gir beskjed til rock mappet om å generate ore. 
     {
         grid = gameObject.GetComponent<Grid>();
-        rock_map.CompressBounds();
-        SendMessage("mapToGenerateIn", rock_map);
+        
         dwarfScript = dwarf.GetComponent<DwarfScript>();
-
+        LoadMap();
         Generation_Object = Find_Components.find_Object_Creation();
     }
+
+    private void LoadMap()
+    {
+        for (int i = -StaticData.map_size_x; i < StaticData.map_size_x; i++)
+        {
+            for (int j = -StaticData.map_size_y; j < StaticData.map_size_y; j++)
+            {
+                mine_tile = StaticData.Digging_Map_information[new Vector3Int(i, j, 0)];
+                if(mine_tile != null)
+                {
+                    if (mine_tile.rule != null)
+                    {
+                        rock_map.SetTile(new Vector3Int(i, j, 0), mine_tile.rule);
+                    }
+                    else if (mine_tile.tile != null)
+                    {
+                        rock_map.SetTile(new Vector3Int(i, j, 0), mine_tile.tile);
+                    }
+                    mine_tile = null;
+                }
+            }
+        }
+        rock_map.SetTile(new Vector3Int(-7, 4, 0), null);
+        rock_map.SetTile(new Vector3Int(-6, 4, 0), null);
+        rock_map.SetTile(new Vector3Int(-5, 4, 0), null);
+        rock_map.SetTile(new Vector3Int(-4, 4, 0), null);
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -50,11 +79,11 @@ public class GridController : MonoBehaviour
 
         }
 
-        for (int i = shade_map.cellBounds.xMin; i < shade_map.cellBounds.xMax; i++) //Her fjerner vi fra shader mappet, som gjør at underlagene blir synlige
+        for (int i = rock_map.cellBounds.xMin; i < rock_map.cellBounds.xMax; i++) //Her fjerner vi fra shader mappet, som gjør at underlagene blir synlige
         {
-            for (int j = shade_map.cellBounds.yMin; j < shade_map.cellBounds.yMax; j++)
+            for (int j = rock_map.cellBounds.yMin; j < rock_map.cellBounds.yMax; j++)
             {
-                if(Vector3Int.Distance(dwarfPos, new Vector3Int(i, j, 0)) < 5)
+                if(Vector3Int.Distance(dwarfPos, new Vector3Int(i, j, 0)) < 50)
                 {
                     shade_map.SetTile(new Vector3Int(i, j, 0), null);
                 }
@@ -84,7 +113,9 @@ public class GridController : MonoBehaviour
                         dwarfScript.Item_in_inventory = Generation_Object.create_ore((int)Enumtypes.Ore_Quality.Mithril, dwarf);
                         dwarf.SendMessage("Inventory_Full_Message", true);
                     }
-                    rock_map.SetTile(mousePos, null); //Tilen på mousa sin posisjon blir satt til null. 
+                    rock_map.SetTile(mousePos, null);//Tilen på mousa sin posisjon blir satt til null. 
+                
+                    StaticData.Digging_Map_information[new Vector3Int(mousePos.x, mousePos.y, 0)] = null;
                     StaticData.Energy_mining_static = StaticData.Energy_mining_static - 1; //Mindre energi
                     UI.SendMessage("SetPosition_Energy"); //Metode for å beregne energi.
                 }

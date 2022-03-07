@@ -44,8 +44,9 @@ public static class StaticData //Her har vi static data som lagres mellom scenes
     public static int seed_Copper = Random.Range(0, 9999);
     public static int seed_Iron = Random.Range(0, 9999);
     public static int seed_Mithril = Random.Range(0, 9999);
-    public static int size_chunk = 16;
-    public static int size_total = size_chunk * size_chunk;
-    public static int size_negative = -size_total;
+    public static int map_size_x = 50;
+    public static int map_size_y = 50;
 
+    //Map Storage
+    public static Dictionary<Vector3Int, Mineable_Tile> Digging_Map_information = new Dictionary<Vector3Int, Mineable_Tile>();
 }

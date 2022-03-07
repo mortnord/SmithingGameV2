@@ -4,10 +4,17 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - backgroundmap: {fileID: 9002509227266400534, guid: 606174a3487a9784f941114ed4b7b659, type: 3}
-  - rock_map: {fileID: 6017179320750982142, guid: 8b9dae890a030f54b907ed48882a8173, type: 3}
+  - Generation_Object: {instanceID: 0}
+  - backgroundmap: {instanceID: 0}
+  - rock_map: {instanceID: 0}
+  - shade_map: {instanceID: 0}
   - mouse_tile: {fileID: 11400000, guid: 6c2ec93597b2bbc448b2bd1911c83248, type: 2}
+  - copper_tile: {fileID: 11400000, guid: 2c6f81cca8072ed4bb5d60f3a32bcf0f, type: 2}
+  - iron_tile: {fileID: 11400000, guid: 33503a2ccaf930c46b9b744f7e5c80fb, type: 2}
+  - mithril_tile: {fileID: 11400000, guid: b5a7214d6e73d1d45ac51c7f583e1db3, type: 2}
   - mined_tile: {fileID: 11400000, guid: da48e8cf0442a794f8eebbc675417174, type: 2}
+  - dwarf: {instanceID: 0}
+  - UI: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
