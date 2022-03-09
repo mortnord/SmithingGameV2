@@ -2,7 +2,7 @@ using UnityEngine;
 
 using static Enumtypes;
 
-public class Vein : MonoBehaviour, IInteractor_Connector
+public class Vein : MonoBehaviour
 {
     // Start is called before the first frame update
 
@@ -22,24 +22,4 @@ public class Vein : MonoBehaviour, IInteractor_Connector
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void Pickup(GameObject main_character) //Her har vi en vein, som generer ore i inventory
-    {
-        main_character.GetComponent<DwarfScript>().Item_in_inventory = Generation_Object.create_ore((int)ore_quality, gameObject);
-        Return_Answer(main_character, true);
-    }
-
-    public void Drop_Off(GameObject main_character)
-    {
-        //Do nothing
-    }
-
-    public void Return_Answer(GameObject main_character, bool result) //Returnerer svar på at inventory er fult eller tomt
-    {
-        main_character.SendMessage("Inventory_Full_Message", result);
-    }
 }

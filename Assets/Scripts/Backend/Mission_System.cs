@@ -46,7 +46,7 @@ public class Mission_System : MonoBehaviour, IIData_transfer
         time_remaining = StaticData.time_Remaining; //Vi finner tid igjen, men ska vel rewrites?
         GameObject mission = Generation_Object.create_card_with_mission(time_remaining, new Vector3(0, 0, 0)); //Missionet blir laget i create_objekts koden
         Missions_in_UI.Add(mission); //Legges inn i objekter som skal tegnes i UIet
-        mission.GetComponent<Mission>().quality_of_object_for_mission = mission.GetComponentInChildren<Sword>().quality; //Kvaliteten på objektet som skal leveres
+        mission.GetComponent<Mission>().quality_of_object_for_mission = mission.GetComponentInChildren<Common_Properties>().quality; //Kvaliteten på objektet som skal leveres
         mission.GetComponent<Mission>().type_of_object_for_mission = (int)Generation_Object.get_random_type(); //typen av objekt som ska leveres
         Timer_Object.reset_timer = 10; //Reset
     }
@@ -56,10 +56,10 @@ public class Mission_System : MonoBehaviour, IIData_transfer
         {
             for (int i = 0; i < Missions_in_UI.Count; i++)
             {
-                if (Object_to_check.GetComponent<Sword>()) //Sjekk sword missions
+                if (Object_to_check.GetComponent<Common_Properties>()) //Sjekk sword missions
                 {
                     //Merga IF-setning som sjekker at begge delen av missionet er oppfylt
-                    if (Missions_in_UI[i].GetComponent<Mission>().quality_of_object_for_mission == Object_to_check.GetComponent<Sword>().quality && Missions_in_UI[i].GetComponent<Mission>().type_of_object_for_mission == (int)Object_to_check.GetComponent<Sword>().mission_tag)
+                    if (Missions_in_UI[i].GetComponent<Mission>().quality_of_object_for_mission == Object_to_check.GetComponent<Common_Properties>().quality && Missions_in_UI[i].GetComponent<Mission>().type_of_object_for_mission == (int)Object_to_check.GetComponent<Common_Properties>().mission_tag)
                     {
                         Destroy_Object(i); //Destroyer objekt og rydder opp
 

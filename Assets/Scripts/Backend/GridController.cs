@@ -100,17 +100,18 @@ public class GridController : MonoBehaviour
                 {
                     if(rock_map.GetTile(mousePos) == copper_tile) //Hvis copper, gi copper
                     {
-                        dwarfScript.Item_in_inventory = Generation_Object.create_ore((int)Enumtypes.Ore_Quality.Copper, dwarf);
+                        
+                        dwarfScript.Item_in_inventory = Generation_Object.create_ore((int)Enumtypes.Ore_Quality.Copper, dwarf, StaticData.Digging_Map_information[new Vector3Int(mousePos.x, mousePos.y, 0)].percent_ore_quality);
                         dwarf.SendMessage("Inventory_Full_Message", true);
                     }
                     else if (rock_map.GetTile(mousePos) == iron_tile) //Iron
                     {
-                        dwarfScript.Item_in_inventory = Generation_Object.create_ore((int)Enumtypes.Ore_Quality.Iron, dwarf);
+                        dwarfScript.Item_in_inventory = Generation_Object.create_ore((int)Enumtypes.Ore_Quality.Iron, dwarf, StaticData.Digging_Map_information[new Vector3Int(mousePos.x, mousePos.y, 0)].percent_ore_quality);
                         dwarf.SendMessage("Inventory_Full_Message", true);
                     }
                     else if (rock_map.GetTile(mousePos) == mithril_tile) //Mithril
                     {
-                        dwarfScript.Item_in_inventory = Generation_Object.create_ore((int)Enumtypes.Ore_Quality.Mithril, dwarf);
+                        dwarfScript.Item_in_inventory = Generation_Object.create_ore((int)Enumtypes.Ore_Quality.Mithril, dwarf, StaticData.Digging_Map_information[new Vector3Int(mousePos.x, mousePos.y, 0)].percent_ore_quality);
                         dwarf.SendMessage("Inventory_Full_Message", true);
                     }
                     rock_map.SetTile(mousePos, null);//Tilen på mousa sin posisjon blir satt til null. 

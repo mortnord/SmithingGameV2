@@ -18,34 +18,30 @@ public class Object_Creation : MonoBehaviour
 
     System.Random rand = new System.Random();
 
-    public GameObject create_ore(int quality, GameObject parent) //Oren som blir generert basert på parent etter å ha blitt lagra. 
+    public GameObject create_ore(int quality, GameObject parent, int percent_ore_quality) //Oren som blir generert basert på parent etter å ha blitt lagra. 
     {
         GameObject spawned_ore = Instantiate(Ore_prefab, new Vector3(parent.transform.position.x, parent.transform.position.y, 0), Quaternion.identity);
+        spawned_ore.GetComponent<Ore>().percent_ore_to_ingot = percent_ore_quality;
         spawned_ore.GetComponent<Ore>().quality = quality; //Vi bruker en instantitate av en prefab som er satt i inspektoren.
+        spawned_ore.GetComponent<Common_Properties>().quality = quality;
+        spawned_ore.GetComponent<Common_Properties>().object_tag = Enumtypes.Object_Types.Ore;
         return spawned_ore;
     }
-    public GameObject create_ore(float x, float y, int quality) //Oren som blir generert basert på X og Y posisjon, i dette tilfelle i random generation
-    {
-        x = x + 0.5f;
-        y = y + 0.5f;
-        GameObject spawned_ore = Instantiate(Ore_prefab, new Vector3(x, y, 0), Quaternion.identity);
-        spawned_ore.GetComponent<Ore>().quality = quality; //Vi bruker en instantitate av en prefab som er satt i inspektoren.
-        spawned_ore.tag = "Mining_Ore";
-        return spawned_ore;
-    }
-
-
     public GameObject create_ingot(int quality) //Ingots laga etter smelting
     {
         GameObject spawned_ingot = Instantiate(ingot_prefab, new Vector3(-4.8f, 2f), Quaternion.identity);
-        print(quality + "Er kval");
+        spawned_ingot.SetActive(true);
         spawned_ingot.GetComponent<Ingot>().quality = quality;
+        spawned_ingot.GetComponent<Common_Properties>().quality = quality;
+        spawned_ingot.GetComponent<Common_Properties>().object_tag = Enumtypes.Object_Types.Ingot;
         return spawned_ingot;
     }
     public GameObject create_ingot(int quality, GameObject gameObject) //Ingots laget etter lasting av filer, lages i stockpiles. 
     {
         GameObject spawned_ingot = Instantiate(ingot_prefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
         spawned_ingot.GetComponent<Ingot>().quality = quality;
+        spawned_ingot.GetComponent<Common_Properties>().quality = quality;
+        spawned_ingot.GetComponent<Common_Properties>().object_tag = Enumtypes.Object_Types.Ingot;
         return spawned_ingot;
     }
 
@@ -53,6 +49,9 @@ public class Object_Creation : MonoBehaviour
     {
         GameObject spawned_sword = Instantiate(sword_prefab, position, Quaternion.identity);
         spawned_sword.GetComponent<Sword>().quality = quality;
+        spawned_sword.GetComponent<Common_Properties>().quality = quality;
+        spawned_sword.GetComponent<Common_Properties>().object_tag = Enumtypes.Object_Types.Sword;
+        spawned_sword.GetComponent<Common_Properties>().mission_tag = Enumtypes.Mission_Objects.Sword;
         return spawned_sword;
     }
 

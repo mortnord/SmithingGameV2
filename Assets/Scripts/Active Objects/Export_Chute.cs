@@ -57,8 +57,8 @@ public class Export_Chute : MonoBehaviour, IInteractor_Connector, IIData_transfe
     {
         for (int i = 0; i < Stuff_to_transport.Count; i++) //Sjekker alle objekter i lista
         {
-            StaticData.export_chute_object_static.Add(Stuff_to_transport[i].GetComponent<Sword>().object_tag); //Lagrer hva type objekt det er
-            StaticData.export_chute_quality_static.Add(Stuff_to_transport[i].GetComponent<Sword>().ore_quality); //Lagrer hva kvaliteten er
+            StaticData.export_chute_object_static.Add(Stuff_to_transport[i].GetComponent<Common_Properties>().object_tag); //Lagrer hva type objekt det er
+            StaticData.export_chute_quality_static.Add(Stuff_to_transport[i].GetComponent<Common_Properties>().ore_quality); //Lagrer hva kvaliteten er
             StaticData.x_position_export_chute.Add(Stuff_to_transport[i].transform.position.x); //x-posisjon
             StaticData.y_position_export_chute.Add(Stuff_to_transport[i].transform.position.y); //y-posisjon
         }

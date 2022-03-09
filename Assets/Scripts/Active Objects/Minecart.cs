@@ -25,7 +25,7 @@ public class Minecart : MonoBehaviour, IInteractor_Connector
     {
         for (int i = 0; i < StaticData.Transition_Ores.Count; i++)
         {
-            list_of_ore.Add(Generation_Object.create_ore((int)StaticData.Transition_Ores[i], gameObject));
+            list_of_ore.Add(Generation_Object.create_ore((int)StaticData.Transition_Ores[i], gameObject, StaticData.percent_ore_quality_transition[i]));
             list_of_ore[i].SetActive(false);
         }
         StaticData.Transition_Ores.Clear(); //fjerner dataen fra staticData.

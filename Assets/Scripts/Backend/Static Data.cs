@@ -7,8 +7,14 @@ public static class StaticData //Her har vi static data som lagres mellom scenes
     public static int score = 0;
     public static float time_Remaining = 720;
 
+    //Transition del
     public static List<Enumtypes.Ore_Quality> Transition_Ores = new List<Enumtypes.Ore_Quality>();
+    public static List<int> percent_ore_quality_transition = new List<int>();
+
+    //Storage units ore
     public static List<List<Enumtypes.Ore_Quality>> Ore_Quality = new List<List<Enumtypes.Ore_Quality>>();
+    public static List<List<int>> percent_ore_quality_ore_storage = new List<List<int>>();
+    //Storage units ingots
     public static List<List<Enumtypes.Ore_Quality>> Ingot_Quality = new List<List<Enumtypes.Ore_Quality>>();
 
 
@@ -24,6 +30,7 @@ public static class StaticData //Her har vi static data som lagres mellom scenes
     public static float smelting_time_static;
     public static int smelting_input_static;
     public static List<Enumtypes.Ore_Quality> furnace_quality_static_object = new List<Enumtypes.Ore_Quality>();
+    public static List<int> percent_ore_quality_furnace = new List<int>();
 
     //Export Chute
     public static List<Enumtypes.Ore_Quality> export_chute_quality_static = new List<Enumtypes.Ore_Quality>();

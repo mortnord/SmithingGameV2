@@ -10,6 +10,5 @@ public class Initialization : MonoBehaviour
         SceneManager.LoadSceneAsync("Smithing_Screen", LoadSceneMode.Single);
         print("Loading");
     }
-
 }
 

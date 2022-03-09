@@ -60,8 +60,9 @@ public class Random_Ore_Generator : MonoBehaviour
             for (int j = -StaticData.map_size_y; j < StaticData.map_size_y; j += 12)
             {
                 int ore_generate = UnityEngine.Random.Range(0, 3); //En av copper, iron eller mithril
-
-                Ore_chunk_Bloom(ore_generate, i, j, rand.Next(100, 301)); //Hvor denne bloomen skal generates
+                int rnd_seed = rand.Next(100, 301);
+                print(rnd_seed);
+                Ore_chunk_Bloom(ore_generate, i, j, rnd_seed); //Hvor denne bloomen skal generates
             }
         }
 
@@ -165,8 +166,7 @@ public class Random_Ore_Generator : MonoBehaviour
                 oreNoise = Mathf.PerlinNoise(xCoord + seed, yCoord + seed);
                 if (oreNoise > v)
                 {
-                    int mining_value = (int)oreNoise * 100;
-                    StaticData.Digging_Map_information[new Vector3Int(i, j, 0)] = new Mineable_Tile(tile, mining_value); //Spre malm godsaker rundt om kring.
+                    StaticData.Digging_Map_information[new Vector3Int(i, j, 0)] = new Mineable_Tile(tile, 150); //Spre malm godsaker rundt om kring.
                 }
             }
         }

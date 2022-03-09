@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2356200671995558069}
   - component: {fileID: 5047561985380788657}
   - component: {fileID: 5126808774737747051}
+  - component: {fileID: -2794642329233486806}
   m_Layer: 10
   m_Name: Ingot
   m_TagString: Object
@@ -103,3 +104,19 @@ MonoBehaviour:
   quality: 0
   ore_quality: 0
   object_tag: 0
+--- !u!114 &-2794642329233486806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8554363236471437939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8934bebc18c846d4f8c71d7b8b9a03b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quality: 0
+  object_tag: 0
+  ore_quality: 0
+  mission_tag: 0

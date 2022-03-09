@@ -12,7 +12,8 @@ public class Mined_Ore_Cart : MonoBehaviour, IInteractor_Connector
         main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.position = gameObject.transform.position;
         main_character.GetComponent<DwarfScript>().Item_in_inventory.tag = "Object";
         main_character.GetComponent<DwarfScript>().Item_in_inventory.SetActive(false);
-        StaticData.Transition_Ores.Add(main_character.GetComponent<DwarfScript>().Item_in_inventory.GetComponent<Ore>().ore_quality);
+        StaticData.Transition_Ores.Add(main_character.GetComponent<DwarfScript>().Item_in_inventory.GetComponent<Common_Properties>().ore_quality);
+        StaticData.percent_ore_quality_transition.Add(main_character.GetComponent<DwarfScript>().Item_in_inventory.GetComponent<Ore>().percent_ore_to_ingot);
         Ores_in_tray.Add(main_character.GetComponent<DwarfScript>().Item_in_inventory);
         Return_Answer(main_character, false); //returnere svar 
     }
@@ -25,19 +26,5 @@ public class Mined_Ore_Cart : MonoBehaviour, IInteractor_Connector
     public void Return_Answer(GameObject main_character, bool result) //Interface metode for å returnere svar
     {
         main_character.SendMessage("Inventory_Full_Message", result);
-    }
-
-    
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

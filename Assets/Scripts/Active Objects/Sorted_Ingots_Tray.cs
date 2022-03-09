@@ -20,7 +20,7 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
     public void Drop_Off(GameObject main_character) //Her legger vi fra oss objekter, først sjekker vi om kvaliteten matcher det som skal være i stockpilen. 
                                                     //Vis kvaliteten matcher, så legger vi itemen i stockpilen
     {
-        result = handleQuality(main_character.GetComponent<DwarfScript>().Item_in_inventory.GetComponent<Ingot>().ore_quality);
+        result = handleQuality(main_character.GetComponent<DwarfScript>().Item_in_inventory.GetComponent<Common_Properties>().ore_quality);
         if (result == true)
         {
             main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.position = gameObject.transform.position;
@@ -135,7 +135,7 @@ public class Sorted_Ingots_Tray : MonoBehaviour, IInteractor_Connector, IIData_t
         List<Enumtypes.Ore_Quality> Ore_Quality = new List<Enumtypes.Ore_Quality>();
         for (int i = 0; i < Ingots_in_tray.Count; i++) //Generer ore og legg det i stockpilen for usortert ore
         {
-            Ore_Quality.Add(Ingots_in_tray[i].GetComponent<Ingot>().ore_quality);
+            Ore_Quality.Add(Ingots_in_tray[i].GetComponent<Common_Properties>().ore_quality);
         }
         StaticData.Ingot_Quality.Add(Ore_Quality);
     }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3659677551914737235}
   - component: {fileID: 9031039004733687424}
   - component: {fileID: 3001295236023305916}
+  - component: {fileID: -3935044932093752634}
   m_Layer: 0
   m_Name: Sverd
   m_TagString: Object
@@ -101,6 +102,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0b099a28befb56940a4aa1662fdddbaa, type: 3}
   - {fileID: 21300000, guid: 94eb981a078274740b5cfdac7285d835, type: 3}
   spriteRenderer: {fileID: 0}
+  quality: 0
+  object_tag: 0
+  ore_quality: 0
+  mission_tag: 0
+--- !u!114 &-3935044932093752634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2343263518298730180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8934bebc18c846d4f8c71d7b8b9a03b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   quality: 0
   object_tag: 0
   ore_quality: 0
