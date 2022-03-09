@@ -171,27 +171,4 @@ public class GridController : MonoBehaviour
         return grid.WorldToCell(mouseWorldPos);
 
     }
-    GameObject Find_nearest_interactable_object_within_range(float Range) //Her finner vi nærmeste objekt innenfor objekter med riktig tag, returnerer ett GameObject
-    {
-        GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("Mining_Ore");
-
-        GameObject closest = null;
-
-        float distance = Mathf.Infinity;
-        Vector3 position = dwarf.transform.position;
-        foreach (GameObject go in gos)
-        {
-            Vector3 diff = go.transform.position - position;
-
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance && curDistance < Range)
-            {
-                closest = go;
-                distance = curDistance;
-            }
-        }
-
-        return closest;
-    }
 }
