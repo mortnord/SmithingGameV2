@@ -10,6 +10,7 @@ public class DwarfScript : MonoBehaviour
     public GameObject Item_in_inventory = null;
     public GameObject Nearest_Object = null;
     public GameObject All_Scenes_UI;
+    public int last_direction = 0; // W = 1; A = 2; D = 3; S = 4;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class DwarfScript : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal"); // Høyre og venstre verdiene
         float vertical = Input.GetAxis("Vertical"); // Opp og ned Verdien
 
-        if (Inventory_Full && Input.GetKeyDown(KeyCode.Space) == false) //Vis inventory er tomt (alså false på testen), og vi ikke trykker space, så ska vi flytte med oss inventoriet
+        if (Inventory_Full) //Vis inventory er tomt (alså false på testen), og vi ikke trykker space, så ska vi flytte med oss inventoriet
         {
             Item_in_inventory.transform.position = transform.position + new Vector3(0, 0.5f, 0);
             Item_in_inventory.SetActive(true);
@@ -59,9 +60,24 @@ public class DwarfScript : MonoBehaviour
             }
            
         }
-      
+        if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            last_direction = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            last_direction = 2;
+        }
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            last_direction = 3;
+        }
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            last_direction = 4;
+        }
 
-            if (Input.GetKeyDown(KeyCode.Q)) //Her prøver vi å plukke opp eller sette ned objekter, avhengig om vi har eller ikke har objekter allerede. 
+        if (Input.GetKeyDown(KeyCode.Q)) //Her prøver vi å plukke opp eller sette ned objekter, avhengig om vi har eller ikke har objekter allerede. 
         {
             Nearest_Object = Find_nearest_interactable_object_within_range(5);
             if (Inventory_Full == false && Nearest_Object != null)
@@ -89,9 +105,9 @@ public class DwarfScript : MonoBehaviour
             }
         }
 
-
         float moveByX = horizontal * 4; //Movement speed 
         float moveByY = vertical * 4; // Movement speed 
+       
         rb.velocity = new Vector2(moveByX, moveByY); //Legge til krefer på fysikken, slik at figuren beveger seg
     }
     private void Cleanup() // Som nevnt, denne rydder opp i inventory for å forhindre bugs

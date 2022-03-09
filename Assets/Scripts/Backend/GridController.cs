@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -24,7 +26,9 @@ public class GridController : MonoBehaviour
     
 
     private Vector3Int prev_mouse_pos = new Vector3Int();
+    private Vector3Int target_pos;
 
+    public List<Mineable_Tile> results = new List<Mineable_Tile>();
     // Start is called before the first frame update
     void Start() //Vi finner nødvendige objekter, og gir beskjed til rock mappet om å generate ore. 
     {
@@ -83,7 +87,7 @@ public class GridController : MonoBehaviour
         {
             for (int j = rock_map.cellBounds.yMin; j < rock_map.cellBounds.yMax; j++)
             {
-                if(Vector3Int.Distance(dwarfPos, new Vector3Int(i, j, 0)) < 50)
+                if(Vector3Int.Distance(dwarfPos, new Vector3Int(i, j, 0)) < 5)
                 {
                     shade_map.SetTile(new Vector3Int(i, j, 0), null);
                 }
@@ -91,30 +95,29 @@ public class GridController : MonoBehaviour
         }
                 // Right mouse click -> remove path tile
 
-        if (Input.GetMouseButtonDown(0) && dwarfScript.Item_in_inventory == null)
+        if (Input.GetKeyDown(KeyCode.C)&& dwarfScript.Item_in_inventory == null)
         {
-            
-            if (Vector3.Distance(dwarfPos, mousePos) <= 1) //Så sammenligner vi om vi er nærme nok til å grave, vis vi er så fortsetter vi 
+            target_pos = GetDirection(dwarfPos);
+            if (Vector3.Distance(dwarfPos, target_pos) <= 1) //Så sammenligner vi om vi er nærme nok til å grave, vis vi er så fortsetter vi 
             {
-                if (rock_map.GetTile(mousePos) != null && StaticData.Energy_mining_static > 0) //Hvis vi har energi, og vi prøver å grave på en ting
+                if (rock_map.GetTile(target_pos) != null && StaticData.Energy_mining_static > 0) //Hvis vi har energi, og vi prøver å grave på en ting
                 {
-                    if(rock_map.GetTile(mousePos) == copper_tile) //Hvis copper, gi copper
-                    {
-                        
+                    if(rock_map.GetTile(target_pos) == copper_tile) //Hvis copper, gi copper
+                    {   
                         dwarfScript.Item_in_inventory = Generation_Object.create_ore((int)Enumtypes.Ore_Quality.Copper, dwarf, StaticData.Digging_Map_information[new Vector3Int(mousePos.x, mousePos.y, 0)].percent_ore_quality);
                         dwarf.SendMessage("Inventory_Full_Message", true);
                     }
-                    else if (rock_map.GetTile(mousePos) == iron_tile) //Iron
+                    else if (rock_map.GetTile(target_pos) == iron_tile) //Iron
                     {
                         dwarfScript.Item_in_inventory = Generation_Object.create_ore((int)Enumtypes.Ore_Quality.Iron, dwarf, StaticData.Digging_Map_information[new Vector3Int(mousePos.x, mousePos.y, 0)].percent_ore_quality);
                         dwarf.SendMessage("Inventory_Full_Message", true);
                     }
-                    else if (rock_map.GetTile(mousePos) == mithril_tile) //Mithril
+                    else if (rock_map.GetTile(target_pos) == mithril_tile) //Mithril
                     {
                         dwarfScript.Item_in_inventory = Generation_Object.create_ore((int)Enumtypes.Ore_Quality.Mithril, dwarf, StaticData.Digging_Map_information[new Vector3Int(mousePos.x, mousePos.y, 0)].percent_ore_quality);
                         dwarf.SendMessage("Inventory_Full_Message", true);
                     }
-                    rock_map.SetTile(mousePos, null);//Tilen på mousa sin posisjon blir satt til null. 
+                    rock_map.SetTile(target_pos, null);//Tilen på mousa sin posisjon blir satt til null. 
                 
                     StaticData.Digging_Map_information[new Vector3Int(mousePos.x, mousePos.y, 0)] = null;
                     StaticData.Energy_mining_static = StaticData.Energy_mining_static - 1; //Mindre energi
@@ -122,6 +125,43 @@ public class GridController : MonoBehaviour
                 }
             }
         }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+
+            target_pos = GetDirection(dwarfPos);
+            if (Vector3.Distance(dwarfPos, target_pos) <= 1) //Så sammenligner vi om vi er nærme nok til å grave, vis vi er så fortsetter vi 
+            {
+                target_pos = GetDirection(dwarfPos);
+                for(int i = 0; i < 10; i++)
+                {
+                    results.Add(StaticData.Digging_Map_information[target_pos]);
+                    print(target_pos);
+                    target_pos = GetDirection(target_pos);
+                }
+               
+            }
+        }
+    }
+
+    private Vector3Int GetDirection(Vector3Int dwarfPos)
+    {
+        if (dwarf.GetComponent<DwarfScript>().last_direction == 1) //W
+        {
+            target_pos = new Vector3Int(dwarfPos.x, dwarfPos.y + 1, 0);
+        }
+        else if (dwarf.GetComponent<DwarfScript>().last_direction == 2) //A
+        {
+            target_pos = new Vector3Int(dwarfPos.x - 1, dwarfPos.y, 0);
+        }
+        else if (dwarf.GetComponent<DwarfScript>().last_direction == 3) //D
+        {
+            target_pos = new Vector3Int(dwarfPos.x + 1, dwarfPos.y, 0);
+        }
+        else if (dwarf.GetComponent<DwarfScript>().last_direction == 4) //S
+        {
+            target_pos = new Vector3Int(dwarfPos.x, dwarfPos.y - 1, 0);
+        }
+        return target_pos;
     }
 
     Vector3Int GetMousePosition() //Gjør musa sin posisjon om til Gridcell posisjon. 

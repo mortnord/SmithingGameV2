@@ -61,7 +61,7 @@ public class Random_Ore_Generator : MonoBehaviour
             {
                 int ore_generate = UnityEngine.Random.Range(0, 3); //En av copper, iron eller mithril
                 int rnd_seed = rand.Next(100, 301);
-                print(rnd_seed);
+                
                 Ore_chunk_Bloom(ore_generate, i, j, rnd_seed); //Hvor denne bloomen skal generates
             }
         }
