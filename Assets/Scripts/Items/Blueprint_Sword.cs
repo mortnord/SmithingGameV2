@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-
 public class Blueprint_Sword : MonoBehaviour
 {
     public Sprite[] spriteArray;
@@ -12,9 +12,10 @@ public class Blueprint_Sword : MonoBehaviour
         spriteRenderer.sprite = spriteArray[sprite_nr];
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Set_Sprite_Nr(int sprite_nr_inn)
     {
-
+        sprite_nr = sprite_nr_inn;
     }
+    // Update is called once per frame
+
 }

@@ -3,15 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using static Enumtypes;
-
 public class Random_Ore_Generator : MonoBehaviour
 {
     // Start is called before the first frame update
-
     public Tilemap map_to_generate_in;
-
     public Ore_Quality ore_quality;
-
     public RuleTile rock_tile;
     public Tile copper_tile;
     public Tile iron_tile;
@@ -19,10 +15,7 @@ public class Random_Ore_Generator : MonoBehaviour
     public List<int> copper_spread = new List<int>();
     public List<int> iron_spread = new List<int>();
     public List<int> mithril_spread = new List<int>();
-
     System.Random rand = new System.Random();
-
-
     void Awake()
     {
         copper_spread.Add(1); //Her legger vi til de random verdiene vi har, finn en bedre måte...
@@ -30,23 +23,19 @@ public class Random_Ore_Generator : MonoBehaviour
         copper_spread.Add(2);
         copper_spread.Add(2);
         copper_spread.Add(4);
-
         iron_spread.Add(1);
         iron_spread.Add(1);
         iron_spread.Add(1);
         iron_spread.Add(2);
         iron_spread.Add(3);
-
         mithril_spread.Add(0);
         mithril_spread.Add(1);
         mithril_spread.Add(1);
         mithril_spread.Add(1);
         mithril_spread.Add(2);
-        generateMap();
-       
+        Generate_Map();
     }
-
-    private void generateMap()
+    private void Generate_Map()
     {
         for (int i = -StaticData.map_size_x; i < StaticData.map_size_x; i++)
         {
@@ -61,25 +50,21 @@ public class Random_Ore_Generator : MonoBehaviour
             {
                 int ore_generate = UnityEngine.Random.Range(0, 3); //En av copper, iron eller mithril
                 int rnd_seed = rand.Next(100, 301);
-                
-                Ore_chunk_Bloom(ore_generate, i, j, rnd_seed); //Hvor denne bloomen skal generates
+                Ore_Chunk_Bloom(ore_generate, i, j, rnd_seed); //Hvor denne bloomen skal generates
             }
         }
-
-        PerlinNoiseMap(copper_tile, StaticData.seed_Copper, 0.80f); //Her henter vi info fra vårt perlin noise map med seed for randomness.
-        PerlinNoiseMap(iron_tile, StaticData.seed_Iron, 0.80f);
-        PerlinNoiseMap(mithril_tile, StaticData.seed_Mithril, 0.85f);
-        PerlinNoiseMap(StaticData.seed_caves, 0.60f);
+        Perlin_Noise_Map(copper_tile, StaticData.seed_Copper, 0.80f); //Her henter vi info fra vårt perlin noise map med seed for randomness.
+        Perlin_Noise_Map(iron_tile, StaticData.seed_Iron, 0.80f);
+        Perlin_Noise_Map(mithril_tile, StaticData.seed_Mithril, 0.85f);
+        Perlin_Noise_Map(StaticData.seed_caves, 0.60f);
     }
-
-    private void Ore_chunk_Bloom(int ore_generate, int i, int j, int Percent_ore_quality)
+    private void Ore_Chunk_Bloom(int ore_generate, int i, int j, int Percent_ore_quality)
     {
         int spreadXplus;
         int spreadYplus;
         int spreadXminus;
         int spreadYminux;
         int randNr;
-
         if (ore_generate == 0) //Hvis copper, bruk copper sine sprednings verdier
         {
             randNr = rand.Next(0, copper_spread.Count);
@@ -91,13 +76,10 @@ public class Random_Ore_Generator : MonoBehaviour
             randNr = rand.Next(0, copper_spread.Count);
             spreadYminux = copper_spread[randNr];
             StaticData.Digging_Map_information[(new Vector3Int(i, j, 0))] = new Mineable_Tile(copper_tile, Percent_ore_quality); //Først sett den initielle blokken imidten
-            calculateSpread(spreadXplus, spreadXminus, spreadYminux, spreadYplus, copper_tile, i, j, Percent_ore_quality); //Beregn hvor langt ut til hver siden den skal spre.
-
+            Calculate_Spread(spreadXplus, spreadXminus, spreadYminux, spreadYplus, copper_tile, i, j, Percent_ore_quality); //Beregn hvor langt ut til hver siden den skal spre.
         }
-
         else if (ore_generate == 1) //Iron
         {
-
             randNr = rand.Next(0, iron_spread.Count);
             spreadXplus = iron_spread[randNr];
             randNr = rand.Next(0, copper_spread.Count);
@@ -106,13 +88,11 @@ public class Random_Ore_Generator : MonoBehaviour
             spreadXminus = iron_spread[randNr];
             randNr = rand.Next(0, copper_spread.Count);
             spreadYminux = iron_spread[randNr];
-
             StaticData.Digging_Map_information[(new Vector3Int(i, j, 0))] = new Mineable_Tile(iron_tile, Percent_ore_quality);
-            calculateSpread(spreadXplus, spreadXminus, spreadYminux, spreadYplus, iron_tile, i, j, Percent_ore_quality);
+            Calculate_Spread(spreadXplus, spreadXminus, spreadYminux, spreadYplus, iron_tile, i, j, Percent_ore_quality);
         }
         else if (ore_generate == 2) //Mithril
         {
-
             randNr = rand.Next(0, mithril_spread.Count);
             spreadXplus = mithril_spread[randNr];
             randNr = rand.Next(0, copper_spread.Count);
@@ -121,14 +101,11 @@ public class Random_Ore_Generator : MonoBehaviour
             spreadXminus = mithril_spread[randNr];
             randNr = rand.Next(0, copper_spread.Count);
             spreadYminux = mithril_spread[randNr];
-
-
             StaticData.Digging_Map_information[(new Vector3Int(i, j, 0))] = new Mineable_Tile(mithril_tile, Percent_ore_quality);
-            calculateSpread(spreadXplus, spreadXminus, spreadYminux, spreadYplus, mithril_tile, i, j,Percent_ore_quality);
+            Calculate_Spread(spreadXplus, spreadXminus, spreadYminux, spreadYplus, mithril_tile, i, j,Percent_ore_quality);
         }
     }
-
-    private void PerlinNoiseMap(int seed_caves, float v)
+    private void Perlin_Noise_Map(int seed_caves, float v)
     {
         float oreNoise;
         float xCoord;
@@ -139,10 +116,8 @@ public class Random_Ore_Generator : MonoBehaviour
             {
                 //(Mathf.Abs(map_in.cellBounds.xMin + Mathf.Abs(map_in.cellBounds.xMax)));
                 xCoord = (float)i / (Mathf.Abs(-StaticData.map_size_x) + Mathf.Abs(StaticData.map_size_x))*40; //Fancy pancy matte eg ikke skjønner lengre... Men det funker
-                yCoord = (float)j / (Mathf.Abs(-StaticData.map_size_y) + Mathf.Abs(StaticData.map_size_y))*40;
-
+                yCoord = (float)j / (Mathf.Abs(-StaticData.map_size_y) + Mathf.Abs(StaticData.map_size_y))*40; //Verdien her er hvor ofte noe skal skje
                 oreNoise = Mathf.PerlinNoise(xCoord + seed_caves, yCoord + seed_caves); //Få en perlin noise map verdi
-
                 if (oreNoise > v && oreNoise < 0.70f) //Vis høy nok, 
                 {
                     StaticData.Digging_Map_information[new Vector3Int(i, j, 0)] =  null; //Set tile til null, ala lage en cavern
@@ -150,10 +125,8 @@ public class Random_Ore_Generator : MonoBehaviour
             }
         }
     }
-
-    private void PerlinNoiseMap(Tile tile, int seed, float v) //Se andre metode
+    private void Perlin_Noise_Map(Tile tile, int seed, float v) //Se andre metode
     {
-
         float oreNoise;
         float xCoord;
         float yCoord;
@@ -171,9 +144,7 @@ public class Random_Ore_Generator : MonoBehaviour
             }
         }
     }
-        
-        
-    private void calculateSpread(int spreadXplus, int spreadXminus, int spreadYminux, int spreadYplus, Tile tile_spread, int i, int j, int Percent_ore_quality)
+    private void Calculate_Spread(int spreadXplus, int spreadXminus, int spreadYminux, int spreadYplus, Tile tile_spread, int i, int j, int Percent_ore_quality)
     {
         int iterator = 0; //Iterator for hvor langt ut vi har dratt fra sentrum
         while (spreadXplus > 0) //så lenge vi skal utover
@@ -225,4 +196,3 @@ public class Random_Ore_Generator : MonoBehaviour
         }
     }
 }
-

@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class Scene_Loader : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -8,10 +7,6 @@ public class Scene_Loader : MonoBehaviour
         GameObject MainObject = GameObject.FindGameObjectWithTag("GameController");
         MainObject.BroadcastMessage("Loading", SendMessageOptions.DontRequireReceiver);
     }
-
     // Update is called once per frame
-    void Update()
-    {
 
-    }
 }

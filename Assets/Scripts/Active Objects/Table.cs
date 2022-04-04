@@ -1,8 +1,6 @@
 using UnityEngine;
-
 public class Table : MonoBehaviour, IInteractor_Connector
 {
-
     Object_Creation Generation_Object;
     GameObject blueprint_original_on_table;
     public GameObject fake_copy;
@@ -11,9 +9,8 @@ public class Table : MonoBehaviour, IInteractor_Connector
     void Start()
     {
         blueprint_original_on_table = transform.GetChild(0).gameObject; //Finn child-objektet, vi setter det i editoren
-        Generation_Object = Find_Components.find_Object_Creation(); //Generation objektet
+        Generation_Object = Find_Components.Find_Object_Creation(); //Generation objektet
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -22,17 +19,15 @@ public class Table : MonoBehaviour, IInteractor_Connector
             if (blueprint_original_on_table.GetComponent<Blueprint_Sword>())
             {
                 copied = false;
-                fake_copy = Generation_Object.create_blueprint_sword(transform.position); //Posisjonen til kopien er lik posisjonen til bordet. 
+                fake_copy = Generation_Object.Create_Blueprint_Sword(transform.position); //Posisjonen til kopien er lik posisjonen til bordet. 
             }
         }
     }
-
     public void Pickup(GameObject main_character) //Interface metode for å hente opp blueprint copies. 
     {
-
-        main_character.GetComponent<DwarfScript>().Item_in_inventory = fake_copy;
+        main_character.GetComponent<DwarfScript>().Set_Item_In_Inventory(fake_copy);
         fake_copy = null;
-        main_character.GetComponent<DwarfScript>().Item_in_inventory.transform.parent = null;
+        main_character.GetComponent<DwarfScript>().Get_Item_In_Inventory().transform.parent = null;
         copied = true;
         Return_Answer(main_character, true);
     }
@@ -40,7 +35,6 @@ public class Table : MonoBehaviour, IInteractor_Connector
     {
         //Do nothing
     }
-
     public void Return_Answer(GameObject main_character, bool result) //Returnerer svar til dwarf character
     {
         main_character.SendMessage("Inventory_Full_Message", result);

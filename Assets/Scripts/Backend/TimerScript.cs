@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-
 public class TimerScript : MonoBehaviour
 {
-
     public bool timer_Is_Running = false;
     public float minutes = 0;
     public float seconds = 0;
@@ -12,11 +10,9 @@ public class TimerScript : MonoBehaviour
     public bool ekstra_mission_reset = false;
     public float reset_timer = 10;
     public float ekstra_mission_spawn = 30;
-
     // Start is called before the first frame update
     void Start()
     {
-
         timer_Is_Running = true; //Tiden ska begynne å gå
     }
     // Update is called once per frame
@@ -56,5 +52,33 @@ public class TimerScript : MonoBehaviour
         minutes = Mathf.FloorToInt(time_to_display / 60);
         seconds = Mathf.FloorToInt(time_to_display % 60);
         time_Text.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+    public void Set_Reset(bool value)
+    {
+        reset = value;
+    }
+    public bool Get_Reset()
+    {
+        return reset;
+    }
+    public void Set_Ekstra_Reset(bool value)
+    {
+        ekstra_mission_reset = value;
+    }
+    public bool Get_Ekstra_Reset()
+    {
+        return ekstra_mission_reset;
+    }
+    public void Set_Ekstra_Mission_Spawn(float value)
+    {
+        ekstra_mission_spawn = value;
+    }
+    public float Get_Ekstra_Mission_Spawn()
+    {
+        return ekstra_mission_spawn;
+    }
+    public void Set_Reset_Timer(float value)
+    {
+        reset_timer = value;
     }
 }

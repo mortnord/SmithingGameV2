@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-
 public class Score : MonoBehaviour
 {
     public Text score_text;
@@ -9,7 +8,6 @@ public class Score : MonoBehaviour
     {
         score_text.text = "0";
     }
-
     // Update is called once per frame
     void Update()
     {

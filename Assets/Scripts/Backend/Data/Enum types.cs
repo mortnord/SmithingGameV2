@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class Enumtypes : MonoBehaviour
 {
     // Start is called before the first frame update

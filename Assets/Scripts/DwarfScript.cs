@@ -1,40 +1,34 @@
 using System;
 using UnityEngine;
-
 [Serializable]
 public class DwarfScript : MonoBehaviour
 {
     Rigidbody2D rb;
-
     public bool Inventory_Full = false;
     public GameObject Item_in_inventory = null;
     public GameObject Nearest_Object = null;
     public GameObject All_Scenes_UI;
     public int last_direction = 0; // W = 1; A = 2; D = 3; S = 4;
-
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Denne trengs for å kunne gjøre physicsbasert movement
-        
     }
     // Update is called once per frame
     void Update()
     {
         float horizontal = Input.GetAxis("Horizontal"); // Høyre og venstre verdiene
         float vertical = Input.GetAxis("Vertical"); // Opp og ned Verdien
-
         if (Inventory_Full) //Vis inventory er tomt (alså false på testen), og vi ikke trykker space, så ska vi flytte med oss inventoriet
         {
             Item_in_inventory.transform.position = transform.position + new Vector3(0, 0.5f, 0);
             Item_in_inventory.SetActive(true);
-
         }
         if (Input.GetKeyDown(KeyCode.E)) //Her aktiverer vi objekter, evnt så kan vi ha en spak vi interacter med for å gjøre det samme, vis alt ska være på space-knappen
         {
             try
             {
-                Nearest_Object = Find_nearest_interactable_object_within_range(5); // 
+                Nearest_Object = Find_Nearest_Interactable_Object_Within_Range(5); // 
                 Nearest_Object.transform.parent.SendMessage("Work", gameObject, SendMessageOptions.DontRequireReceiver);
             }
             catch
@@ -42,44 +36,26 @@ public class DwarfScript : MonoBehaviour
                 //Do nothing
             }
         }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            if(StaticData.amount_of_beer_static < 3)
-            {
-                StaticData.amount_of_beer_static = StaticData.amount_of_beer_static + 1;
-                All_Scenes_UI.SendMessage("setPosition_Beers");
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            if(StaticData.amount_of_beer_static > 0)
-            {
-
-                StaticData.amount_of_beer_static = StaticData.amount_of_beer_static - 1;
-                All_Scenes_UI.SendMessage("setPosition_Beers");
-            }
-           
-        }
-        if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
+        
+        if(Input.GetKey(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
         {
             last_direction = 1;
         }
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
         {
             last_direction = 2;
         }
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
         {
             last_direction = 3;
         }
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
         {
             last_direction = 4;
         }
-
         if (Input.GetKeyDown(KeyCode.Q)) //Her prøver vi å plukke opp eller sette ned objekter, avhengig om vi har eller ikke har objekter allerede. 
         {
-            Nearest_Object = Find_nearest_interactable_object_within_range(5);
+            Nearest_Object = Find_Nearest_Interactable_Object_Within_Range(5);
             if (Inventory_Full == false && Nearest_Object != null)
             {
                 try
@@ -101,13 +77,10 @@ public class DwarfScript : MonoBehaviour
                 {
                     //Do nothing
                 }
-
             }
         }
-
         float moveByX = horizontal * 4; //Movement speed 
         float moveByY = vertical * 4; // Movement speed 
-       
         rb.velocity = new Vector2(moveByX, moveByY); //Legge til krefer på fysikken, slik at figuren beveger seg
     }
     private void Cleanup() // Som nevnt, denne rydder opp i inventory for å forhindre bugs
@@ -115,19 +88,16 @@ public class DwarfScript : MonoBehaviour
         Item_in_inventory = null;
         Inventory_Full = false;
     }
-    GameObject Find_nearest_interactable_object_within_range(int Range) //Her finner vi nærmeste objekt innenfor objekter med riktig tag, returnerer ett GameObject
+    GameObject Find_Nearest_Interactable_Object_Within_Range(int Range) //Her finner vi nærmeste objekt innenfor objekter med riktig tag, returnerer ett GameObject
     {
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("Interact_Object");
-
         GameObject closest = null;
-
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
         foreach (GameObject go in gos)
         {
             Vector3 diff = go.transform.position - position;
-
             float curDistance = diff.sqrMagnitude;
             if (curDistance < distance && curDistance < Range)
             {
@@ -151,5 +121,16 @@ public class DwarfScript : MonoBehaviour
         }
         print(result);
     }
-
+    public void Set_Item_In_Inventory(GameObject inventory_object_inn)
+    {
+        Item_in_inventory = inventory_object_inn;
+    }
+    public GameObject Get_Item_In_Inventory()
+    {
+        return Item_in_inventory;
+    }
+    public int Get_Direction()
+    {
+        return last_direction;
+    }
 }

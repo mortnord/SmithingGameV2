@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32303fbeba5909b47afe54105735911f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  map_to_generate_in: {fileID: 0}
   ore_quality: 0
   rock_tile: {fileID: 11400000, guid: da48e8cf0442a794f8eebbc675417174, type: 2}
   copper_tile: {fileID: 11400000, guid: 2c6f81cca8072ed4bb5d60f3a32bcf0f, type: 2}
