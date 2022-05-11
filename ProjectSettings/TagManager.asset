@@ -10,6 +10,7 @@ TagManager:
   - Object
   - Interact_Object
   - Mining_Ore
+  - Minecart
   layers:
   - Default
   - TransparentFX
