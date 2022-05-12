@@ -11,6 +11,6 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        score_text.text = StaticData.score.ToString();
+        score_text.text = StaticData.amount_standard_tracks.ToString();
     }
 }

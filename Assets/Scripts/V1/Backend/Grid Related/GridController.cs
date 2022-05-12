@@ -143,6 +143,7 @@ public class GridController : MonoBehaviour
                 StaticData.track_positions.Add(dwarfPos);
                 StaticData.amount_standard_tracks--;
                 UI.SendMessage("Set_Position_Tracks");
+                Debug.Log(StaticData.amount_standard_tracks);
             }
         }
         if(Input.GetKeyDown(KeyCode.L))

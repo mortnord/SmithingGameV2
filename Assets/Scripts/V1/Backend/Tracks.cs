@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tracks : MonoBehaviour
 {
@@ -13,10 +14,13 @@ public class Tracks : MonoBehaviour
     {
         Generation_Object = Find_Components.Find_Object_Creation();
         Set_Position_Tracks();
+        Debug.Log(StaticData.amount_standard_tracks);
+
     }
 
     private void Set_Position_Tracks()
     {
+        /*
         print("Making tracks, choo choo");
         if(StaticData.amount_standard_tracks > 0 && StaticData.amount_standard_tracks < 11)
         {
@@ -35,5 +39,6 @@ public class Tracks : MonoBehaviour
             Destroy(Track_Objects[Track_Objects.Count - 1]);
             Track_Objects.RemoveAt(Track_Objects.Count - 1);
         }
+        */
     }
 }
